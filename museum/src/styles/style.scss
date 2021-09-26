@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import './variables.scss';
+
 *,
 *::before,
 *::after {
@@ -7,13 +11,38 @@
 }
 
 body {
-  background-color: coral;
+  font-family: $primary-font;
+  background-color: var(--neutral-color-100);
 }
 
 a {
   text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: var(--primary-color-300);
+  }
+
+  &:active {
+    filter: brightness(0.8);
+  }
 }
 
 li {
   list-style: none;
+}
+
+h1,
+h2 {
+  font-family: $secondary-font;
+}
+
+.wrapper {
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+.black-bg {
+  background-color: var(--neutral-color-700);
+  color: var(--neutral-color-100);
 }

@@ -1,3 +1,4 @@
+import header from './components/header/header';
 import './styles/style.scss';
 
-document.body.innerHTML = '<h1>Hello, World!</h1>';
+document.body.appendChild(header);
