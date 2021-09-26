@@ -37,9 +37,29 @@ h2 {
   font-family: $secondary-font;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .wrapper {
-  max-width: 75%;
+  max-width: 90%;
   margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    max-width: 95%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 96%;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-width: 85%;
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 75%;
+  }
 }
 
 .black-bg {

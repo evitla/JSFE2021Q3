@@ -35,7 +35,12 @@
 }
 
 .nav {
+  display: none;
   width: 55%;
+
+  @media screen and (min-width: 1920px) {
+    display: block;
+  }
 }
 
 .nav-list {
