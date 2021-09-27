@@ -1,0 +1,47 @@
+.virtual-wrapper {
+  padding: 4.6875rem 0;
+}
+
+.virtual-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4.6875rem 3.75rem;
+  margin-top: 4.6875rem;
+}
+
+.tour-card {
+  color: var(--neutral-color-700);
+  overflow: hidden;
+
+  img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+    }
+  }
+
+  span {
+    font-size: 1.375rem;
+    font-weight: 300;
+  }
+
+  p {
+    font-size: 1.125rem;
+    font-weight: 300;
+    margin-top: 0.625rem;
+  }
+}
+
+.card-title {
+  margin: 1.5625rem 0 0.625rem;
+  font-size: 2rem;
+
+  &::after {
+    width: 70%;
+  }
+}
