@@ -87,4 +87,7 @@ module.exports = ({ develop }) => ({
     ...esLintPlugin(develop),
   ],
   ...devServer(develop),
+  optimization: {
+    minimize: false,
+  },
 });
