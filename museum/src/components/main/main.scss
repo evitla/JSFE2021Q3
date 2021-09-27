@@ -1,0 +1,19 @@
+.section-title {
+  font-size: clamp(1.75rem, 100vw / 768 * 40, 3.125rem);
+  line-height: clamp(2.5rem, 100vw / 768 * 60, 5.625rem);
+  margin-bottom: 1.5625rem;
+
+  @media screen and (min-width: 1024px) {
+    font-size: clamp(2.5rem, 100vw / 1024 * 50, 5rem);
+    line-height: 5.625rem;
+  }
+}
+
+.title-with-line {
+  &::after {
+    content: '';
+    display: block;
+    border-bottom: 3px solid var(--primary-color-500);
+    margin-top: 0.3125em;
+  }
+}

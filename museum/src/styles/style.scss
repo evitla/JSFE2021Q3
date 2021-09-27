@@ -33,8 +33,12 @@ li {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: $secondary-font;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 0.3125rem;
 }
 
 .invisible {
@@ -65,4 +69,9 @@ h2 {
 .black-bg {
   background-color: var(--neutral-color-700);
   color: var(--neutral-color-100);
+}
+
+.white-bg {
+  background-color: var(--neutral-color-100);
+  color: var(--primary-color-300);
 }
