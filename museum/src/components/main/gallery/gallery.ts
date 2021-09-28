@@ -37,9 +37,12 @@ const imgs = [
 ];
 
 const gallerySection = baseComponent('section', ['black-bg']);
+gallerySection.id = 'gallery';
+
 const galleryWrapper = baseComponent('div', ['wrapper', 'gallery-wrapper']);
 
 const images = imgs
+  .sort(() => Math.random() - 0.5)
   .map(
     (img, index) =>
       `<figure class="gallery-img" data-key=${index}><img src=${img} alt=""></figure>`

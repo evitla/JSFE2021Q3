@@ -7,11 +7,13 @@ import './welcome.scss';
 const welcomeWrapper = baseComponent('div', ['wrapper', 'welcome-wrapper']);
 
 const welcomeSection = baseComponent('section', ['welcome', 'black-bg']);
+welcomeSection.id = 'welcome';
+
 const welcomeContent = baseComponent('div', ['welcome-content']);
 welcomeContent.innerHTML = `
   <h2 class="section-title">Welcome</br> to the Louvre</h2>
   <p>From the castle to the museum</p>
-  <a class="btn">Discover the Louvre</a>
+  <a class="btn" href="./tour1.html" target="_blank">Discover the Louvre</a>
 `;
 
 const welcomeSlider = baseComponent('div', ['welcome-slider']);

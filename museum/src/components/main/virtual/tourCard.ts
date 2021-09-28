@@ -4,7 +4,7 @@ const tourCard = (title: string, imgSrc: string, url: string): HTMLElement => {
   const element = baseComponent('figure', ['tour-card']);
 
   element.innerHTML = `
-    <a href=${url}>
+    <a href=${url} target="_blank">
       <img src=${imgSrc} alt="">
       <h3 class="card-title title-with-line">${title}</h3>
     </a>

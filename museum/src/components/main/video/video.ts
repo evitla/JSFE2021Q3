@@ -9,6 +9,8 @@ import fullscreen from '../../../assets/images/fullscreen.svg';
 import './video.scss';
 
 const videoSection = baseComponent('section', ['white-bg']);
+videoSection.id = 'video';
+
 const videoWrapper = baseComponent('div', ['wrapper', 'video-wrapper']);
 videoWrapper.innerHTML = `
   <div class="video-text">

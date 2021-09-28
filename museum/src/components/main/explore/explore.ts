@@ -5,6 +5,8 @@ import imgSrc from '../../../assets/images/explore.png';
 import './explore.scss';
 
 const exploreSection = baseComponent('section', ['black-bg']);
+exploreSection.id = 'explore';
+
 const exploreWrapper = baseComponent('div', ['wrapper', 'explore-wrapper']);
 exploreWrapper.innerHTML = `
   <div class="explore-left-side">

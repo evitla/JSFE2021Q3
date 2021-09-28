@@ -60,7 +60,45 @@ module.exports = ({ develop }) => ({
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: './src/favicon.ico',
       template: './src/index.html',
+      filename: 'index.html',
+      chunks: ['app'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour1.html',
+      filename: 'tour1.html',
+      chunks: [''],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour2.html',
+      filename: 'tour2.html',
+      chunks: [''],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour3.html',
+      filename: 'tour3.html',
+      chunks: [''],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour4.html',
+      filename: 'tour4.html',
+      chunks: [''],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour5.html',
+      filename: 'tour5.html',
+      chunks: [''],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour6.html',
+      filename: 'tour6.html',
+      chunks: [''],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/tour7.html',
+      filename: 'tour7.html',
+      chunks: [''],
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',

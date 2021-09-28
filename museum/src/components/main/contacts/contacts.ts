@@ -5,6 +5,8 @@ import imgSrc from '../../../assets/images/map.png';
 import './contacts.scss';
 
 const contactsSection = baseComponent('section', ['white-bg']);
+contactsSection.id = 'contact';
+
 const contactsWrapper = baseComponent('div', ['wrapper', 'contacts-wrapper']);
 contactsWrapper.innerHTML = `
   <h2 class="section-title title-with-line">Contacts</h2>

@@ -11,6 +11,8 @@ import img6 from '../../../assets/images/virtual-tour/6.jpg';
 import './virtual.scss';
 
 const virtualSection = baseComponent('section', ['virtual', 'white-bg']);
+virtualSection.id = 'visiting';
+
 const virtualWrapper = baseComponent('div', ['wrapper', 'virtual-wrapper']);
 const virtualCards = baseComponent('div', ['virtual-cards']);
 virtualWrapper.innerHTML = `
@@ -29,7 +31,7 @@ const cardTitles = [
 const imgs = [img1, img2, img3, img4, img5, img6];
 
 cardTitles.forEach((title, index) => {
-  const card = tourCard(title, imgs[index], '');
+  const card = tourCard(title, imgs[index], `./tour${index + 2}.html`);
   virtualCards.appendChild(card);
 });
 
