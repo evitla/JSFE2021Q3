@@ -17,3 +17,11 @@
     margin-top: 0.3125em;
   }
 }
+
+.parallax {
+  width: 100%;
+  height: 400px;
+  background: url('../../assets/images/parallax.jpg') no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+}
