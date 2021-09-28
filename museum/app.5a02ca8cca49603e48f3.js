@@ -339,6 +339,7 @@ const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const map_png_1 = __importDefault(__webpack_require__(9323));
 __webpack_require__(2090);
 const contactsSection = (0, baseComponent_1.default)('section', ['white-bg']);
+contactsSection.id = 'contact';
 const contactsWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'contacts-wrapper']);
 contactsWrapper.innerHTML = `
   <h2 class="section-title title-with-line">Contacts</h2>
@@ -371,6 +372,7 @@ const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const explore_png_1 = __importDefault(__webpack_require__(7694));
 __webpack_require__(7777);
 const exploreSection = (0, baseComponent_1.default)('section', ['black-bg']);
+exploreSection.id = 'explore';
 const exploreWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'explore-wrapper']);
 exploreWrapper.innerHTML = `
   <div class="explore-left-side">
@@ -440,8 +442,10 @@ const imgs = [
     _15_jpg_1.default,
 ];
 const gallerySection = (0, baseComponent_1.default)('section', ['black-bg']);
+gallerySection.id = 'gallery';
 const galleryWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'gallery-wrapper']);
 const images = imgs
+    .sort(() => Math.random() - 0.5)
     .map((img, index) => `<figure class="gallery-img" data-key=${index}><img src=${img} alt=""></figure>`)
     .join('');
 galleryWrapper.innerHTML = `
@@ -502,6 +506,7 @@ const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const tickets_png_1 = __importDefault(__webpack_require__(4749));
 __webpack_require__(4721);
 const ticketsSection = (0, baseComponent_1.default)('section', ['white-bg']);
+ticketsSection.id = 'tickets';
 const ticketsWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'tickets-wrapper']);
 ticketsWrapper.innerHTML = `
   <h2 class="section-title title-with-line">Buy Tickets</h2>
@@ -533,13 +538,13 @@ ticketsWrapper.innerHTML = `
         <h5>Basic 18+</h5>
         <div class="amount-controller">
           <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-          <input type="number" min="0" value="1" readonly>
+          <input type="number" min="0" max="20" value="1" readonly>
           <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
         <h5>Senior 65+</h5>
         <div class="amount-controller">
           <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-          <input type="number" min="0" value="1" readonly>
+          <input type="number" min="0" max="20" value="1" readonly>
           <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
         </div>
         <h4 class="total-amount">Total &#8364;220</h4>
@@ -570,6 +575,7 @@ const volume_svg_1 = __importDefault(__webpack_require__(8418));
 const fullscreen_svg_1 = __importDefault(__webpack_require__(6551));
 __webpack_require__(2791);
 const videoSection = (0, baseComponent_1.default)('section', ['white-bg']);
+videoSection.id = 'video';
 const videoWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'video-wrapper']);
 videoWrapper.innerHTML = `
   <div class="video-text">
@@ -674,7 +680,7 @@ const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const tourCard = (title, imgSrc, url) => {
     const element = (0, baseComponent_1.default)('figure', ['tour-card']);
     element.innerHTML = `
-    <a href=${url}>
+    <a href=${url} target="_blank">
       <img src=${imgSrc} alt="">
       <h3 class="card-title title-with-line">${title}</h3>
     </a>
@@ -706,6 +712,7 @@ const _5_jpg_1 = __importDefault(__webpack_require__(8834));
 const _6_jpg_1 = __importDefault(__webpack_require__(433));
 __webpack_require__(5425);
 const virtualSection = (0, baseComponent_1.default)('section', ['virtual', 'white-bg']);
+virtualSection.id = 'visiting';
 const virtualWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'virtual-wrapper']);
 const virtualCards = (0, baseComponent_1.default)('div', ['virtual-cards']);
 virtualWrapper.innerHTML = `
@@ -721,7 +728,7 @@ const cardTitles = [
 ];
 const imgs = [_1_jpg_1.default, _2_jpg_1.default, _3_jpg_1.default, _4_jpg_1.default, _5_jpg_1.default, _6_jpg_1.default];
 cardTitles.forEach((title, index) => {
-    const card = (0, tourCard_1.default)(title, imgs[index], '');
+    const card = (0, tourCard_1.default)(title, imgs[index], `./tour${index + 2}.html`);
     virtualCards.appendChild(card);
 });
 virtualWrapper.appendChild(virtualCards);
@@ -744,11 +751,12 @@ const _1_jpg_1 = __importDefault(__webpack_require__(6474));
 __webpack_require__(6349);
 const welcomeWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'welcome-wrapper']);
 const welcomeSection = (0, baseComponent_1.default)('section', ['welcome', 'black-bg']);
+welcomeSection.id = 'welcome';
 const welcomeContent = (0, baseComponent_1.default)('div', ['welcome-content']);
 welcomeContent.innerHTML = `
   <h2 class="section-title">Welcome</br> to the Louvre</h2>
   <p>From the castle to the museum</p>
-  <a class="btn">Discover the Louvre</a>
+  <a class="btn" href="./tour1.html" target="_blank">Discover the Louvre</a>
 `;
 const welcomeSlider = (0, baseComponent_1.default)('div', ['welcome-slider']);
 welcomeSlider.innerHTML = `
@@ -794,7 +802,7 @@ const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const unorderedList = (items, styles = []) => {
     const element = (0, baseComponent_1.default)('ul', styles);
     element.innerHTML = items
-        .map((item) => `<li><a href="#">${item}</a></li>`)
+        .map((item) => `<li><a href="#${item.toLowerCase()}">${item}</a></li>`)
         .join('');
     return element;
 };
