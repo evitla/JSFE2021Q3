@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 528:
+/***/ 5528:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 777:
+/***/ 7777:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 146:
+/***/ 7146:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 57:
+/***/ 1057:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -38,7 +38,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 791:
+/***/ 4721:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -47,7 +47,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 425:
+/***/ 2791:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -56,7 +56,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 349:
+/***/ 5425:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -65,7 +65,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 868:
+/***/ 6349:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -74,7 +74,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 645:
+/***/ 4868:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ 2645:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -90,7 +99,7 @@ exports["default"] = baseComponent;
 
 /***/ }),
 
-/***/ 977:
+/***/ 4977:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -98,9 +107,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-const navbar_1 = __importDefault(__webpack_require__(635));
-__webpack_require__(528);
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const navbar_1 = __importDefault(__webpack_require__(9635));
+__webpack_require__(5528);
 const navItems = [
     'Visiting',
     'Explore',
@@ -129,7 +138,7 @@ exports["default"] = header;
 
 /***/ }),
 
-/***/ 635:
+/***/ 9635:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -137,8 +146,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-const unorderedList_1 = __importDefault(__webpack_require__(840));
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const unorderedList_1 = __importDefault(__webpack_require__(3840));
 const navbar = (items) => {
     const element = (0, baseComponent_1.default)('nav', ['nav']);
     const ul = (0, unorderedList_1.default)(items, ['nav-list']);
@@ -150,7 +159,7 @@ exports["default"] = navbar;
 
 /***/ }),
 
-/***/ 172:
+/***/ 6172:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -158,9 +167,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-const explore_png_1 = __importDefault(__webpack_require__(694));
-__webpack_require__(777);
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const explore_png_1 = __importDefault(__webpack_require__(7694));
+__webpack_require__(7777);
 const exploreSection = (0, baseComponent_1.default)('section', ['black-bg']);
 const exploreWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'explore-wrapper']);
 exploreWrapper.innerHTML = `
@@ -188,7 +197,7 @@ exports["default"] = exploreSection;
 
 /***/ }),
 
-/***/ 106:
+/***/ 1106:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -196,13 +205,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-__webpack_require__(146);
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const _1_jpg_1 = __importDefault(__webpack_require__(7160));
+const _2_jpg_1 = __importDefault(__webpack_require__(8658));
+const _3_jpg_1 = __importDefault(__webpack_require__(5196));
+const _4_jpg_1 = __importDefault(__webpack_require__(2798));
+const _5_jpg_1 = __importDefault(__webpack_require__(3340));
+const _6_jpg_1 = __importDefault(__webpack_require__(1876));
+const _7_jpg_1 = __importDefault(__webpack_require__(1704));
+const _8_jpg_1 = __importDefault(__webpack_require__(3310));
+const _9_jpg_1 = __importDefault(__webpack_require__(3482));
+const _10_jpg_1 = __importDefault(__webpack_require__(2677));
+const _11_jpg_1 = __importDefault(__webpack_require__(673));
+const _12_jpg_1 = __importDefault(__webpack_require__(6669));
+const _13_jpg_1 = __importDefault(__webpack_require__(4627));
+const _14_jpg_1 = __importDefault(__webpack_require__(8220));
+const _15_jpg_1 = __importDefault(__webpack_require__(1447));
+__webpack_require__(7146);
+const imgs = [
+    _1_jpg_1.default,
+    _2_jpg_1.default,
+    _3_jpg_1.default,
+    _4_jpg_1.default,
+    _5_jpg_1.default,
+    _6_jpg_1.default,
+    _7_jpg_1.default,
+    _8_jpg_1.default,
+    _9_jpg_1.default,
+    _10_jpg_1.default,
+    _11_jpg_1.default,
+    _12_jpg_1.default,
+    _13_jpg_1.default,
+    _14_jpg_1.default,
+    _15_jpg_1.default,
+];
 const gallerySection = (0, baseComponent_1.default)('section', ['black-bg']);
 const galleryWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'gallery-wrapper']);
+const images = imgs
+    .map((img, index) => `<figure class="gallery-img" data-key=${index}><img src=${img} alt=""></figure>`)
+    .join('');
 galleryWrapper.innerHTML = `
-  <h2 class="section-title gallery-title">Art Gallery</h2>
-  <div>
+  <h2 class="section-title">Art Gallery</h2>
+  <div class="picture-container">
+    <div class="picture-inner-container">
+    ${images}
+    </div>
   </div>
 `;
 gallerySection.appendChild(galleryWrapper);
@@ -211,7 +258,7 @@ exports["default"] = gallerySection;
 
 /***/ }),
 
-/***/ 583:
+/***/ 1583:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -219,25 +266,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-const welcome_1 = __importDefault(__webpack_require__(72));
-const virtual_1 = __importDefault(__webpack_require__(386));
-const explore_1 = __importDefault(__webpack_require__(172));
-const video_1 = __importDefault(__webpack_require__(919));
-const gallery_1 = __importDefault(__webpack_require__(106));
-__webpack_require__(57);
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const welcome_1 = __importDefault(__webpack_require__(5072));
+const virtual_1 = __importDefault(__webpack_require__(8386));
+const explore_1 = __importDefault(__webpack_require__(6172));
+const video_1 = __importDefault(__webpack_require__(5919));
+const gallery_1 = __importDefault(__webpack_require__(1106));
+const tickets_1 = __importDefault(__webpack_require__(9987));
+__webpack_require__(1057);
 const main = (0, baseComponent_1.default)('main');
 main.appendChild(welcome_1.default);
 main.appendChild(virtual_1.default);
 main.appendChild(explore_1.default);
 main.appendChild(video_1.default);
 main.appendChild(gallery_1.default);
+main.appendChild(tickets_1.default);
 exports["default"] = main;
 
 
 /***/ }),
 
-/***/ 919:
+/***/ 9987:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -245,13 +294,77 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const tickets_png_1 = __importDefault(__webpack_require__(4749));
+__webpack_require__(4721);
+const ticketsSection = (0, baseComponent_1.default)('section', ['white-bg']);
+const ticketsWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'tickets-wrapper']);
+ticketsWrapper.innerHTML = `
+  <h2 class="section-title title-with-line">Buy Tickets</h2>
+  <div class="tickets-container">
+    <img src=${tickets_png_1.default} alt="">
+    <div class="tickets-buy">
+      <div class="tickets-type">
+        <h4>Ticket Type</h4>
+        <div class="radios">
+          <label>
+            <input type="radio" name="radio" checked>
+            <span class="checkmark"></span>
+            Permanent exhibition
+          </label>
+          <label>
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+            Temporary exhibition
+          </label>
+          <label>
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+            Combined Admission
+          </label>
+        </div>
+      </div>
+      <div class="tickets-amount">
+        <h4>Amount</h4>
+        <h5>Basic 18+</h5>
+        <div class="amount-controller">
+          <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
+          <input type="number" min="0" value="1" readonly>
+          <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+        </div>
+        <h5>Senior 65+</h5>
+        <div class="amount-controller">
+          <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
+          <input type="number" min="0" value="1" readonly>
+          <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+        </div>
+        <h4 class="total-amount">Total &#8364;220</h4>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+  </div>
+`;
+ticketsSection.appendChild(ticketsWrapper);
+exports["default"] = ticketsSection;
+
+
+/***/ }),
+
+/***/ 5919:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const video_jpg_1 = __importDefault(__webpack_require__(118));
-const play_circle_svg_1 = __importDefault(__webpack_require__(558));
-const play_svg_1 = __importDefault(__webpack_require__(215));
-const volume_svg_1 = __importDefault(__webpack_require__(418));
-const fullscreen_svg_1 = __importDefault(__webpack_require__(551));
-__webpack_require__(791);
+const play_circle_svg_1 = __importDefault(__webpack_require__(5558));
+const play_svg_1 = __importDefault(__webpack_require__(8215));
+const volume_svg_1 = __importDefault(__webpack_require__(8418));
+const fullscreen_svg_1 = __importDefault(__webpack_require__(6551));
+__webpack_require__(2791);
 const videoSection = (0, baseComponent_1.default)('section', ['white-bg']);
 const videoWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'video-wrapper']);
 videoWrapper.innerHTML = `
@@ -345,7 +458,7 @@ exports["default"] = videoSection;
 
 /***/ }),
 
-/***/ 944:
+/***/ 6944:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -353,7 +466,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const tourCard = (title, imgSrc, url) => {
     const element = (0, baseComponent_1.default)('figure', ['tour-card']);
     element.innerHTML = `
@@ -371,7 +484,7 @@ exports["default"] = tourCard;
 
 /***/ }),
 
-/***/ 386:
+/***/ 8386:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -379,15 +492,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-const tourCard_1 = __importDefault(__webpack_require__(944));
-const _1_jpg_1 = __importDefault(__webpack_require__(113));
-const _2_jpg_1 = __importDefault(__webpack_require__(236));
-const _3_jpg_1 = __importDefault(__webpack_require__(88));
-const _4_jpg_1 = __importDefault(__webpack_require__(470));
-const _5_jpg_1 = __importDefault(__webpack_require__(834));
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const tourCard_1 = __importDefault(__webpack_require__(6944));
+const _1_jpg_1 = __importDefault(__webpack_require__(2113));
+const _2_jpg_1 = __importDefault(__webpack_require__(7236));
+const _3_jpg_1 = __importDefault(__webpack_require__(9088));
+const _4_jpg_1 = __importDefault(__webpack_require__(4470));
+const _5_jpg_1 = __importDefault(__webpack_require__(8834));
 const _6_jpg_1 = __importDefault(__webpack_require__(433));
-__webpack_require__(425);
+__webpack_require__(5425);
 const virtualSection = (0, baseComponent_1.default)('section', ['virtual', 'white-bg']);
 const virtualWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'virtual-wrapper']);
 const virtualCards = (0, baseComponent_1.default)('div', ['virtual-cards']);
@@ -414,7 +527,7 @@ exports["default"] = virtualSection;
 
 /***/ }),
 
-/***/ 72:
+/***/ 5072:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -422,9 +535,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
-const _1_jpg_1 = __importDefault(__webpack_require__(474));
-__webpack_require__(349);
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
+const _1_jpg_1 = __importDefault(__webpack_require__(6474));
+__webpack_require__(6349);
 const welcomeWrapper = (0, baseComponent_1.default)('div', ['wrapper', 'welcome-wrapper']);
 const welcomeSection = (0, baseComponent_1.default)('section', ['welcome', 'black-bg']);
 const welcomeContent = (0, baseComponent_1.default)('div', ['welcome-content']);
@@ -465,7 +578,7 @@ exports["default"] = welcomeSection;
 
 /***/ }),
 
-/***/ 840:
+/***/ 3840:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -473,7 +586,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const baseComponent_1 = __importDefault(__webpack_require__(645));
+const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const unorderedList = (items, styles = []) => {
     const element = (0, baseComponent_1.default)('ul', styles);
     element.innerHTML = items
@@ -486,7 +599,7 @@ exports["default"] = unorderedList;
 
 /***/ }),
 
-/***/ 607:
+/***/ 3607:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -494,40 +607,152 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const header_1 = __importDefault(__webpack_require__(977));
-const main_1 = __importDefault(__webpack_require__(583));
-__webpack_require__(868);
+const header_1 = __importDefault(__webpack_require__(4977));
+const main_1 = __importDefault(__webpack_require__(1583));
+__webpack_require__(4868);
 document.body.appendChild(header_1.default);
 document.body.appendChild(main_1.default);
 
 
 /***/ }),
 
-/***/ 694:
+/***/ 7694:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/dd6c5f20e43fa8ceeba1.png";
 
 /***/ }),
 
-/***/ 551:
+/***/ 6551:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "assets/febd69940954671ee818.svg";
+module.exports = __webpack_require__.p + "assets/f84b1b9edf5b12f5e9d6.svg";
 
 /***/ }),
 
-/***/ 558:
+/***/ 7160:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "assets/8355e54a94b59c85cc2e.svg";
+module.exports = __webpack_require__.p + "assets/66a13acfdf8f43d5017d.jpg";
 
 /***/ }),
 
-/***/ 215:
+/***/ 2677:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "assets/19d25b15cb82a1972b1d.svg";
+module.exports = __webpack_require__.p + "assets/996104d2ab924ad833c1.jpg";
+
+/***/ }),
+
+/***/ 673:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/3ac3c0d151e2c2e8dba0.jpg";
+
+/***/ }),
+
+/***/ 6669:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/d9e3f566b45e43688a88.jpg";
+
+/***/ }),
+
+/***/ 4627:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/f1e2d7e07c758205cd03.jpg";
+
+/***/ }),
+
+/***/ 8220:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/91d2f395ead683e8b25b.jpg";
+
+/***/ }),
+
+/***/ 1447:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/2abc0d6e96efc163f3f7.jpg";
+
+/***/ }),
+
+/***/ 8658:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/27cdb7104200c2942444.jpg";
+
+/***/ }),
+
+/***/ 5196:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/ff54930f03b25caa5cae.jpg";
+
+/***/ }),
+
+/***/ 2798:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/a8929b7eaa039093b92c.jpg";
+
+/***/ }),
+
+/***/ 3340:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/036156a5757c25d4abea.jpg";
+
+/***/ }),
+
+/***/ 1876:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/3ab43a048cfe402ee32b.jpg";
+
+/***/ }),
+
+/***/ 1704:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/f1e41f00cb4a26bda6b8.jpg";
+
+/***/ }),
+
+/***/ 3310:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/338a69dd76f01e1e254b.jpg";
+
+/***/ }),
+
+/***/ 3482:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/8d8acd85fc1b318c9a4b.jpg";
+
+/***/ }),
+
+/***/ 5558:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/32ec6dce7c76ab1f234e.svg";
+
+/***/ }),
+
+/***/ 8215:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/45c9001d0ab48afa8d10.svg";
+
+/***/ }),
+
+/***/ 4749:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "assets/f3b898bc56a6b026df88.png";
 
 /***/ }),
 
@@ -538,35 +763,35 @@ module.exports = __webpack_require__.p + "assets/c9210862da07806babdd.jpg";
 
 /***/ }),
 
-/***/ 113:
+/***/ 2113:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/14d659202fb0b95dcc32.jpg";
 
 /***/ }),
 
-/***/ 236:
+/***/ 7236:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/cbc3f2fc4ab1623fc8d2.jpg";
 
 /***/ }),
 
-/***/ 88:
+/***/ 9088:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/dcb21b7826e052ee06fa.jpg";
 
 /***/ }),
 
-/***/ 470:
+/***/ 4470:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/408c22c3b8c8d08a0505.jpg";
 
 /***/ }),
 
-/***/ 834:
+/***/ 8834:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/dfaa6cfcd31bac1a7b75.jpg";
@@ -580,14 +805,14 @@ module.exports = __webpack_require__.p + "assets/086115dbfb4c3249ef88.jpg";
 
 /***/ }),
 
-/***/ 418:
+/***/ 8418:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "assets/62304ecc8ed14a24e91d.svg";
+module.exports = __webpack_require__.p + "assets/ae4b6cbe60435fd79160.svg";
 
 /***/ }),
 
-/***/ 474:
+/***/ 6474:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/401b1dd388549f37e07c.jpg";
@@ -669,7 +894,7 @@ module.exports = __webpack_require__.p + "assets/401b1dd388549f37e07c.jpg";
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(607);
+/******/ 	var __webpack_exports__ = __webpack_require__(3607);
 /******/ 	
 /******/ })()
 ;
