@@ -4,12 +4,15 @@ import logoSrc from '../../../assets/images/welcome-slider/1.jpg';
 
 import './welcome.scss';
 
-const welcomeWrapper = baseComponent('div', ['wrapper', 'welcome-wrapper']);
+export const welcomeWrapper = baseComponent('div', [
+  'wrapper',
+  'welcome-wrapper',
+]);
 
 const welcomeSection = baseComponent('section', ['welcome', 'black-bg']);
 welcomeSection.id = 'welcome';
 
-const welcomeContent = baseComponent('div', ['welcome-content']);
+export const welcomeContent = baseComponent('div', ['welcome-content']);
 welcomeContent.innerHTML = `
   <h2 class="section-title">Welcome</br> to the Louvre</h2>
   <p>From the castle to the museum</p>

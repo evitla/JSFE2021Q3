@@ -25,6 +25,10 @@ a {
 
   &:hover {
     color: var(--primary-color-300);
+
+    svg path {
+      fill: var(--primary-color-300);
+    }
   }
 
   &:active {

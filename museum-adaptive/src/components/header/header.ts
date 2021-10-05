@@ -1,7 +1,10 @@
 import baseComponent from '../baseComponent';
 import navbar from './navbar';
 
+import { arrowIcon } from '../icons';
+
 import './header.scss';
+import { welcomeContent, welcomeWrapper } from '../main/welcome/welcome';
 
 const navItems = [
   'Visiting',
@@ -10,7 +13,7 @@ const navItems = [
   'Gallery',
   'Tickets',
   'Contact',
-];
+].map((item) => `${item}\n${arrowIcon}`);
 
 const header = baseComponent('header', ['black-bg']);
 const wrapper = baseComponent('div', ['wrapper', 'header-wrapper']);
@@ -26,8 +29,23 @@ logo.innerHTML = `
 
 const nav = navbar(navItems);
 
+const burger = baseComponent('div', ['burger']);
+burger.innerHTML = `
+  <div class="burger__line line1"></div>
+  <div class="burger__line line2"></div>
+  <div class="burger__line line3"></div>
+`;
+
+burger.onclick = () => {
+  burger.classList.toggle('open-menu');
+  nav.classList.toggle('open-menu');
+  welcomeContent.classList.toggle('open-menu');
+  welcomeWrapper.classList.toggle('open-menu');
+};
+
 wrapper.appendChild(logo);
 wrapper.appendChild(nav);
+wrapper.appendChild(burger);
 
 header.appendChild(wrapper);
 
