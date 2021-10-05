@@ -1,1 +1,11 @@
 export { default as arrowIcon } from './arrow';
+export { default as logoIcon } from './logo';
+export { default as youtubeIcon } from './youtube';
+export { default as instagramIcon } from './instagram';
+export { default as facebookIcon } from './facebook';
+export { default as twitterIcon } from './twitter';
+export { default as pinterestIcon } from './pinterest';
+export { default as arrowLeftIcon } from './arrow-left';
+export { default as arrowRightIcon } from './arrow-right';
+export { default as doubleArrowLeftIcon } from './double-arrow-left';
+export { default as doubleArrowRightIcon } from './double-arrow-right';
