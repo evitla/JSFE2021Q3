@@ -57,6 +57,10 @@
     letter-spacing: 0.125rem;
     width: 7.625rem;
 
+    @media screen and (min-width: 1920px) {
+      width: auto;
+    }
+
     a {
       display: flex;
       justify-content: space-between;

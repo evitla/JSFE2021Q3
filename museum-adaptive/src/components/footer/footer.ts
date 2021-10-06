@@ -32,16 +32,30 @@ logo.innerHTML = `
   </a>
 `;
 
-const nav = navbar(navItems);
+const nav = navbar(
+  navItems,
+  ['nav-list'],
+  navItems.map((item) => `#${item.split('\n')[0].toLowerCase()}`)
+);
 nav.className = 'footer-nav';
 
-const socialNav = navbar([
+const socialIcons = [
   youtubeIcon,
   instagramIcon,
   facebookIcon,
   twitterIcon,
   pinterestIcon,
-]);
+];
+
+const socialUrl = [
+  'https://www.youtube.com/',
+  'https://www.instagram.com/',
+  'https://www.facebook.com/',
+  'https://twitter.com/',
+  'https://www.pinterest.com/',
+];
+
+const socialNav = navbar(socialIcons, socialUrl);
 
 socialNav.className = 'social-nav';
 

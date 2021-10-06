@@ -8,8 +8,16 @@ footer {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
+  flex-direction: column;
+  margin-bottom: 100px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 50px;
+  }
 
   &::after {
     content: '';
@@ -23,21 +31,73 @@ footer {
 
 .footer-logo {
   height: 100%;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 80px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-right: min(145px, 100vw / 1024 * 45);
+  }
+
+  @media screen and (min-width: 1920px) {
+    margin-right: 145px;
+  }
 }
 
 .footer-nav {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 393px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: min(363px, 100vw / 1024 * 313);
+    margin-right: min(397px, 100vw / 1024 * 92);
+  }
+
+  @media screen and (min-width: 1920px) {
+    margin-right: 397px;
+  }
+
   .nav-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px 170px;
+
+    li {
+      width: auto;
+      font-size: clamp(16px, 100vw / 768 * 18, 22px);
+    }
   }
 }
 
 .social-nav {
   margin-top: 162px - 75px;
 
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: 163px;
+    right: 110px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    position: initial;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   li + li {
-    margin-left: 25px;
+    margin-left: 5px;
+
+    @media screen and (min-width: 768px) {
+      margin-left: 25px;
+    }
   }
 
   li:hover {
