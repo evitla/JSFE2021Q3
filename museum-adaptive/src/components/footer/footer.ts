@@ -62,7 +62,7 @@ socialNav.className = 'social-nav';
 const copyrights = baseComponent('div', ['copyrights']);
 copyrights.innerHTML = `
   <span>&copy; 2021</span>
-  <a href="https://rs.school/" target="_blank">The Rolling Scopes School</a>
+  <a class="rs-link" href="https://rs.school/" target="_blank">The Rolling Scopes School</a>
   <a href="https://github.com/evitla" target="_blank">evitla</a>
 `;
 
