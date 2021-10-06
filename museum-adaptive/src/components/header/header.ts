@@ -24,8 +24,11 @@ logo.innerHTML = `
     <h1>Louvre</h1>
   </a>
 `;
-
-const nav = navbar(navItems);
+const nav = navbar(
+  navItems,
+  ['nav-list'],
+  navItems.map((item) => `#${item.split('\n')[0].toLowerCase()}`)
+);
 
 const burger = baseComponent('div', ['burger']);
 burger.innerHTML = `

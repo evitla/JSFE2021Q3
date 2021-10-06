@@ -1,13 +1,14 @@
 import baseComponent from './baseComponent';
 
-const unorderedList = (items: string[], styles: string[] = []): HTMLElement => {
+const unorderedList = (
+  items: string[],
+  styles: string[] = [],
+  hrefs: string[] = []
+): HTMLElement => {
   const element = baseComponent('ul', styles);
 
   element.innerHTML = items
-    .map(
-      (item) =>
-        `<li><a href="#${item.split('\n')[0].toLowerCase()}">${item}</a></li>`
-    )
+    .map((item, index) => `<li><a href="${hrefs[index]}">${item}</a></li>`)
     .join('');
 
   return element;
