@@ -1,12 +1,17 @@
-.virtual-wrapper {
-  padding: 4.6875rem 0;
-}
-
 .virtual-cards {
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 4.6875rem 3.75rem;
-  margin-top: 4.6875rem;
+  justify-content: space-between;
+  row-gap: clamp(40px, 100vw / 768 * 40, 60px);
+  margin-top: clamp(40px, 100vw / 768 * 40, 60px);
+
+  @media screen and (min-width: 1920px) {
+    width: 100%;
+    row-gap: 75px;
+    margin-top: 75px;
+  }
 }
 
 .tour-card {
@@ -14,6 +19,7 @@
   overflow: hidden;
 
   img {
+    width: clamp(280px, 100vw / 1024 * 330, 440px);
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: 0.3s ease-in-out;
@@ -22,26 +28,45 @@
     &:hover {
       -webkit-transform: scale(1.05);
       transform: scale(1.05);
+
+      ~ .card-title::after {
+        width: 100%;
+      }
     }
   }
 
   span {
-    font-size: 1.375rem;
+    font-size: clamp(1rem, 100vw / 768 * 18, 1.25rem);
     font-weight: 300;
+
+    @media screen and (min-width: 1920px) {
+      font-size: 1.375rem;
+    }
   }
 
   p {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 300;
     margin-top: 0.625rem;
+
+    @media screen and (min-width: 1920px) {
+      font-size: 1.125rem;
+    }
   }
 }
 
 .card-title {
   margin: 1.5625rem 0 0.625rem;
-  font-size: 2rem;
+  font-size: clamp(18px, 100vw / 768 * 22, 28px);
+  letter-spacing: 3px;
 
   &::after {
+    transition: width 0.4s;
     width: 70%;
+  }
+
+  @media screen and (min-width: 1920px) {
+    font-size: 2rem;
+    letter-spacing: 5px;
   }
 }

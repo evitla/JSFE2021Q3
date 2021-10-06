@@ -1,6 +1,4 @@
 .video-wrapper {
-  padding: 4.6875rem 0;
-
   .section-title {
     margin: 0;
   }
@@ -41,43 +39,86 @@
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: min(80px, 100vw / 420 * 50);
+
+  @media screen and (min-width: 1024px) {
+    width: clamp(80px, 100vw / 1024 * 152, 220px);
+  }
 }
 
 .video-controller {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 85px;
+  height: clamp(50px, 100vw / 768 * 53, 60px);
+
+  @media screen and (min-width: 1024px) {
+    height: min(85px, 100vw / 1024 * 60);
+  }
 }
 
 .video-controller-container {
-  width: 95.8%;
+  width: min(668px, 100vw / 420 * 340);
   height: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  img {
-    height: 2rem;
+  @media screen and (min-width: 768px) {
+    width: min(904px, 100vw / 768 * 668);
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: min(1380px, 100vw / 1024 * 904);
+  }
+}
+
+.play-btn {
+  width: min(23px, 100vw / 420 * 14);
+}
+
+.volume-btn {
+  width: min(27px, 100vw / 420 * 18);
+
+  @media screen and (min-width: 1024px) {
+    width: min(38px, 100vw / 1024 * 26);
+  }
+}
+
+.fullscreen-btn {
+  width: min(27px, 100vw / 420 * 18);
+
+  @media screen and (min-width: 1024px) {
+    width: min(35px, 100vw / 1024 * 26);
   }
 }
 
 input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 1rem;
-  height: 1rem;
+  width: min(13px, 100vw / 420 * 10);
+  height: min(13px, 100vw / 420 * 10);
   border-radius: 50%;
   background: var(--neutral-color-100);
   cursor: pointer;
+
+  @media screen and (min-width: 1024px) {
+    width: min(15px, 100vw / 1024 * 13);
+    height: min(15px, 100vw / 1024 * 13);
+  }
 }
 
 input[type='range']::-moz-range-thumb {
-  width: 1rem;
-  height: 1rem;
+  width: min(13px, 100vw / 420 * 10);
+  height: min(13px, 100vw / 420 * 10);
   border-radius: 50%;
   background: var(--neutral-color-100);
   cursor: pointer;
+
+  @media screen and (min-width: 1024px) {
+    width: min(15px, 100vw / 1024 * 13);
+    height: min(15px, 100vw / 1024 * 13);
+  }
 }
 
 input[type='range'] {
@@ -89,27 +130,65 @@ input[type='range'] {
     var(--neutral-color-300) 100%
   );
   border-radius: 1px;
-  height: 0.5rem;
+  height: min(5px, 100vw / 420 * 4);
   transition: background 450ms ease-in;
   -webkit-appearance: none;
+
+  @media screen and (min-width: 1024px) {
+    height: min(8px, 100vw / 1024 * 5);
+  }
 }
 
 .play-range {
-  width: 929px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  @media screen and (min-width: 1024px) {
+    position: initial;
+    width: min(929px, 100vw / 1024 * 564);
+  }
 }
 
 .volume-range {
-  width: 155px;
+  width: min(486px, 100vw / 420 * 200);
+
+  @media screen and (min-width: 768px) {
+    width: min(700px, 100vw / 768 * 486);
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: min(155px, 100vw / 1024 * 143);
+  }
 }
 
 .video-slides {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2.5rem;
+}
 
-  iframe {
-    width: 452px;
-    height: 254px;
+.yt-video {
+  width: min(100vw / 420 * 180, 330px);
+  height: calc(min(100vw / 420 * 180, 330px) * 9 / 16);
+
+  @media screen and (min-width: 768px) {
+    width: 354px;
+    height: 354px * 9 / 16;
+  }
+
+  @media screen and (min-width: 769px) {
+    width: min(100vw / 1024 * 300, 452px);
+    height: calc(min(100vw / 1024 * 300, 452px) * 9 / 16);
+  }
+
+  &:last-of-type {
+    display: none;
+
+    @media screen and (min-width: 769px) {
+      display: block;
+    }
   }
 }
 
@@ -117,18 +196,28 @@ input[type='range'] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 200px;
+  width: clamp(174px, 100vw / 768 * 190, 200px);
   margin: 0 auto;
 
   .dot {
     display: block;
-    width: 12px;
-    height: 12px;
+    width: clamp(8px, 100vw / 768 * 10, 12px);
+    height: clamp(8px, 100vw / 768 * 10, 12px);
     border-radius: 50%;
     background-color: var(--neutral-color-400);
   }
 
   .dot.active {
     background-color: var(--neutral-color-500);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    width: clamp(7px, 100vw / 768 * 10, 10px);
+    height: clamp(8px, 100vw / 768 * 12, 12px);
   }
 }

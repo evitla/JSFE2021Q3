@@ -4,10 +4,11 @@
   }
 }
 
-.welcome-wrapper {
+.wrapper.welcome-wrapper {
   position: relative;
   transition: all 1s;
   top: 0;
+  padding: 0;
 
   &.open-menu {
     @media screen and (max-width: 1023px) {

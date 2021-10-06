@@ -56,6 +56,7 @@ h3 {
 .wrapper {
   max-width: 90%;
   margin: 0 auto;
+  padding: clamp(40px, 100vw / 768 * 40, 60px) 0;
 
   @media screen and (min-width: 768px) {
     max-width: 95%;
@@ -71,6 +72,7 @@ h3 {
 
   @media screen and (min-width: 1920px) {
     max-width: 75%;
+    padding: 75px 0;
   }
 }
 

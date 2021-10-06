@@ -15,8 +15,8 @@ contactsWrapper.innerHTML = `
       <h4>Palais Royal</h4>
       <h4>Musee du Louvre</h4>
       <p>address: 75001 Paris, France</p>
-      <p>phone: +33(0) 1 40 20 50 50</p>
-      <p>mail: info@louvre.fr</p>
+      <p>phone: <a href="tel:+330140205050">+33(0) 1 40 20 50 50</a></p>
+      <p>mail: <a href="mailto:info@louvre.fr">info@louvre.fr</a></p>
     </div>
     <img src=${imgSrc} alt="">
   </div>

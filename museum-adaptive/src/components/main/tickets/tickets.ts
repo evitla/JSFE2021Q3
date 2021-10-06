@@ -1,7 +1,5 @@
 import baseComponent from '../../baseComponent';
 
-import imgSrc from '../../../assets/images/tickets.png';
-
 import './tickets.scss';
 
 const ticketsSection = baseComponent('section', ['white-bg']);
@@ -11,7 +9,7 @@ const ticketsWrapper = baseComponent('div', ['wrapper', 'tickets-wrapper']);
 ticketsWrapper.innerHTML = `
   <h2 class="section-title title-with-line">Buy Tickets</h2>
   <div class="tickets-container">
-    <img src=${imgSrc} alt="">
+    <div class="img-container"></div>
     <div class="tickets-buy">
       <div class="tickets-type">
         <h4>Ticket Type</h4>
