@@ -44,6 +44,16 @@ burger.onclick = () => {
   welcomeWrapper.classList.toggle('open-menu');
 };
 
+document.body.onclick = (e) => {
+  const target = e.target as HTMLElement;
+  if (!target.className.startsWith('burger')) {
+    burger.classList.remove('open-menu');
+    nav.classList.remove('open-menu');
+    welcomeContent.classList.remove('open-menu');
+    welcomeWrapper.classList.remove('open-menu');
+  }
+};
+
 wrapper.appendChild(logo);
 wrapper.appendChild(nav);
 wrapper.appendChild(burger);
