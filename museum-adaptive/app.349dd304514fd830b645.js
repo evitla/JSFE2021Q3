@@ -518,7 +518,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const baseComponent_1 = __importDefault(__webpack_require__(2645));
-const map_png_1 = __importDefault(__webpack_require__(9323));
+const map_png_1 = __importDefault(__webpack_require__(5094));
 __webpack_require__(2090);
 const contactsSection = (0, baseComponent_1.default)('section', ['white-bg']);
 contactsSection.id = 'contact';
@@ -551,7 +551,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const baseComponent_1 = __importDefault(__webpack_require__(2645));
-const explore_png_1 = __importDefault(__webpack_require__(7694));
+const explore_png_1 = __importDefault(__webpack_require__(5839));
 __webpack_require__(7777);
 const exploreSection = (0, baseComponent_1.default)('section', ['black-bg']);
 exploreSection.id = 'explore';
@@ -590,21 +590,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const baseComponent_1 = __importDefault(__webpack_require__(2645));
-const _1_jpg_1 = __importDefault(__webpack_require__(7160));
-const _2_jpg_1 = __importDefault(__webpack_require__(8658));
-const _3_jpg_1 = __importDefault(__webpack_require__(5196));
-const _4_jpg_1 = __importDefault(__webpack_require__(2798));
-const _5_jpg_1 = __importDefault(__webpack_require__(3340));
-const _6_jpg_1 = __importDefault(__webpack_require__(1876));
-const _7_jpg_1 = __importDefault(__webpack_require__(1704));
-const _8_jpg_1 = __importDefault(__webpack_require__(3310));
-const _9_jpg_1 = __importDefault(__webpack_require__(3482));
-const _10_jpg_1 = __importDefault(__webpack_require__(2677));
-const _11_jpg_1 = __importDefault(__webpack_require__(673));
-const _12_jpg_1 = __importDefault(__webpack_require__(6669));
-const _13_jpg_1 = __importDefault(__webpack_require__(4627));
-const _14_jpg_1 = __importDefault(__webpack_require__(8220));
-const _15_jpg_1 = __importDefault(__webpack_require__(1447));
+const _1_jpg_1 = __importDefault(__webpack_require__(1101));
+const _2_jpg_1 = __importDefault(__webpack_require__(4304));
+const _3_jpg_1 = __importDefault(__webpack_require__(7927));
+const _4_jpg_1 = __importDefault(__webpack_require__(1941));
+const _5_jpg_1 = __importDefault(__webpack_require__(7241));
+const _6_jpg_1 = __importDefault(__webpack_require__(584));
+const _7_jpg_1 = __importDefault(__webpack_require__(9474));
+const _8_jpg_1 = __importDefault(__webpack_require__(8951));
+const _9_jpg_1 = __importDefault(__webpack_require__(765));
+const _10_jpg_1 = __importDefault(__webpack_require__(6760));
+const _11_jpg_1 = __importDefault(__webpack_require__(4274));
+const _12_jpg_1 = __importDefault(__webpack_require__(3921));
+const _13_jpg_1 = __importDefault(__webpack_require__(9726));
+const _14_jpg_1 = __importDefault(__webpack_require__(107));
+const _15_jpg_1 = __importDefault(__webpack_require__(8278));
 __webpack_require__(7146);
 const imgs = [
     _1_jpg_1.default,
@@ -749,11 +749,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const baseComponent_1 = __importDefault(__webpack_require__(2645));
-const video_jpg_1 = __importDefault(__webpack_require__(118));
-const play_circle_svg_1 = __importDefault(__webpack_require__(5558));
-const play_svg_1 = __importDefault(__webpack_require__(8215));
-const volume_svg_1 = __importDefault(__webpack_require__(8418));
-const fullscreen_svg_1 = __importDefault(__webpack_require__(6551));
+const video_jpg_1 = __importDefault(__webpack_require__(7374));
+const play_circle_svg_1 = __importDefault(__webpack_require__(5412));
+const play_svg_1 = __importDefault(__webpack_require__(1204));
+const volume_svg_1 = __importDefault(__webpack_require__(8573));
+const fullscreen_svg_1 = __importDefault(__webpack_require__(1425));
 __webpack_require__(2791);
 const icons_1 = __webpack_require__(6538);
 const videoSection = (0, baseComponent_1.default)('section', ['white-bg']);
@@ -872,12 +872,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const baseComponent_1 = __importDefault(__webpack_require__(2645));
 const tourCard_1 = __importDefault(__webpack_require__(6944));
-const _1_jpg_1 = __importDefault(__webpack_require__(2113));
-const _2_jpg_1 = __importDefault(__webpack_require__(7236));
-const _3_jpg_1 = __importDefault(__webpack_require__(9088));
-const _4_jpg_1 = __importDefault(__webpack_require__(4470));
-const _5_jpg_1 = __importDefault(__webpack_require__(8834));
-const _6_jpg_1 = __importDefault(__webpack_require__(433));
+const _1_jpg_1 = __importDefault(__webpack_require__(1274));
+const _2_jpg_1 = __importDefault(__webpack_require__(5105));
+const _3_jpg_1 = __importDefault(__webpack_require__(37));
+const _4_jpg_1 = __importDefault(__webpack_require__(7588));
+const _5_jpg_1 = __importDefault(__webpack_require__(5055));
+const _6_jpg_1 = __importDefault(__webpack_require__(2466));
 __webpack_require__(5425);
 const virtualSection = (0, baseComponent_1.default)('section', ['virtual', 'white-bg']);
 virtualSection.id = 'visiting';
@@ -916,7 +916,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.welcomeContent = exports.welcomeWrapper = void 0;
 const baseComponent_1 = __importDefault(__webpack_require__(2645));
-const _1_jpg_1 = __importDefault(__webpack_require__(6474));
+const _1_jpg_1 = __importDefault(__webpack_require__(6684));
 __webpack_require__(6349);
 const icons_1 = __webpack_require__(6538);
 exports.welcomeWrapper = (0, baseComponent_1.default)('div', [
@@ -999,203 +999,203 @@ document.body.appendChild(footer_1.default);
 
 /***/ }),
 
-/***/ 7694:
+/***/ 5839:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/dd6c5f20e43fa8ceeba1.png";
 
 /***/ }),
 
-/***/ 6551:
+/***/ 1425:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/f84b1b9edf5b12f5e9d6.svg";
 
 /***/ }),
 
-/***/ 7160:
+/***/ 1101:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/66a13acfdf8f43d5017d.jpg";
 
 /***/ }),
 
-/***/ 2677:
+/***/ 6760:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/996104d2ab924ad833c1.jpg";
 
 /***/ }),
 
-/***/ 673:
+/***/ 4274:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/3ac3c0d151e2c2e8dba0.jpg";
 
 /***/ }),
 
-/***/ 6669:
+/***/ 3921:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/d9e3f566b45e43688a88.jpg";
 
 /***/ }),
 
-/***/ 4627:
+/***/ 9726:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/f1e2d7e07c758205cd03.jpg";
 
 /***/ }),
 
-/***/ 8220:
+/***/ 107:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/91d2f395ead683e8b25b.jpg";
 
 /***/ }),
 
-/***/ 1447:
+/***/ 8278:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/2abc0d6e96efc163f3f7.jpg";
 
 /***/ }),
 
-/***/ 8658:
+/***/ 4304:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/27cdb7104200c2942444.jpg";
 
 /***/ }),
 
-/***/ 5196:
+/***/ 7927:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/ff54930f03b25caa5cae.jpg";
 
 /***/ }),
 
-/***/ 2798:
+/***/ 1941:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/a8929b7eaa039093b92c.jpg";
 
 /***/ }),
 
-/***/ 3340:
+/***/ 7241:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/036156a5757c25d4abea.jpg";
 
 /***/ }),
 
-/***/ 1876:
+/***/ 584:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/3ab43a048cfe402ee32b.jpg";
 
 /***/ }),
 
-/***/ 1704:
+/***/ 9474:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/f1e41f00cb4a26bda6b8.jpg";
 
 /***/ }),
 
-/***/ 3310:
+/***/ 8951:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/338a69dd76f01e1e254b.jpg";
 
 /***/ }),
 
-/***/ 3482:
+/***/ 765:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/8d8acd85fc1b318c9a4b.jpg";
 
 /***/ }),
 
-/***/ 9323:
+/***/ 5094:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/ee1b43580430ad28c52a.png";
 
 /***/ }),
 
-/***/ 5558:
+/***/ 5412:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/32ec6dce7c76ab1f234e.svg";
 
 /***/ }),
 
-/***/ 8215:
+/***/ 1204:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/45c9001d0ab48afa8d10.svg";
 
 /***/ }),
 
-/***/ 118:
+/***/ 7374:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/c9210862da07806babdd.jpg";
 
 /***/ }),
 
-/***/ 2113:
+/***/ 1274:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/14d659202fb0b95dcc32.jpg";
 
 /***/ }),
 
-/***/ 7236:
+/***/ 5105:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/cbc3f2fc4ab1623fc8d2.jpg";
 
 /***/ }),
 
-/***/ 9088:
+/***/ 37:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/dcb21b7826e052ee06fa.jpg";
 
 /***/ }),
 
-/***/ 4470:
+/***/ 7588:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/408c22c3b8c8d08a0505.jpg";
 
 /***/ }),
 
-/***/ 8834:
+/***/ 5055:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/dfaa6cfcd31bac1a7b75.jpg";
 
 /***/ }),
 
-/***/ 433:
+/***/ 2466:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/086115dbfb4c3249ef88.jpg";
 
 /***/ }),
 
-/***/ 8418:
+/***/ 8573:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/ae4b6cbe60435fd79160.svg";
 
 /***/ }),
 
-/***/ 6474:
+/***/ 6684:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "assets/401b1dd388549f37e07c.jpg";
