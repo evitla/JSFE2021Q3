@@ -31,6 +31,7 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
+    "swiper": "^7.0.8",
     "webpack-dev-server": "^3.11.2"
   }
 }

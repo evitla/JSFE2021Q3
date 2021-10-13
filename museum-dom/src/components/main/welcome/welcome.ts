@@ -1,9 +1,13 @@
 import baseComponent from '../../baseComponent';
 
-import logoSrc from '../../../assets/images/welcome-slider/1.jpg';
+import img1 from '../../../assets/images/welcome-slider/1.jpg';
+import img2 from '../../../assets/images/welcome-slider/2.jpg';
+import img3 from '../../../assets/images/welcome-slider/3.jpg';
+import img4 from '../../../assets/images/welcome-slider/4.jpg';
+import img5 from '../../../assets/images/welcome-slider/5.jpg';
 
 import './welcome.scss';
-import { arrowLeftIcon, arrowRightIcon } from '../../icons';
+import slider from './slider';
 
 export const welcomeWrapper = baseComponent('div', [
   'wrapper',
@@ -20,29 +24,12 @@ welcomeContent.innerHTML = `
   <a class="btn" href="./tour1.html" target="_blank">Discover the Louvre</a>
 `;
 
-const welcomeSlider = baseComponent('div', ['welcome-slider']);
-welcomeSlider.innerHTML = `
-  <img class="invisible" src=${logoSrc} alt="">
-`;
-const welcomeSliderPagination = baseComponent('div', ['pagination']);
-welcomeSliderPagination.innerHTML = `
-  <span>01 | 05</span>
-  <ul>
-    <li class="pagination-list-item active"></li>
-    <li class="pagination-list-item"></li>
-    <li class="pagination-list-item"></li>
-    <li class="pagination-list-item"></li>
-    <li class="pagination-list-item"></li>
-  </ul>
-  <div class="arrows">
-    ${arrowLeftIcon}
-    ${arrowRightIcon}
-  </div>
-`;
+const images = [img1, img2, img3, img4, img5];
 
-welcomeSlider.appendChild(welcomeSliderPagination);
+const welcomeSwiper = slider('welcome', images);
+
 welcomeWrapper.appendChild(welcomeContent);
-welcomeWrapper.appendChild(welcomeSlider);
+welcomeWrapper.appendChild(welcomeSwiper);
 welcomeSection.appendChild(welcomeWrapper);
 
 export default welcomeSection;
