@@ -4,7 +4,7 @@ import navbar from './navbar';
 import { arrowIcon, logoIcon } from '../icons';
 
 import './header.scss';
-import { welcomeContent, welcomeWrapper } from '../main/welcome/welcome';
+import { welcomeContent, welcomeWrapper } from '../main/welcome';
 
 const navItems = [
   'Visiting',

@@ -1,6 +1,6 @@
-import header from './components/header/header';
+import header from './components/header';
 import main from './components/main/main';
-import footer from './components/footer/footer';
+import footer from './components/footer';
 
 import './styles/style.scss';
 

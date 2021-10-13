@@ -1,11 +1,11 @@
 import baseComponent from '../baseComponent';
-import welcomeSection from './welcome/welcome';
-import virtualSection from './virtual/virtual';
-import exploreSection from './explore/explore';
-import videoSection from './video/video';
-import gallerySection from './gallery/gallery';
-import ticketsSection from './tickets/tickets';
-import contactsSection from './contacts/contacts';
+import welcomeSection from './welcome';
+import virtualSection from './virtual';
+import exploreSection from './explore';
+import videoSection from './video';
+import gallerySection from './gallery';
+import ticketsSection from './tickets';
+import contactsSection from './contacts';
 
 import './main.scss';
 
