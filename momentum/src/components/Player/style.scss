@@ -8,6 +8,11 @@
 
 .play-list {
   text-align: left;
+  list-style-type: circle;
+
+  li.active {
+    list-style-type: disc;
+  }
 }
 
 .play-item {

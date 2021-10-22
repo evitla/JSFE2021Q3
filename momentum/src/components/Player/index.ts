@@ -30,17 +30,42 @@ const playAudio = (songId: number, canPause = true) => {
     return;
   }
 
-  Array.from(playListContainer.children, (li, index) => {
-    li.classList.remove('active');
-    if (index === songId) li.classList.add('active');
-    return null;
-  });
-
   audio.src = playList[songId].src;
   audio.currentTime = audioCurrentTime;
   audio.play();
   isPlay = true;
 };
+
+let currentSongId = 0;
+playListContainer.children[0].classList.add('active');
+
+const handlePlayerController = (e: MouseEvent) => {
+  const target = e.target as HTMLElement;
+  if (target.tagName !== 'BUTTON') return;
+
+  if (target.classList.contains('play')) {
+    playAudio(currentSongId);
+    target.classList.toggle('pause');
+    return;
+  }
+
+  if (target.classList.contains('play-prev')) currentSongId--;
+  else if (target.classList.contains('play-next')) currentSongId++;
+
+  if (currentSongId < 0) currentSongId = playList.length - 1;
+  else if (currentSongId >= playList.length) currentSongId = 0;
+
+  Array.from(playListContainer.children, (li, index) => {
+    li.classList.remove('active');
+    if (index === currentSongId) li.classList.add('active');
+    return null;
+  });
+
+  audioCurrentTime = 0;
+  if (isPlay) playAudio(currentSongId, false);
+};
+
+playerControls.onclick = handlePlayerController;
 
 playerControls.appendChild(playPrevButton);
 playerControls.appendChild(playButton);
