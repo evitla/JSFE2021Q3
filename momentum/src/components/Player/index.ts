@@ -66,6 +66,15 @@ const handlePlayerController = (e: MouseEvent) => {
 };
 
 playerControls.onclick = handlePlayerController;
+audio.onended = () => {
+  isPlay = false;
+  playListContainer.children[currentSongId].classList.toggle('active');
+
+  currentSongId++;
+  if (currentSongId >= playList.length) currentSongId = 0;
+  playListContainer.children[currentSongId].classList.toggle('active');
+  playAudio(currentSongId);
+};
 
 playerControls.appendChild(playPrevButton);
 playerControls.appendChild(playButton);
