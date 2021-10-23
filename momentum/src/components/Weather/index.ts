@@ -4,16 +4,24 @@ import './style.scss';
 
 const weather = baseComponent('weather', ['weather']);
 
-weather.innerHTML = `
-  <input type="text" class="city" />
-  <i class="weather-icon owf"></i>
-  <div class="weather-error"></div>
-  <div class="description-container">
-    <span class="temperature"></span>
-    <span class="weather-description"></span>
-  </div>
-  <div class="wind"></div>
-  <div class="humidity"></div>
-`;
+const cityName = baseComponent('input', ['city']) as HTMLInputElement;
+cityName.type = 'text';
 
+const weatherIcon = baseComponent('i', ['weather-icon', 'owf']);
+const weatherError = baseComponent('div', ['weather-error']);
+const descriptionContainer = baseComponent('div', ['description-container']);
+const temperature = baseComponent('span', ['temperature']);
+const weatherDescription = baseComponent('span', ['weather-description']);
+const wind = baseComponent('div', ['wind']);
+const humidity = baseComponent('div', ['humidity']);
+
+descriptionContainer.appendChild(temperature);
+descriptionContainer.appendChild(weatherDescription);
+
+weather.appendChild(cityName);
+weather.appendChild(weatherIcon);
+weather.appendChild(weatherError);
+weather.appendChild(descriptionContainer);
+weather.appendChild(wind);
+weather.appendChild(humidity);
 export default weather;
