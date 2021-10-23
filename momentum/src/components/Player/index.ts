@@ -1,7 +1,7 @@
 import baseComponent from '../baseComponent';
 import unorderedList from '../unorderedList';
 
-import playList from '../../constants';
+import { playList } from '../../constants';
 
 import './style.scss';
 
