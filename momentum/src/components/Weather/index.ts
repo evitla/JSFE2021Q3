@@ -1,4 +1,4 @@
-import { WEATHER_URL } from '../../constants';
+import { weatherAppId } from '../../constants';
 import baseComponent from '../baseComponent';
 
 import './style.scss';
@@ -16,8 +16,11 @@ const weatherDescription = baseComponent('span', ['weather-description']);
 const wind = baseComponent('div', ['wind']);
 const humidity = baseComponent('div', ['humidity']);
 
-const getWeather = async () => {
-  const data = await (await fetch(WEATHER_URL)).json();
+const getWeather = async (city = 'Minsk') => {
+  const weatherUrl = `
+    http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&APPID=${weatherAppId}&units=metric
+  `;
+  const data = await (await fetch(weatherUrl)).json();
 
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
@@ -30,6 +33,10 @@ const getWeather = async () => {
 };
 
 getWeather();
+
+cityName.onchange = () => {
+  getWeather(cityName.value);
+};
 
 descriptionContainer.appendChild(temperature);
 descriptionContainer.appendChild(weatherDescription);

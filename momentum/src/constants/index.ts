@@ -3,9 +3,7 @@ import audio2 from '../assets/sounds/River Flows In You.mp3';
 import audio3 from '../assets/sounds/Ennio Morricone.mp3';
 import audio4 from '../assets/sounds/Summer Wind.mp3';
 
-const city = 'Минск';
-const weatherAppId = '424b258116dc401184f3ac801fce0559';
-export const WEATHER_URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${weatherAppId}&units=metric`;
+export const weatherAppId = '424b258116dc401184f3ac801fce0559';
 
 export const playList = [
   {
