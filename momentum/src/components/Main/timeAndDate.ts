@@ -1,4 +1,5 @@
 import baseComponent from '../baseComponent';
+import { showGreeting } from './greeting';
 
 export const time = baseComponent('time', ['time']);
 export const date = baseComponent('date', ['date']);
@@ -13,14 +14,15 @@ const getDay = (currentDate: Date) => {
   return currentDay.split(', ').slice(0, 2).join(', ');
 };
 
-const showTimeAndDate = () => {
+const showTimeDateAndGreeting = () => {
   const currentDate = new Date();
   const currentDay = getDay(currentDate);
   const currentTime = currentDate.toLocaleTimeString();
 
   time.textContent = currentTime;
   date.textContent = currentDay;
-  setTimeout(showTimeAndDate, 1000);
+  showGreeting(currentDate);
+  setTimeout(showTimeDateAndGreeting, 1000);
 };
 
-showTimeAndDate();
+showTimeDateAndGreeting();
