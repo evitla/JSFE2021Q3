@@ -1,5 +1,6 @@
 import { weatherAppId } from '../../constants';
 import baseComponent from '../baseComponent';
+import { getLocalStorage, setLocalStorage } from '../utils';
 
 import './style.scss';
 
@@ -17,8 +18,10 @@ const wind = baseComponent('div', ['wind']);
 const humidity = baseComponent('div', ['humidity']);
 
 const getWeather = async (city = 'Minsk') => {
+  const currentCity = getLocalStorage('city') ? getLocalStorage('city') : city;
+
   const weatherUrl = `
-    http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&APPID=${weatherAppId}&units=metric
+    http://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${weatherAppId}&units=metric
   `;
   const data = await (await fetch(weatherUrl)).json();
 
@@ -35,6 +38,7 @@ const getWeather = async (city = 'Minsk') => {
 getWeather();
 
 cityName.onchange = () => {
+  setLocalStorage('city', cityName);
   getWeather(cityName.value);
 };
 
