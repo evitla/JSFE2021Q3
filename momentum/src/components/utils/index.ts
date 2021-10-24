@@ -23,3 +23,9 @@ export const setBackground = (element: HTMLElement, bgNum: number): void => {
     element.style.backgroundImage = `url(${imageUrl})`;
   };
 };
+
+export const setLocalStorage = (key: string, element: HTMLInputElement): void =>
+  localStorage.setItem(key, element.value);
+
+export const getLocalStorage = (key: string): string =>
+  localStorage.getItem(key) ? localStorage.getItem(key) : '';
