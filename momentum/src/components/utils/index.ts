@@ -1,5 +1,6 @@
+import { timesOfDay } from '../../constants';
+
 const getTimeOfDay = () => {
-  const timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
   const hours = new Date().getHours();
 
   return timesOfDay[Math.floor(hours / 6)];

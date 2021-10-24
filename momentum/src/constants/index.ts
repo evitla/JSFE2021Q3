@@ -29,3 +29,5 @@ export const playList = [
     duration: '01:50',
   },
 ];
+
+export const timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
