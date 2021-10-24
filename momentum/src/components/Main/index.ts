@@ -1,12 +1,10 @@
 import baseComponent from '../baseComponent';
 import sliderIcons from './sliderIcons';
+import { date, time } from './timeAndDate';
 
 import './style.scss';
 
 const main = baseComponent('main', ['main']);
-
-const time = baseComponent('time', ['time']);
-const date = baseComponent('date', ['date']);
 
 const greetingContainer = baseComponent('div', ['greeting-container']);
 const greeting = baseComponent('span', ['greeting']);
