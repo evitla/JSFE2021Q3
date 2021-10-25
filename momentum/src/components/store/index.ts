@@ -6,5 +6,13 @@ export default {
   username: getLocalStorage('username'),
   photoSource: getLocalStorage('photo-source') || 'github',
   blocks:
-    getLocalStorage('blocks') || 'time, date, greeting, quote, weather, audio',
+    getLocalStorage('blocks') || 'empty time date greeting quote weather audio',
 };
+
+export type Block =
+  | 'time'
+  | 'date'
+  | 'greeting'
+  | 'quote'
+  | 'weather'
+  | 'audio';

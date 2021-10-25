@@ -8,18 +8,19 @@ import greetingContainer from '../Main/greeting';
 import quoteBlock from '../Footer/quoteBlock';
 import weather from '../Weather';
 import player from '../Player';
+import { Block } from '../store';
 
 const appSettings = baseComponent('div', ['settings']);
 
-const settingSwitchButton = (label: string, target: HTMLElement) =>
+const settingSwitchButton = (label: Block, target: HTMLElement) =>
   switchButton(label, target, ['settings-switch-button']);
 
-const timeSetting = settingSwitchButton('Time', time);
-const dateSetting = settingSwitchButton('Date', date);
-const greetingSetting = settingSwitchButton('Greeting', greetingContainer);
-const quoteSetting = settingSwitchButton('Quote', quoteBlock);
-const weatherSetting = settingSwitchButton('Weather', weather);
-const audioSetting = settingSwitchButton('Audio', player);
+const timeSetting = settingSwitchButton('time', time);
+const dateSetting = settingSwitchButton('date', date);
+const greetingSetting = settingSwitchButton('greeting', greetingContainer);
+const quoteSetting = settingSwitchButton('quote', quoteBlock);
+const weatherSetting = settingSwitchButton('weather', weather);
+const audioSetting = settingSwitchButton('audio', player);
 
 const settings = [
   timeSetting,

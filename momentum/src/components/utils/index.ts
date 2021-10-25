@@ -45,3 +45,14 @@ export const getTimeCodeFromNum = (num: number): string => {
         ${String(seconds % 60).padStart(2, '0')}
       `;
 };
+
+export const removeFromString = (
+  str: string,
+  element: string,
+  divider = ' '
+): string => {
+  return str
+    .split(divider)
+    .filter((item) => item !== element)
+    .join(' ');
+};
