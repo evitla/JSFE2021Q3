@@ -34,6 +34,23 @@ const settingsList = unorderedList(settings, ['settings-list']);
 
 const gearButton = baseComponent('button', ['gear-icon']);
 
+const handleSettingsShow = () => {
+  gearButton.classList.toggle('active');
+
+  settingsList.style.display = gearButton.classList.contains('active')
+    ? 'block'
+    : 'none';
+};
+
+gearButton.onclick = handleSettingsShow;
+
+document.body.onclick = (e: MouseEvent) => {
+  const path = e.composedPath && e.composedPath();
+  if (!path.includes(appSettings)) {
+    handleSettingsShow();
+  }
+};
+
 appSettings.append(settingsList, gearButton);
 
 export default appSettings;
