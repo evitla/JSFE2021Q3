@@ -75,8 +75,8 @@
   input[type='checkbox']:checked
   + .button
   .button-indicator {
-  -webkit-animation: indicator 1s forwards;
-  animation: indicator 1s forwards;
+  -webkit-animation: indicator 0.3s forwards;
+  animation: indicator 0.3s forwards;
 }
 
 .switch-button .switch-outer .button {
