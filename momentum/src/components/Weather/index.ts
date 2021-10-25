@@ -1,6 +1,7 @@
 import { weatherAppId } from '../../constants';
 import baseComponent from '../baseComponent';
-import { getLocalStorage, setLocalStorage } from '../utils';
+import store from '../store';
+import { setLocalStorage } from '../utils';
 
 import './style.scss';
 
@@ -17,8 +18,8 @@ const weatherDescription = baseComponent('span', ['weather-description']);
 const wind = baseComponent('div', ['wind']);
 const humidity = baseComponent('div', ['humidity']);
 
-const getWeather = async (city = 'Minsk') => {
-  const currentCity = getLocalStorage('city') ? getLocalStorage('city') : city;
+const getWeather = async () => {
+  const currentCity = store.city;
 
   const weatherUrl = `
     http://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${weatherAppId}&units=metric
@@ -38,8 +39,9 @@ const getWeather = async (city = 'Minsk') => {
 getWeather();
 
 cityName.onchange = () => {
-  setLocalStorage('city', cityName);
-  getWeather(cityName.value);
+  setLocalStorage('city', cityName.value);
+  store.city = cityName.value;
+  getWeather();
 };
 
 descriptionContainer.appendChild(temperature);
