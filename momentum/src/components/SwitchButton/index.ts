@@ -2,7 +2,11 @@ import baseComponent from '../baseComponent';
 
 import './style.scss';
 
-const switchButton = (label: string, styles: string[] = []): HTMLElement => {
+const switchButton = (
+  label: string,
+  target: HTMLElement,
+  styles: string[] = []
+): HTMLElement => {
   const element = baseComponent('label', ['switch-button', ...styles]);
 
   element.innerHTML = `
@@ -15,6 +19,8 @@ const switchButton = (label: string, styles: string[] = []): HTMLElement => {
     </div>
     </div>
   `;
+
+  element.onchange = () => target.classList.toggle('non-visible');
 
   return element;
 };
