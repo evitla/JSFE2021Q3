@@ -5,11 +5,11 @@
 
 .player {
   width: 350px;
-  background: rgba(#444, 0.5);
+  background: rgba(15, 15, 15, 0.5);
   box-shadow: 0 0 20px 0 #000a;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  font-size: 0.9em;
+  font-size: 0.85em;
   display: grid;
   grid-template-rows: 6px auto;
 
@@ -37,7 +37,7 @@
     }
 
     &:hover .progress {
-      background: rgb(255, 146, 107);
+      background: #60d480;
       position: relative;
 
       &::after {
@@ -135,7 +135,7 @@
 
   li.active {
     list-style-type: disc;
-    color: rgb(255, 146, 107);
+    color: #60d480;
   }
 
   li + li {
