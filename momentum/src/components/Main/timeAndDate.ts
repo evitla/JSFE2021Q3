@@ -1,8 +1,12 @@
 import baseComponent from '../baseComponent';
+import store from '../store';
 import { showGreeting } from './greeting';
 
 export const time = baseComponent('time', ['time']);
+if (!store.blocks.includes('time')) time.classList.add('non-visible');
+
 export const date = baseComponent('date', ['date']);
+if (!store.blocks.includes('date')) date.classList.add('non-visible');
 
 const getDay = (currentDate: Date) => {
   const currentDay = currentDate.toLocaleDateString('en-US', {

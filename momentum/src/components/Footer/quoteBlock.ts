@@ -1,7 +1,10 @@
 import baseComponent from '../baseComponent';
+import store from '../store';
 import { getRandomNumber } from '../utils';
 
 const quoteBlock = baseComponent('div', ['quote-block']);
+
+if (!store.blocks.includes('quote')) quoteBlock.classList.add('non-visible');
 
 const changeQuoteButton = baseComponent('button', ['change-quote']);
 const quoteContainer = baseComponent('div');

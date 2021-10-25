@@ -5,8 +5,11 @@ import { getTimeCodeFromNum } from '../utils';
 import { playList } from '../../constants';
 
 import './style.scss';
+import store from '../store';
 
 const player = baseComponent('div', ['player']);
+
+if (!store.blocks.includes('audio')) player.classList.add('non-visible');
 
 const playListContainer = unorderedList(
   playList.map((p) => p.title),

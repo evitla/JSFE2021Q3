@@ -3,6 +3,10 @@ import store from '../store';
 import { getTimeOfDay, setLocalStorage } from '../utils';
 
 const greetingContainer = baseComponent('div', ['greeting-container']);
+
+if (!store.blocks.includes('greeting'))
+  greetingContainer.classList.add('non-visible');
+
 const greeting = baseComponent('span', ['greeting']);
 const nameInput = baseComponent('input', ['name']) as HTMLInputElement;
 nameInput.type = 'text';

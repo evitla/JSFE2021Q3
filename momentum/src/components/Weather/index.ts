@@ -7,6 +7,8 @@ import './style.scss';
 
 const weather = baseComponent('weather', ['weather']);
 
+if (!store.blocks.includes('weather')) weather.classList.add('non-visible');
+
 const cityName = baseComponent('input', ['city']) as HTMLInputElement;
 cityName.type = 'text';
 
