@@ -24,8 +24,8 @@ export const setBackground = (element: HTMLElement, bgNum: number): void => {
   };
 };
 
-export const setLocalStorage = (key: string, element: HTMLInputElement): void =>
-  localStorage.setItem(key, element.value);
+export const setLocalStorage = (key: string, value: string): void =>
+  localStorage.setItem(key, value);
 
 export const getLocalStorage = (key: string): string =>
   localStorage.getItem(key) ? localStorage.getItem(key) : '';
