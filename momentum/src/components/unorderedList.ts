@@ -1,9 +1,18 @@
 import baseComponent from './baseComponent';
 
-const unorderedList = (items: string[], styles: string[] = []): HTMLElement => {
+const unorderedList = (
+  items: (string | HTMLElement)[],
+  styles: string[] = []
+): HTMLElement => {
   const element = baseComponent('ul', styles);
 
-  element.innerHTML = items.map((item) => `<li>${item}</li>`).join('');
+  element.append(
+    ...items.map((item) => {
+      const listItem = baseComponent('li');
+      listItem.append(item);
+      return listItem;
+    })
+  );
 
   return element;
 };
