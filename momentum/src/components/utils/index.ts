@@ -29,3 +29,19 @@ export const setLocalStorage = (key: string, element: HTMLInputElement): void =>
 
 export const getLocalStorage = (key: string): string =>
   localStorage.getItem(key) ? localStorage.getItem(key) : '';
+
+// turn 128 seconds into 2:08
+export const getTimeCodeFromNum = (num: number): string => {
+  let seconds = num;
+  let minutes = Math.floor(seconds / 60);
+  seconds -= minutes * 60;
+  const hours = Math.floor(minutes / 60);
+  minutes -= hours * 60;
+
+  return hours === 0
+    ? `${minutes}:${String(Math.round(seconds) % 60).padStart(2, '0')}`
+    : `
+        ${String(hours).padStart(2, '0')}:${minutes}:
+        ${String(seconds % 60).padStart(2, '0')}
+      `;
+};
