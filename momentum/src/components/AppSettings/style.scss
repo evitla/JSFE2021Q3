@@ -1,3 +1,36 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.settings-list {
+  display: none;
+  position: absolute;
+  bottom: 30px;
+  width: 350px;
+  padding: 20px;
+  list-style: none;
+  background: rgba(15, 15, 15, 0.9);
+  border-radius: 6px;
+  z-index: 100;
+
+  li {
+    padding: 6px;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(#fff, 0.3);
+  }
+}
+
+.settings-switch-button {
+  display: flex;
+  justify-content: space-between;
+}
+
 .gear-icon {
   width: 20px;
   height: 20px;
@@ -13,18 +46,11 @@
   background-image: url('../../assets/svg/gear.svg');
 
   &.active {
-    border: 0;
-    outline: 0;
-    transform: scale(1.1) rotateZ(60deg);
+    transform: scale(1.1) rotateZ(45deg);
+    opacity: 1;
   }
 
   &:hover {
     opacity: 1;
   }
-}
-
-.settings {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
 }
