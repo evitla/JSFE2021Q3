@@ -9,12 +9,12 @@ export const playList = [
   {
     title: 'Aqua Caelestis',
     src: audio1,
-    duration: '00:58',
+    duration: '00:40',
   },
   {
     title: 'River Flows In You',
     src: audio2,
-    duration: '03:50',
+    duration: '01:37',
   },
   {
     title: 'Ennio Morricone',
