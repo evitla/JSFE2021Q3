@@ -11,10 +11,11 @@ if (!store.blocks.includes('greeting'))
 const greeting = baseComponent('span', ['greeting']);
 const nameInput = baseComponent('input', ['name']) as HTMLInputElement;
 nameInput.type = 'text';
-nameInput.placeholder = '[Enter name]';
 nameInput.value = store.username;
 
 export const showGreeting = (currentDate: Date): void => {
+  nameInput.placeholder =
+    store.language === 'en' ? '[Enter name]' : '[Введите имя]';
   greeting.textContent =
     store.language === 'en'
       ? `Good ${getTimeOfDay(currentDate)}`
