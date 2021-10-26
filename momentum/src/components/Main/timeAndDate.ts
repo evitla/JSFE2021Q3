@@ -9,13 +9,16 @@ export const date = baseComponent('date', ['date']);
 if (!store.blocks.includes('date')) date.classList.add('non-visible');
 
 const getDay = (currentDate: Date) => {
-  const currentDay = currentDate.toLocaleDateString('en-US', {
+  const currentDay = currentDate.toLocaleDateString(store.language, {
     dateStyle: 'full',
   });
 
-  // day has 'weekday, month day, year' format
+  // in 'en' day has 'Sunday, October 24, 2021' format
+  // in 'ru' day has 'воскресенье, 24 октября 2021 г.' format
   // return day without year
-  return currentDay.split(', ').slice(0, 2).join(', ');
+  return store.language === 'en'
+    ? currentDay.split(', ').slice(0, 2).join(', ')
+    : currentDay.split(' ').slice(0, 3).join(' ');
 };
 
 const showTimeDateAndGreeting = () => {
