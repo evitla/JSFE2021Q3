@@ -1,0 +1,32 @@
+.btn {
+  cursor: pointer;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+  border: 0.1em solid #1b1b24;
+  border-radius: 0.25em;
+  font-family: inherit;
+  font-size: 0.75rem;
+  background-color: #1b1b24;
+  filter: brightness(70%);
+
+  &.active {
+    filter: brightness(100%);
+  }
+
+  & .front {
+    display: block;
+    padding: 0.25em 1em;
+    border-radius: 0.25em;
+    transform: translateY(-0.3em);
+    background-color: #252532;
+  }
+
+  &:active .front {
+    transform: translateY(-0.1em);
+  }
+
+  & + & {
+    margin-left: 0.25rem;
+  }
+}
