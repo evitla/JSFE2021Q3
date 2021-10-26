@@ -168,13 +168,8 @@ const ToggleButtonGroup_1 = __importDefault(__webpack_require__(140));
 const Button_1 = __importDefault(__webpack_require__(508));
 const utils_1 = __webpack_require__(525);
 const constants_1 = __webpack_require__(37);
+const sliderIcons_1 = __webpack_require__(271);
 const appSettings = (0, baseComponent_1.default)('div', ['settings']);
-const enLang = (0, Button_1.default)('en');
-const ruLang = (0, Button_1.default)('ru');
-if (store_1.default.language === 'en')
-    enLang.classList.add('active');
-else
-    ruLang.classList.add('active');
 const settingSwitchButton = (label, target) => (0, SwitchButton_1.default)(label, target, ['settings-blocks']);
 const timeSetting = settingSwitchButton('time', timeAndDate_1.time);
 const dateSetting = settingSwitchButton('date', timeAndDate_1.date);
@@ -184,6 +179,9 @@ const weatherSetting = settingSwitchButton('weather', Weather_1.default);
 const audioSetting = settingSwitchButton('audio', Player_1.default);
 const languageSetting = (0, baseComponent_1.default)('div', ['settings-blocks']);
 languageSetting.innerHTML = '<span class="setting-label">Language</span>';
+const backgroundImageSetting = (0, baseComponent_1.default)('div', ['settings-blocks']);
+backgroundImageSetting.innerHTML =
+    '<span class="setting-label">Background</span>';
 const settings = [
     languageSetting,
     timeSetting,
@@ -192,6 +190,7 @@ const settings = [
     quoteSetting,
     weatherSetting,
     audioSetting,
+    backgroundImageSetting,
 ];
 const settingsList = (0, unorderedList_1.default)(settings, ['settings-list']);
 const gearButton = (0, baseComponent_1.default)('button', ['gear-icon']);
@@ -224,8 +223,35 @@ const handleLanguageSetting = (target) => {
     (0, Weather_1.weatherTranslation)();
     settingsTranslation(language);
 };
-const buttons = (0, ToggleButtonGroup_1.default)([enLang, ruLang], handleLanguageSetting);
-languageSetting.append(buttons);
+const enLang = (0, Button_1.default)('en');
+const ruLang = (0, Button_1.default)('ru');
+if (store_1.default.language === 'en')
+    enLang.classList.add('active');
+else
+    ruLang.classList.add('active');
+const langButtons = (0, ToggleButtonGroup_1.default)([enLang, ruLang], handleLanguageSetting);
+languageSetting.append(langButtons);
+const handleBackgroundSetting = (target) => {
+    const bg = target.children[0].textContent;
+    (0, utils_1.setLocalStorage)('background', bg);
+    store_1.default.background = bg;
+    (0, sliderIcons_1.handlePhotoSource)(bg);
+};
+const github = (0, Button_1.default)('github');
+const unsplash = (0, Button_1.default)('unsplash');
+const pexels = (0, Button_1.default)('pexels');
+switch (store_1.default.background) {
+    case 'unsplash':
+        unsplash.classList.add('active');
+        break;
+    case 'pexels':
+        pexels.classList.add('active');
+        break;
+    default:
+        github.classList.add('active');
+}
+const bgButtons = (0, ToggleButtonGroup_1.default)([github, unsplash, pexels], handleBackgroundSetting);
+backgroundImageSetting.append(bgButtons);
 appSettings.append(settingsList, gearButton);
 exports["default"] = appSettings;
 
@@ -417,21 +443,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.handlePhotoSource = void 0;
 const baseComponent_1 = __importDefault(__webpack_require__(645));
+const store_1 = __importDefault(__webpack_require__(338));
 const utils_1 = __webpack_require__(525);
 const sliderIcons = (0, baseComponent_1.default)('div', ['slider-icons']);
 const prevButton = (0, baseComponent_1.default)('button', ['slide-prev', 'slider-icon']);
 const nextButton = (0, baseComponent_1.default)('button', ['slide-next', 'slider-icon']);
 const [minBgNum, maxBgNum] = [1, 20];
 let bgNum = (0, utils_1.getRandomNumber)(minBgNum, maxBgNum);
-(0, utils_1.setBackground)(document.body, bgNum);
+const handlePhotoSource = (photoSource) => {
+    (0, utils_1.setBackground)(document.body, photoSource, bgNum);
+};
+exports.handlePhotoSource = handlePhotoSource;
+(0, exports.handlePhotoSource)(store_1.default.background);
 const getPrevSlide = () => {
     bgNum = bgNum === minBgNum ? maxBgNum : bgNum - 1;
-    (0, utils_1.setBackground)(document.body, bgNum);
+    (0, utils_1.setBackground)(document.body, store_1.default.background, bgNum);
 };
 const getNextSlide = () => {
     bgNum = bgNum === maxBgNum ? minBgNum : bgNum + 1;
-    (0, utils_1.setBackground)(document.body, bgNum);
+    (0, utils_1.setBackground)(document.body, store_1.default.background, bgNum);
 };
 prevButton.onclick = getPrevSlide;
 nextButton.onclick = getNextSlide;
@@ -783,7 +815,7 @@ exports["default"] = {
     language: (0, utils_1.getLocalStorage)('language') || 'en',
     city: (0, utils_1.getLocalStorage)('city') || 'Minsk',
     username: (0, utils_1.getLocalStorage)('username'),
-    photoSource: (0, utils_1.getLocalStorage)('photo-source') || 'github',
+    background: (0, utils_1.getLocalStorage)('background') || 'github',
     blocks: (0, utils_1.getLocalStorage)('blocks') || 'empty time date greeting quote weather audio',
 };
 
@@ -814,9 +846,18 @@ exports["default"] = unorderedList;
 /***/ }),
 
 /***/ 525:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.removeFromString = exports.getTimeCodeFromNum = exports.getLocalStorage = exports.setLocalStorage = exports.setBackground = exports.getRandomNumber = exports.getTimeOfDay = void 0;
 const constants_1 = __webpack_require__(37);
@@ -827,17 +868,46 @@ const getTimeOfDay = (currentDate) => {
 exports.getTimeOfDay = getTimeOfDay;
 const getRandomNumber = (min, max) => Math.floor(Math.random() * max) + min;
 exports.getRandomNumber = getRandomNumber;
-const setBackground = (element, bgNum) => {
+const getLinkToImageFromGithub = (timeOfDay, bgNum) => {
     const baseUrl = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images';
-    const timeOfDay = (0, exports.getTimeOfDay)(new Date());
     const bgNumToString = bgNum.toString().padStart(2, '0');
-    const imageUrl = `${baseUrl}/${timeOfDay}/${bgNumToString}.jpg`;
+    return `${baseUrl}/${timeOfDay}/${bgNumToString}.jpg`;
+};
+const getLinkToImageFromUnsplash = (timeOfDay) => __awaiter(void 0, void 0, void 0, function* () {
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}&client_id=${constants_1.unsplashId}`;
+    const data = yield (yield fetch(url)).json();
+    return data.urls.regular;
+});
+const getLinkToImageFromPexels = (timeOfDay) => __awaiter(void 0, void 0, void 0, function* () {
+    const url = `https://api.pexels.com/v1/search?orientation=landscape&query=${timeOfDay}`;
+    const data = yield (yield fetch(url, {
+        headers: {
+            Authorization: constants_1.pexelsId,
+        },
+    })).json();
+    const { photos } = data;
+    const bgNum = (0, exports.getRandomNumber)(0, photos.length);
+    return photos[bgNum].src.original;
+});
+const getUrl = (photoSource, timeOfDay, bgNum) => {
+    switch (photoSource) {
+        case 'unsplash':
+            return getLinkToImageFromUnsplash(timeOfDay);
+        case 'pexels':
+            return getLinkToImageFromPexels(timeOfDay);
+        default:
+            return getLinkToImageFromGithub(timeOfDay, bgNum);
+    }
+};
+const setBackground = (element, photoSource, bgNum) => __awaiter(void 0, void 0, void 0, function* () {
+    const timeOfDay = (0, exports.getTimeOfDay)(new Date());
+    const imageUrl = yield getUrl(photoSource, timeOfDay, bgNum);
     const img = new Image();
     img.src = imageUrl;
     img.onload = () => {
         element.style.backgroundImage = `url(${imageUrl})`;
     };
-};
+});
 exports.setBackground = setBackground;
 const setLocalStorage = (key, value) => localStorage.setItem(key, value);
 exports.setLocalStorage = setLocalStorage;
@@ -877,12 +947,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.settingBlocks = exports.timesOfDay = exports.playList = exports.weatherAppId = void 0;
+exports.settingBlocks = exports.timesOfDay = exports.playList = exports.pexelsId = exports.unsplashId = exports.weatherAppId = void 0;
 const Aqua_Caelestis_mp3_1 = __importDefault(__webpack_require__(63));
 const River_Flows_In_You_mp3_1 = __importDefault(__webpack_require__(6));
 const Ennio_Morricone_mp3_1 = __importDefault(__webpack_require__(589));
 const Summer_Wind_mp3_1 = __importDefault(__webpack_require__(806));
 exports.weatherAppId = '424b258116dc401184f3ac801fce0559';
+exports.unsplashId = 'dgnmXfNfMrIJS6ZvugyxF7sNNxvwXxvDsd9MKXIOy2s';
+exports.pexelsId = '563492ad6f91700001000001a0fc71945fbe4b398d2c36669668d2ed';
 exports.playList = [
     {
         title: 'Aqua Caelestis',
@@ -919,6 +991,7 @@ exports.settingBlocks = {
     quote: 'цитата',
     weather: 'погода',
     audio: 'аудио',
+    background: 'фон',
 };
 
 
