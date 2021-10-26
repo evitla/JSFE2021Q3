@@ -578,7 +578,7 @@ const humidity = (0, baseComponent_1.default)('div', ['humidity']);
 const getWeather = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentCity = store_1.default.city;
     const weatherUrl = `
-    http://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${constants_1.weatherAppId}&units=metric
+    https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${constants_1.weatherAppId}&units=metric
   `;
     const data = yield (yield fetch(weatherUrl)).json();
     weatherIcon.className = 'weather-icon owf';
