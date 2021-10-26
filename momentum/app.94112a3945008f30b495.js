@@ -131,6 +131,25 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -141,25 +160,21 @@ const SwitchButton_1 = __importDefault(__webpack_require__(222));
 __webpack_require__(717);
 const timeAndDate_1 = __webpack_require__(291);
 const greeting_1 = __importDefault(__webpack_require__(543));
-const quoteBlock_1 = __importDefault(__webpack_require__(303));
-const Weather_1 = __importDefault(__webpack_require__(604));
+const quoteBlock_1 = __importStar(__webpack_require__(303));
+const Weather_1 = __importStar(__webpack_require__(604));
 const Player_1 = __importDefault(__webpack_require__(347));
 const store_1 = __importDefault(__webpack_require__(338));
 const ToggleButtonGroup_1 = __importDefault(__webpack_require__(140));
 const Button_1 = __importDefault(__webpack_require__(508));
 const utils_1 = __webpack_require__(525);
+const constants_1 = __webpack_require__(37);
 const appSettings = (0, baseComponent_1.default)('div', ['settings']);
-const enLang = (0, Button_1.default)('en', ['active']);
+const enLang = (0, Button_1.default)('en');
 const ruLang = (0, Button_1.default)('ru');
-const handleLanguageSetting = (target) => {
-    const language = target.children[0].textContent;
-    (0, utils_1.setLocalStorage)('language', language);
-    store_1.default.language = language;
-};
-const languageSetting = (0, baseComponent_1.default)('div', ['settings-blocks']);
-const buttons = (0, ToggleButtonGroup_1.default)([enLang, ruLang], handleLanguageSetting);
-languageSetting.innerHTML = '<span>Language</span>';
-languageSetting.append(buttons);
+if (store_1.default.language === 'en')
+    enLang.classList.add('active');
+else
+    ruLang.classList.add('active');
 const settingSwitchButton = (label, target) => (0, SwitchButton_1.default)(label, target, ['settings-blocks']);
 const timeSetting = settingSwitchButton('time', timeAndDate_1.time);
 const dateSetting = settingSwitchButton('date', timeAndDate_1.date);
@@ -167,6 +182,8 @@ const greetingSetting = settingSwitchButton('greeting', greeting_1.default);
 const quoteSetting = settingSwitchButton('quote', quoteBlock_1.default);
 const weatherSetting = settingSwitchButton('weather', Weather_1.default);
 const audioSetting = settingSwitchButton('audio', Player_1.default);
+const languageSetting = (0, baseComponent_1.default)('div', ['settings-blocks']);
+languageSetting.innerHTML = '<span class="setting-label">Language</span>';
 const settings = [
     languageSetting,
     timeSetting,
@@ -191,6 +208,24 @@ document.body.onclick = (e) => {
         settingsList.style.display = 'none';
     }
 };
+const settingLabels = settings.map((setting) => setting.querySelector('.setting-label'));
+const settingsTranslation = (lang) => {
+    const blocks = lang === 'en' ? Object.keys(constants_1.settingBlocks) : Object.values(constants_1.settingBlocks);
+    blocks.forEach((block, index) => {
+        settingLabels[index].textContent = block;
+    });
+};
+settingsTranslation(store_1.default.language);
+const handleLanguageSetting = (target) => {
+    const language = target.children[0].textContent;
+    (0, utils_1.setLocalStorage)('language', language);
+    store_1.default.language = language;
+    (0, quoteBlock_1.quoteTranslation)();
+    (0, Weather_1.weatherTranslation)();
+    settingsTranslation(language);
+};
+const buttons = (0, ToggleButtonGroup_1.default)([enLang, ruLang], handleLanguageSetting);
+languageSetting.append(buttons);
 appSettings.append(settingsList, gearButton);
 exports["default"] = appSettings;
 
@@ -255,6 +290,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.quoteTranslation = void 0;
 const baseComponent_1 = __importDefault(__webpack_require__(645));
 const store_1 = __importDefault(__webpack_require__(338));
 const utils_1 = __webpack_require__(525);
@@ -274,14 +310,18 @@ const writeQuote = (quote) => {
     quoteText.textContent = quote.text;
     author.textContent = quote.author;
 };
-getQuotes('en').then((quotes) => {
-    let quoteId = (0, utils_1.getRandomNumber)(0, quotes.length);
-    writeQuote(quotes[quoteId]);
-    changeQuoteButton.onclick = () => {
-        quoteId = (0, utils_1.getRandomNumber)(0, quotes.length);
+const quoteTranslation = () => {
+    getQuotes(store_1.default.language).then((quotes) => {
+        let quoteId = (0, utils_1.getRandomNumber)(0, quotes.length);
         writeQuote(quotes[quoteId]);
-    };
-});
+        changeQuoteButton.onclick = () => {
+            quoteId = (0, utils_1.getRandomNumber)(0, quotes.length);
+            writeQuote(quotes[quoteId]);
+        };
+    });
+};
+exports.quoteTranslation = quoteTranslation;
+(0, exports.quoteTranslation)();
 quoteContainer.append(quoteText, author);
 quoteBlock.append(changeQuoteButton, quoteContainer);
 exports["default"] = quoteBlock;
@@ -328,9 +368,10 @@ if (!store_1.default.blocks.includes('greeting'))
 const greeting = (0, baseComponent_1.default)('span', ['greeting']);
 const nameInput = (0, baseComponent_1.default)('input', ['name']);
 nameInput.type = 'text';
-nameInput.placeholder = '[Enter name]';
 nameInput.value = store_1.default.username;
 const showGreeting = (currentDate) => {
+    nameInput.placeholder =
+        store_1.default.language === 'en' ? '[Enter name]' : '[Введите имя]';
     greeting.textContent =
         store_1.default.language === 'en'
             ? `Good ${(0, utils_1.getTimeOfDay)(currentDate)}`
@@ -576,7 +617,7 @@ const switchButton = (label, target, styles = []) => {
     <span class="button-toggle"></span>
     <span class="button-indicator"></span>
   `;
-    element.innerHTML = `<span>${label}</span>`;
+    element.innerHTML = `<span class="setting-label">${label}</span>`;
     input.checked = store_1.default.blocks.includes(label);
     input.type = 'checkbox';
     element.onchange = () => {
@@ -640,6 +681,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.weatherTranslation = void 0;
 const constants_1 = __webpack_require__(37);
 const baseComponent_1 = __importDefault(__webpack_require__(645));
 const store_1 = __importDefault(__webpack_require__(338));
@@ -657,10 +699,10 @@ const temperature = (0, baseComponent_1.default)('span', ['temperature']);
 const weatherDescription = (0, baseComponent_1.default)('span', ['weather-description']);
 const wind = (0, baseComponent_1.default)('div', ['wind']);
 const humidity = (0, baseComponent_1.default)('div', ['humidity']);
-const getWeather = () => __awaiter(void 0, void 0, void 0, function* () {
+const getWeather = (lang) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCity = store_1.default.city;
     const weatherUrl = `
-    https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${constants_1.weatherAppId}&units=metric
+    https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=${lang}&APPID=${constants_1.weatherAppId}&units=metric
   `;
     try {
         const data = yield (yield fetch(weatherUrl)).json();
@@ -670,22 +712,37 @@ const getWeather = () => __awaiter(void 0, void 0, void 0, function* () {
         cityName.value = data.name;
         temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
-        wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-        humidity.textContent = `Humidity: ${data.main.humidity}%`;
+        const windSpeed = Math.round(data.wind.speed);
+        wind.textContent =
+            lang === 'en'
+                ? `Wind speed: ${windSpeed} m/s`
+                : `Скорость ветра: ${windSpeed} м/с`;
+        const humidityValue = data.main.humidity;
+        humidity.textContent =
+            lang === 'en'
+                ? `Humidity: ${humidityValue}%`
+                : `Влажность: ${humidityValue}%`;
     }
     catch (_a) {
-        weatherError.innerHTML = `${currentCity} city not found`;
+        weatherError.innerHTML =
+            lang === 'en'
+                ? `${currentCity} city not found`
+                : `Город ${currentCity} не найден`;
         temperature.textContent = '';
         weatherDescription.textContent = '';
         wind.textContent = '';
         humidity.textContent = '';
     }
 });
-getWeather();
+const weatherTranslation = () => {
+    getWeather(store_1.default.language);
+};
+exports.weatherTranslation = weatherTranslation;
+(0, exports.weatherTranslation)();
 cityName.onchange = () => {
     (0, utils_1.setLocalStorage)('city', cityName.value);
     store_1.default.city = cityName.value;
-    getWeather();
+    getWeather(store_1.default.language);
 };
 descriptionContainer.appendChild(temperature);
 descriptionContainer.appendChild(weatherDescription);
@@ -820,7 +877,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.timesOfDay = exports.playList = exports.weatherAppId = void 0;
+exports.settingBlocks = exports.timesOfDay = exports.playList = exports.weatherAppId = void 0;
 const Aqua_Caelestis_mp3_1 = __importDefault(__webpack_require__(63));
 const River_Flows_In_You_mp3_1 = __importDefault(__webpack_require__(6));
 const Ennio_Morricone_mp3_1 = __importDefault(__webpack_require__(589));
@@ -853,6 +910,15 @@ exports.timesOfDay = {
     morning: 'Доброе утро,',
     afternoon: 'Добрый день,',
     evening: 'Добрый вечер,',
+};
+exports.settingBlocks = {
+    language: 'язык',
+    time: 'время',
+    date: 'дата',
+    greeting: 'приветствие',
+    quote: 'цитата',
+    weather: 'погода',
+    audio: 'аудио',
 };
 
 
