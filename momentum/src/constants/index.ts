@@ -34,3 +34,13 @@ export const timesOfDay = {
   afternoon: 'Добрый день,',
   evening: 'Добрый вечер,',
 };
+
+export const settingBlocks = {
+  language: 'язык',
+  time: 'время',
+  date: 'дата',
+  greeting: 'приветствие',
+  quote: 'цитата',
+  weather: 'погода',
+  audio: 'аудио',
+};

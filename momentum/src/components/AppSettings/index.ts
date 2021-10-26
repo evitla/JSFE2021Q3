@@ -12,6 +12,7 @@ import store, { Block } from '../store';
 import toggleButtonGroup from '../ToggleButtonGroup';
 import button from '../Button';
 import { setLocalStorage } from '../utils';
+import { settingBlocks } from '../../constants';
 
 const appSettings = baseComponent('div', ['settings']);
 
@@ -20,20 +21,6 @@ const ruLang = button('ru');
 
 if (store.language === 'en') enLang.classList.add('active');
 else ruLang.classList.add('active');
-
-const handleLanguageSetting = (target: HTMLElement) => {
-  const language = target.children[0].textContent;
-  setLocalStorage('language', language);
-  store.language = language;
-
-  quoteTranslation();
-  weatherTranslation();
-};
-
-const languageSetting = baseComponent('div', ['settings-blocks']);
-const buttons = toggleButtonGroup([enLang, ruLang], handleLanguageSetting);
-languageSetting.innerHTML = '<span>Language</span>';
-languageSetting.append(buttons);
 
 const settingSwitchButton = (label: Block, target: HTMLElement) =>
   switchButton(label, target, ['settings-blocks']);
@@ -44,6 +31,9 @@ const greetingSetting = settingSwitchButton('greeting', greetingContainer);
 const quoteSetting = settingSwitchButton('quote', quoteBlock);
 const weatherSetting = settingSwitchButton('weather', weather);
 const audioSetting = settingSwitchButton('audio', player);
+
+const languageSetting = baseComponent('div', ['settings-blocks']);
+languageSetting.innerHTML = '<span class="setting-label">Language</span>';
 
 const settings = [
   languageSetting,
@@ -74,6 +64,33 @@ document.body.onclick = (e: MouseEvent) => {
     settingsList.style.display = 'none';
   }
 };
+
+const settingLabels = settings.map((setting) =>
+  setting.querySelector('.setting-label')
+);
+
+const settingsTranslation = (lang: string) => {
+  const blocks =
+    lang === 'en' ? Object.keys(settingBlocks) : Object.values(settingBlocks);
+
+  blocks.forEach((block, index) => {
+    settingLabels[index].textContent = block;
+  });
+};
+
+settingsTranslation(store.language);
+
+const handleLanguageSetting = (target: HTMLElement) => {
+  const language = target.children[0].textContent;
+  setLocalStorage('language', language);
+  store.language = language;
+
+  quoteTranslation();
+  weatherTranslation();
+  settingsTranslation(language);
+};
+const buttons = toggleButtonGroup([enLang, ruLang], handleLanguageSetting);
+languageSetting.append(buttons);
 
 appSettings.append(settingsList, gearButton);
 

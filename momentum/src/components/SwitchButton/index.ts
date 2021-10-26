@@ -18,7 +18,7 @@ const switchButton = (
     <span class="button-indicator"></span>
   `;
 
-  element.innerHTML = `<span>${label}</span>`;
+  element.innerHTML = `<span class="setting-label">${label}</span>`;
   input.checked = store.blocks.includes(label);
   input.type = 'checkbox';
 
