@@ -8,12 +8,29 @@ import greetingContainer from '../Main/greeting';
 import quoteBlock from '../Footer/quoteBlock';
 import weather from '../Weather';
 import player from '../Player';
-import { Block } from '../store';
+import store, { Block } from '../store';
+import toggleButtonGroup from '../ToggleButtonGroup';
+import button from '../Button';
+import { setLocalStorage } from '../utils';
 
 const appSettings = baseComponent('div', ['settings']);
 
+const enLang = button('en', ['active']);
+const ruLang = button('ru');
+
+const handleLanguageSetting = (target: HTMLElement) => {
+  const language = target.children[0].textContent;
+  setLocalStorage('language', language);
+  store.language = language;
+};
+
+const languageSetting = baseComponent('div', ['settings-blocks']);
+const buttons = toggleButtonGroup([enLang, ruLang], handleLanguageSetting);
+languageSetting.innerHTML = '<span>Language</span>';
+languageSetting.append(buttons);
+
 const settingSwitchButton = (label: Block, target: HTMLElement) =>
-  switchButton(label, target, ['settings-switch-button']);
+  switchButton(label, target, ['settings-blocks']);
 
 const timeSetting = settingSwitchButton('time', time);
 const dateSetting = settingSwitchButton('date', date);
@@ -23,6 +40,7 @@ const weatherSetting = settingSwitchButton('weather', weather);
 const audioSetting = settingSwitchButton('audio', player);
 
 const settings = [
+  languageSetting,
   timeSetting,
   dateSetting,
   greetingSetting,
