@@ -13,14 +13,9 @@ import toggleButtonGroup from '../ToggleButtonGroup';
 import button from '../Button';
 import { setLocalStorage } from '../utils';
 import { settingBlocks } from '../../constants';
+import { handlePhotoSource } from '../Main/sliderIcons';
 
 const appSettings = baseComponent('div', ['settings']);
-
-const enLang = button('en');
-const ruLang = button('ru');
-
-if (store.language === 'en') enLang.classList.add('active');
-else ruLang.classList.add('active');
 
 const settingSwitchButton = (label: Block, target: HTMLElement) =>
   switchButton(label, target, ['settings-blocks']);
@@ -35,6 +30,10 @@ const audioSetting = settingSwitchButton('audio', player);
 const languageSetting = baseComponent('div', ['settings-blocks']);
 languageSetting.innerHTML = '<span class="setting-label">Language</span>';
 
+const backgroundImageSetting = baseComponent('div', ['settings-blocks']);
+backgroundImageSetting.innerHTML =
+  '<span class="setting-label">Background</span>';
+
 const settings = [
   languageSetting,
   timeSetting,
@@ -43,6 +42,7 @@ const settings = [
   quoteSetting,
   weatherSetting,
   audioSetting,
+  backgroundImageSetting,
 ];
 
 const settingsList = unorderedList(settings, ['settings-list']);
@@ -89,8 +89,43 @@ const handleLanguageSetting = (target: HTMLElement) => {
   weatherTranslation();
   settingsTranslation(language);
 };
-const buttons = toggleButtonGroup([enLang, ruLang], handleLanguageSetting);
-languageSetting.append(buttons);
+
+const enLang = button('en');
+const ruLang = button('ru');
+
+if (store.language === 'en') enLang.classList.add('active');
+else ruLang.classList.add('active');
+const langButtons = toggleButtonGroup([enLang, ruLang], handleLanguageSetting);
+languageSetting.append(langButtons);
+
+const handleBackgroundSetting = (target: HTMLElement) => {
+  const bg = target.children[0].textContent;
+  setLocalStorage('background', bg);
+  store.background = bg;
+
+  handlePhotoSource(bg);
+};
+
+const github = button('github');
+const unsplash = button('unsplash');
+const pexels = button('pexels');
+
+switch (store.background) {
+  case 'unsplash':
+    unsplash.classList.add('active');
+    break;
+  case 'pexels':
+    pexels.classList.add('active');
+    break;
+  default:
+    github.classList.add('active');
+}
+
+const bgButtons = toggleButtonGroup(
+  [github, unsplash, pexels],
+  handleBackgroundSetting
+);
+backgroundImageSetting.append(bgButtons);
 
 appSettings.append(settingsList, gearButton);
 

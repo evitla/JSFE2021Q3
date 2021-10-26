@@ -5,6 +5,11 @@ import audio4 from '../assets/sounds/Summer Wind.mp3';
 
 export const weatherAppId = '424b258116dc401184f3ac801fce0559';
 
+export const unsplashId = 'dgnmXfNfMrIJS6ZvugyxF7sNNxvwXxvDsd9MKXIOy2s';
+
+export const pexelsId =
+  '563492ad6f91700001000001a0fc71945fbe4b398d2c36669668d2ed';
+
 export const playList = [
   {
     title: 'Aqua Caelestis',
@@ -43,4 +48,5 @@ export const settingBlocks = {
   quote: 'цитата',
   weather: 'погода',
   audio: 'аудио',
+  background: 'фон',
 };

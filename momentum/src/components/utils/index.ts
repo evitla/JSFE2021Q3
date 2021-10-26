@@ -1,4 +1,4 @@
-import { timesOfDay } from '../../constants';
+import { pexelsId, timesOfDay, unsplashId } from '../../constants';
 
 type DayTime = 'night' | 'morning' | 'afternoon' | 'evening';
 
@@ -11,13 +11,59 @@ export const getTimeOfDay = (currentDate: Date): DayTime => {
 export const getRandomNumber = (min: number, max: number): number =>
   Math.floor(Math.random() * max) + min;
 
-export const setBackground = (element: HTMLElement, bgNum: number): void => {
+const getLinkToImageFromGithub = (timeOfDay: string, bgNum: number) => {
   const baseUrl =
     'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images';
-  const timeOfDay = getTimeOfDay(new Date());
   const bgNumToString = bgNum.toString().padStart(2, '0');
 
-  const imageUrl = `${baseUrl}/${timeOfDay}/${bgNumToString}.jpg`;
+  return `${baseUrl}/${timeOfDay}/${bgNumToString}.jpg`;
+};
+
+const getLinkToImageFromUnsplash = async (
+  timeOfDay: string
+): Promise<string> => {
+  const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}&client_id=${unsplashId}`;
+
+  const data = await (await fetch(url)).json();
+  return data.urls.regular;
+};
+
+const getLinkToImageFromPexels = async (timeOfDay: string): Promise<string> => {
+  const url = `https://api.pexels.com/v1/search?orientation=landscape&query=${timeOfDay}`;
+
+  const data = await (
+    await fetch(url, {
+      headers: {
+        Authorization: pexelsId,
+      },
+    })
+  ).json();
+
+  const { photos } = data;
+  const bgNum = getRandomNumber(0, photos.length);
+
+  return photos[bgNum].src.original;
+};
+
+const getUrl = (photoSource: string, timeOfDay: string, bgNum: number) => {
+  switch (photoSource) {
+    case 'unsplash':
+      return getLinkToImageFromUnsplash(timeOfDay);
+    case 'pexels':
+      return getLinkToImageFromPexels(timeOfDay);
+    default:
+      return getLinkToImageFromGithub(timeOfDay, bgNum);
+  }
+};
+
+export const setBackground = async (
+  element: HTMLElement,
+  photoSource: string,
+  bgNum: number
+): Promise<void> => {
+  const timeOfDay = getTimeOfDay(new Date());
+
+  const imageUrl = await getUrl(photoSource, timeOfDay, bgNum);
 
   const img = new Image();
   img.src = imageUrl;
