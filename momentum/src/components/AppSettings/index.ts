@@ -5,8 +5,8 @@ import switchButton from '../SwitchButton';
 import './style.scss';
 import { date, time } from '../Main/timeAndDate';
 import greetingContainer from '../Main/greeting';
-import quoteBlock from '../Footer/quoteBlock';
-import weather from '../Weather';
+import quoteBlock, { quoteTranslation } from '../Footer/quoteBlock';
+import weather, { weatherTranslation } from '../Weather';
 import player from '../Player';
 import store, { Block } from '../store';
 import toggleButtonGroup from '../ToggleButtonGroup';
@@ -25,6 +25,9 @@ const handleLanguageSetting = (target: HTMLElement) => {
   const language = target.children[0].textContent;
   setLocalStorage('language', language);
   store.language = language;
+
+  quoteTranslation();
+  weatherTranslation();
 };
 
 const languageSetting = baseComponent('div', ['settings-blocks']);

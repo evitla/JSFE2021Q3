@@ -20,11 +20,11 @@ const weatherDescription = baseComponent('span', ['weather-description']);
 const wind = baseComponent('div', ['wind']);
 const humidity = baseComponent('div', ['humidity']);
 
-const getWeather = async () => {
+const getWeather = async (lang: string) => {
   const currentCity = store.city;
 
   const weatherUrl = `
-    https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${weatherAppId}&units=metric
+    https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=${lang}&APPID=${weatherAppId}&units=metric
   `;
 
   try {
@@ -37,8 +37,17 @@ const getWeather = async () => {
     cityName.value = data.name;
     temperature.textContent = `${Math.round(data.main.temp)}°C`;
     weatherDescription.textContent = data.weather[0].description;
-    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    const windSpeed = Math.round(data.wind.speed);
+    wind.textContent =
+      lang === 'en'
+        ? `Wind speed: ${windSpeed} m/s`
+        : `Скорость ветра: ${windSpeed} м/с`;
+
+    const humidityValue = data.main.humidity;
+    humidity.textContent =
+      lang === 'en'
+        ? `Humidity: ${humidityValue}%`
+        : `Влажность: ${humidityValue}%`;
   } catch {
     weatherError.innerHTML = `${currentCity} city not found`;
 
@@ -49,12 +58,16 @@ const getWeather = async () => {
   }
 };
 
-getWeather();
+export const weatherTranslation = (): void => {
+  getWeather(store.language);
+};
+
+weatherTranslation();
 
 cityName.onchange = () => {
   setLocalStorage('city', cityName.value);
   store.city = cityName.value;
-  getWeather();
+  getWeather(store.language);
 };
 
 descriptionContainer.appendChild(temperature);

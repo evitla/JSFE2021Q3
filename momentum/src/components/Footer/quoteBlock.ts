@@ -11,7 +11,7 @@ const quoteContainer = baseComponent('div');
 const quoteText = baseComponent('div', ['quote']);
 const author = baseComponent('div', ['author']);
 
-const getQuotes = async (lang: 'en' | 'ru') => {
+const getQuotes = async (lang: string) => {
   const url = './quotes.json';
   const quotes: QuotesProps[] = (await (await fetch(url)).json())[lang];
   return quotes;
@@ -22,16 +22,20 @@ const writeQuote = (quote: QuotesProps) => {
   author.textContent = quote.author;
 };
 
-getQuotes('en').then((quotes) => {
-  let quoteId = getRandomNumber(0, quotes.length);
+export const quoteTranslation = (): void => {
+  getQuotes(store.language).then((quotes) => {
+    let quoteId = getRandomNumber(0, quotes.length);
 
-  writeQuote(quotes[quoteId]);
-
-  changeQuoteButton.onclick = () => {
-    quoteId = getRandomNumber(0, quotes.length);
     writeQuote(quotes[quoteId]);
-  };
-});
+
+    changeQuoteButton.onclick = () => {
+      quoteId = getRandomNumber(0, quotes.length);
+      writeQuote(quotes[quoteId]);
+    };
+  });
+};
+
+quoteTranslation();
 
 quoteContainer.append(quoteText, author);
 quoteBlock.append(changeQuoteButton, quoteContainer);
