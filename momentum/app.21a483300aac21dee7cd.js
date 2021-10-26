@@ -55,6 +55,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 83:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ 681:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -135,8 +144,23 @@ const greeting_1 = __importDefault(__webpack_require__(543));
 const quoteBlock_1 = __importDefault(__webpack_require__(303));
 const Weather_1 = __importDefault(__webpack_require__(604));
 const Player_1 = __importDefault(__webpack_require__(347));
+const store_1 = __importDefault(__webpack_require__(338));
+const ToggleButtonGroup_1 = __importDefault(__webpack_require__(140));
+const Button_1 = __importDefault(__webpack_require__(508));
+const utils_1 = __webpack_require__(525);
 const appSettings = (0, baseComponent_1.default)('div', ['settings']);
-const settingSwitchButton = (label, target) => (0, SwitchButton_1.default)(label, target, ['settings-switch-button']);
+const enLang = (0, Button_1.default)('en', ['active']);
+const ruLang = (0, Button_1.default)('ru');
+const handleLanguageSetting = (target) => {
+    const language = target.children[0].textContent;
+    (0, utils_1.setLocalStorage)('language', language);
+    store_1.default.language = language;
+};
+const languageSetting = (0, baseComponent_1.default)('div', ['settings-blocks']);
+const buttons = (0, ToggleButtonGroup_1.default)([enLang, ruLang], handleLanguageSetting);
+languageSetting.innerHTML = '<span>Language</span>';
+languageSetting.append(buttons);
+const settingSwitchButton = (label, target) => (0, SwitchButton_1.default)(label, target, ['settings-blocks']);
 const timeSetting = settingSwitchButton('time', timeAndDate_1.time);
 const dateSetting = settingSwitchButton('date', timeAndDate_1.date);
 const greetingSetting = settingSwitchButton('greeting', greeting_1.default);
@@ -144,6 +168,7 @@ const quoteSetting = settingSwitchButton('quote', quoteBlock_1.default);
 const weatherSetting = settingSwitchButton('weather', Weather_1.default);
 const audioSetting = settingSwitchButton('audio', Player_1.default);
 const settings = [
+    languageSetting,
     timeSetting,
     dateSetting,
     greetingSetting,
@@ -168,6 +193,28 @@ document.body.onclick = (e) => {
 };
 appSettings.append(settingsList, gearButton);
 exports["default"] = appSettings;
+
+
+/***/ }),
+
+/***/ 508:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const baseComponent_1 = __importDefault(__webpack_require__(645));
+__webpack_require__(83);
+const button = (content, styles = []) => {
+    const element = (0, baseComponent_1.default)('button', ['btn', ...styles]);
+    const front = (0, baseComponent_1.default)('span', ['front']);
+    front.textContent = content;
+    element.append(front);
+    return element;
+};
+exports["default"] = button;
 
 
 /***/ }),
@@ -271,6 +318,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.showGreeting = void 0;
+const constants_1 = __webpack_require__(37);
 const baseComponent_1 = __importDefault(__webpack_require__(645));
 const store_1 = __importDefault(__webpack_require__(338));
 const utils_1 = __webpack_require__(525);
@@ -283,7 +331,10 @@ nameInput.type = 'text';
 nameInput.placeholder = '[Enter name]';
 nameInput.value = store_1.default.username;
 const showGreeting = (currentDate) => {
-    greeting.textContent = `Good ${(0, utils_1.getTimeOfDay)(currentDate)}`;
+    greeting.textContent =
+        store_1.default.language === 'en'
+            ? `Good ${(0, utils_1.getTimeOfDay)(currentDate)}`
+            : constants_1.timesOfDay[(0, utils_1.getTimeOfDay)(currentDate)];
 };
 exports.showGreeting = showGreeting;
 nameInput.onchange = () => (0, utils_1.setLocalStorage)('username', nameInput.value);
@@ -369,12 +420,15 @@ exports.date = (0, baseComponent_1.default)('date', ['date']);
 if (!store_1.default.blocks.includes('date'))
     exports.date.classList.add('non-visible');
 const getDay = (currentDate) => {
-    const currentDay = currentDate.toLocaleDateString('en-US', {
+    const currentDay = currentDate.toLocaleDateString(store_1.default.language, {
         dateStyle: 'full',
     });
-    // day has 'weekday, month day, year' format
+    // in 'en' day has 'Sunday, October 24, 2021' format
+    // in 'ru' day has 'воскресенье, 24 октября 2021 г.' format
     // return day without year
-    return currentDay.split(', ').slice(0, 2).join(', ');
+    return store_1.default.language === 'en'
+        ? currentDay.split(', ').slice(0, 2).join(', ')
+        : currentDay.split(' ').slice(0, 3).join(' ');
 };
 const showTimeDateAndGreeting = () => {
     const currentDate = new Date();
@@ -541,6 +595,34 @@ exports["default"] = switchButton;
 
 /***/ }),
 
+/***/ 140:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const baseComponent_1 = __importDefault(__webpack_require__(645));
+const toggleButtonGroup = (items, eventListtener = () => { }, styles = []) => {
+    const element = (0, baseComponent_1.default)('div', ['toggle-button-group', ...styles]);
+    element.append(...items.map((item) => {
+        item.classList.add('toggle-button');
+        return item;
+    }));
+    element.onclick = (e) => {
+        const target = e.target.closest('button');
+        items.forEach((item) => item.classList.remove('active'));
+        target.classList.add('active');
+        eventListtener(target);
+    };
+    return element;
+};
+exports["default"] = toggleButtonGroup;
+
+
+/***/ }),
+
 /***/ 604:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -580,14 +662,24 @@ const getWeather = () => __awaiter(void 0, void 0, void 0, function* () {
     const weatherUrl = `
     https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${constants_1.weatherAppId}&units=metric
   `;
-    const data = yield (yield fetch(weatherUrl)).json();
-    weatherIcon.className = 'weather-icon owf';
-    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-    cityName.value = data.name;
-    temperature.textContent = `${Math.round(data.main.temp)}°C`;
-    weatherDescription.textContent = data.weather[0].description;
-    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    try {
+        const data = yield (yield fetch(weatherUrl)).json();
+        weatherError.innerHTML = '';
+        weatherIcon.className = 'weather-icon owf';
+        weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+        cityName.value = data.name;
+        temperature.textContent = `${Math.round(data.main.temp)}°C`;
+        weatherDescription.textContent = data.weather[0].description;
+        wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+        humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    }
+    catch (_a) {
+        weatherError.innerHTML = `${currentCity} city not found`;
+        temperature.textContent = '';
+        weatherDescription.textContent = '';
+        wind.textContent = '';
+        humidity.textContent = '';
+    }
 });
 getWeather();
 cityName.onchange = () => {
@@ -673,7 +765,7 @@ exports.removeFromString = exports.getTimeCodeFromNum = exports.getLocalStorage 
 const constants_1 = __webpack_require__(37);
 const getTimeOfDay = (currentDate) => {
     const hours = currentDate.getHours();
-    return constants_1.timesOfDay[Math.floor(hours / 6)];
+    return Object.keys(constants_1.timesOfDay)[Math.floor(hours / 6)];
 };
 exports.getTimeOfDay = getTimeOfDay;
 const getRandomNumber = (min, max) => Math.floor(Math.random() * max) + min;
@@ -756,7 +848,12 @@ exports.playList = [
         duration: '01:50',
     },
 ];
-exports.timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
+exports.timesOfDay = {
+    night: 'Доброй ночи,',
+    morning: 'Доброе утро,',
+    afternoon: 'Добрый день,',
+    evening: 'Добрый вечер,',
+};
 
 
 /***/ }),
