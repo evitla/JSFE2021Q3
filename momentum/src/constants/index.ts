@@ -28,4 +28,9 @@ export const playList = [
   },
 ];
 
-export const timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
+export const timesOfDay = {
+  night: 'Доброй ночи,',
+  morning: 'Доброе утро,',
+  afternoon: 'Добрый день,',
+  evening: 'Добрый вечер,',
+};

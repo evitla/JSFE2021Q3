@@ -1,9 +1,11 @@
 import { timesOfDay } from '../../constants';
 
-export const getTimeOfDay = (currentDate: Date): string => {
+type DayTime = 'night' | 'morning' | 'afternoon' | 'evening';
+
+export const getTimeOfDay = (currentDate: Date): DayTime => {
   const hours = currentDate.getHours();
 
-  return timesOfDay[Math.floor(hours / 6)];
+  return Object.keys(timesOfDay)[Math.floor(hours / 6)] as DayTime;
 };
 
 export const getRandomNumber = (min: number, max: number): number =>

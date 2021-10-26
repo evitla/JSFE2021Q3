@@ -1,3 +1,4 @@
+import { timesOfDay } from '../../constants';
 import baseComponent from '../baseComponent';
 import store from '../store';
 import { getTimeOfDay, setLocalStorage } from '../utils';
@@ -14,7 +15,10 @@ nameInput.placeholder = '[Enter name]';
 nameInput.value = store.username;
 
 export const showGreeting = (currentDate: Date): void => {
-  greeting.textContent = `Good ${getTimeOfDay(currentDate)}`;
+  greeting.textContent =
+    store.language === 'en'
+      ? `Good ${getTimeOfDay(currentDate)}`
+      : timesOfDay[getTimeOfDay(currentDate)];
 };
 
 nameInput.onchange = () => setLocalStorage('username', nameInput.value);
