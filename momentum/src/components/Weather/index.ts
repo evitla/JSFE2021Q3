@@ -24,7 +24,7 @@ const getWeather = async () => {
   const currentCity = store.city;
 
   const weatherUrl = `
-    http://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${weatherAppId}&units=metric
+    https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${weatherAppId}&units=metric
   `;
   const data = await (await fetch(weatherUrl)).json();
 
