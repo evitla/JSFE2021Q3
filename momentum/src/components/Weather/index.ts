@@ -26,16 +26,27 @@ const getWeather = async () => {
   const weatherUrl = `
     https://api.openweathermap.org/data/2.5/weather?q=${currentCity}&lang=en&APPID=${weatherAppId}&units=metric
   `;
-  const data = await (await fetch(weatherUrl)).json();
 
-  weatherIcon.className = 'weather-icon owf';
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+  try {
+    const data = await (await fetch(weatherUrl)).json();
 
-  cityName.value = data.name;
-  temperature.textContent = `${Math.round(data.main.temp)}°C`;
-  weatherDescription.textContent = data.weather[0].description;
-  wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-  humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    weatherError.innerHTML = '';
+    weatherIcon.className = 'weather-icon owf';
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+
+    cityName.value = data.name;
+    temperature.textContent = `${Math.round(data.main.temp)}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+  } catch {
+    weatherError.innerHTML = `${currentCity} city not found`;
+
+    temperature.textContent = '';
+    weatherDescription.textContent = '';
+    wind.textContent = '';
+    humidity.textContent = '';
+  }
 };
 
 getWeather();
