@@ -15,8 +15,11 @@ import { setLocalStorage } from '../utils';
 
 const appSettings = baseComponent('div', ['settings']);
 
-const enLang = button('en', ['active']);
+const enLang = button('en');
 const ruLang = button('ru');
+
+if (store.language === 'en') enLang.classList.add('active');
+else ruLang.classList.add('active');
 
 const handleLanguageSetting = (target: HTMLElement) => {
   const language = target.children[0].textContent;
