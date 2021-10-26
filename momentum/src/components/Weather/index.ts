@@ -49,7 +49,10 @@ const getWeather = async (lang: string) => {
         ? `Humidity: ${humidityValue}%`
         : `Влажность: ${humidityValue}%`;
   } catch {
-    weatherError.innerHTML = `${currentCity} city not found`;
+    weatherError.innerHTML =
+      lang === 'en'
+        ? `${currentCity} city not found`
+        : `Город ${currentCity} не найден`;
 
     temperature.textContent = '';
     weatherDescription.textContent = '';
