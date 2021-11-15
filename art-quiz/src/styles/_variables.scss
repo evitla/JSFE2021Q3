@@ -1,1 +1,30 @@
 $primary-font: 'Mukta', sans-serif;
+
+$colors: (
+  'primary': (
+    100: hsl(48deg, 100%, 84%),
+    110: hsl(48deg, 100%, 76%),
+    120: hsl(48deg, 100%, 68%),
+    130: hsl(48deg, 100%, 60%),
+    140: hsl(48deg, 100%, 36%),
+  ),
+  'neutral': (
+    100: #ffffff,
+    600: #262626,
+  ),
+);
+
+$primary-colors: map-get($colors, 'primary');
+
+$neutral-colors: map-get($colors, 'neutral');
+
+:root {
+  --primary-color-100: #{map-get($primary-colors, 100)};
+  --primary-color-110: #{map-get($primary-colors, 110)};
+  --primary-color-120: #{map-get($primary-colors, 120)};
+  --primary-color-130: #{map-get($primary-colors, 130)};
+  --primary-color-140: #{map-get($primary-colors, 140)};
+
+  --neutral-color-100: #{map-get($neutral-colors, 100)};
+  --neutral-color-600: #{map-get($neutral-colors, 600)};
+}
