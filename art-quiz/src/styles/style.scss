@@ -11,6 +11,15 @@
 
 body {
   font-family: $primary-font;
+  background-color: var(--neutral-color-600);
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
 }
 
 .visually-hidden {
