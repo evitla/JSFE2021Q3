@@ -1,0 +1,71 @@
+.button {
+  display: inline-block;
+  appearance: none;
+  margin: 4px 2px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.725em 1em;
+  min-width: 140px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.14s;
+  outline: none;
+  text-align: center;
+
+  &:active {
+    transform: translateY(3px);
+  }
+
+  &:not([href]) {
+    cursor: not-allowed;
+
+    &:hover {
+      animation: disabled-button 0.24s forwards;
+    }
+  }
+}
+
+.button-primary {
+  box-shadow: 0 3px 0 0 var(--primary-color-140);
+  background: var(--primary-color-130);
+  color: var(--neutral-color-600);
+
+  &:hover {
+    background: var(--primary-color-110);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0 var(--primary-color-140);
+  }
+
+  &:not([href]) {
+    background: var(--primary-color-100);
+    box-shadow: 0 3px 0 0 var(--primary-color-120);
+    color: var(--primary-color-130);
+  }
+}
+
+@keyframes disabled-button {
+  0% {
+    transform: translateX(0);
+  }
+  14% {
+    transform: translateX(-2px);
+  }
+  28% {
+    transform: translateX(0);
+  }
+  42% {
+    transform: translateX(2px);
+  }
+  56% {
+    transform: translateX(0);
+  }
+  84% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
