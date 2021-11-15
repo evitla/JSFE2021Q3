@@ -1,10 +1,18 @@
 .logo {
-  background-image: url('../../assets/images/logo.webp');
-  background-repeat: no-repeat;
+  text-align: center;
 }
 
 .logo-main {
-  margin: 16vh auto 0;
-  width: 360px;
-  height: 410px;
+  margin-top: 16vh;
+}
+
+.logo-image {
+  width: 70%;
+}
+
+.logo-title {
+  color: white;
+  font-size: 3.5rem;
+  letter-spacing: 0.3rem;
+  line-height: 3.5rem;
 }
