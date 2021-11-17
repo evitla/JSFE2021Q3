@@ -1,7 +1,7 @@
 class Layout {
   readonly element = document.body;
 
-  async render(children: HTMLElement | null = null): Promise<void> {
+  async render(children: HTMLElement): Promise<void> {
     this.element.innerHTML = `
       <main>
         <div class="wrapper">
