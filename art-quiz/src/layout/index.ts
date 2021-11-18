@@ -5,7 +5,7 @@ class Layout {
     this.element.innerHTML = `
       <main>
         <div class="wrapper">
-          ${children.innerHTML}
+          ${children.outerHTML}
         </div>
       </main>
       <footer>
