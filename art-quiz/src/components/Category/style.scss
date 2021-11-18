@@ -1,0 +1,23 @@
+.category {
+  text-align: center;
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    color: var(--neutral-color-100);
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  h3 {
+    float: left;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 1rem;
+    filter: grayscale(100%);
+  }
+}
