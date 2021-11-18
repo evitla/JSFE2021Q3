@@ -13,13 +13,13 @@ class Home extends BasePage {
   private ArtistsQuizButton = new Button(
     'Artists Quiz',
     ['button-primary'],
-    '/#/artists-quiz'
+    '/#/categories'
   );
 
   private PicturesQuizButton = new Button(
     'Pictures Quiz',
     ['button-primary'],
-    '/#/settings'
+    '/#/categories'
   );
 
   constructor() {
@@ -27,8 +27,10 @@ class Home extends BasePage {
   }
 
   async render(): Promise<void> {
-    this.buttonsContainer.element.append(this.ArtistsQuizButton.element);
-    this.buttonsContainer.element.append(this.PicturesQuizButton.element);
+    this.buttonsContainer.element.append(
+      this.ArtistsQuizButton.element,
+      this.PicturesQuizButton.element
+    );
 
     this.element.append(this.logo.element, this.buttonsContainer.element);
   }
