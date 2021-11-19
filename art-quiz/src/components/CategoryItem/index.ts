@@ -8,7 +8,7 @@ class CategoryItem extends BaseComponent {
   private link = document.createElement('a');
 
   constructor(readonly props: ICategoryProps) {
-    super('figure', ['category']);
+    super('figure', ['category-item']);
     this.link.href = `/#/categories/${props.imageNumber / 10}`;
   }
 
