@@ -4,19 +4,23 @@ import { getImageURL } from '../../utils';
 import './style.scss';
 import { ICategoryProps } from '../../models';
 
-class Category extends BaseComponent {
+class CategoryItem extends BaseComponent {
+  private link = document.createElement('a');
+
   constructor(readonly props: ICategoryProps) {
     super('figure', ['category']);
+    this.link.href = `/#/categories/${props.imageNumber / 10}`;
   }
 
   async render(): Promise<void> {
+    this.element.append(this.link);
     this.renderTitle();
     const imageURL = getImageURL(this.props.imageNumber);
     this.renderImage(imageURL);
   }
 
   private renderTitle() {
-    this.element.innerHTML = `
+    this.link.innerHTML = `
       <figcaption>
         <h3>${this.props.title}</h3>
         ${this.props.score ? `<span>${this.props.score}/10</span>` : ''}
@@ -32,8 +36,8 @@ class Category extends BaseComponent {
       img.style.filter = 'none';
     }
 
-    this.element.append(img);
+    this.link.append(img);
   }
 }
 
-export default Category;
+export default CategoryItem;
