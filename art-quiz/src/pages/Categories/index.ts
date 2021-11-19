@@ -1,5 +1,5 @@
 import BasePage from '../BasePage';
-import Category from '../../components/Category';
+import CategoryItem from '../../components/CategoryItem';
 
 import './style.scss';
 
@@ -9,12 +9,12 @@ class Categories extends BasePage {
   }
 
   async render(): Promise<void> {
-    const c = new Category({ title: 'title', imageNumber: 0, score: 3 });
-    const c1 = new Category({ title: 'title', imageNumber: 10 });
-    const c2 = new Category({ title: 'title', imageNumber: 20 });
-    const c3 = new Category({ title: 'title', imageNumber: 30 });
-    const c4 = new Category({ title: 'title', imageNumber: 40 });
-    const c5 = new Category({ title: 'title', imageNumber: 50 });
+    const c = new CategoryItem({ title: 'title', imageNumber: 0, score: 3 });
+    const c1 = new CategoryItem({ title: 'title', imageNumber: 10 });
+    const c2 = new CategoryItem({ title: 'title', imageNumber: 20 });
+    const c3 = new CategoryItem({ title: 'title', imageNumber: 30 });
+    const c4 = new CategoryItem({ title: 'title', imageNumber: 40 });
+    const c5 = new CategoryItem({ title: 'title', imageNumber: 50 });
     this.element.append(
       c.element,
       c1.element,
