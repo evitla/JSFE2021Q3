@@ -1,4 +1,5 @@
 import Layout from './layout';
+import { ICategoryProps } from './models';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
 import Home from './pages/Home';
@@ -7,10 +8,19 @@ import Router from './router';
 
 import './styles/style.scss';
 
+const categoryItemsProps: ICategoryProps[] = [
+  { title: 'title', imageNumber: 0, score: 3 },
+  { title: 'title', imageNumber: 10, score: 5 },
+  { title: 'title', imageNumber: 20 },
+  { title: 'title', imageNumber: 30 },
+  { title: 'title', imageNumber: 40 },
+  { title: 'title', imageNumber: 50 },
+];
+
 const layout = new Layout();
 const home = new Home();
 const settings = new Settings();
-const categories = new Categories();
+const categories = new Categories(categoryItemsProps);
 const category = new Category();
 
 const routes = {
