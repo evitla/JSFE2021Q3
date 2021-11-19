@@ -1,5 +1,6 @@
 import Layout from './layout';
 import Categories from './pages/Categories';
+import Category from './pages/Category';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Router from './router';
@@ -10,11 +11,13 @@ const layout = new Layout();
 const home = new Home();
 const settings = new Settings();
 const categories = new Categories();
+const category = new Category();
 
 const routes = {
   '/': home,
   '/settings': settings,
   '/categories': categories,
+  '/categories/:id': category,
 };
 
 const router = new Router(routes);
