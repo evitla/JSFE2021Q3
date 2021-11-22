@@ -6,6 +6,8 @@ abstract class BasePage extends BaseComponent {
   }
 
   abstract render(): Promise<void>;
+
+  abstract afterRender(): Promise<void>;
 }
 
 export default BasePage;
