@@ -5,6 +5,7 @@ import Category from './pages/Category';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Router from './router';
+import { getImages } from './utils';
 
 import './styles/style.scss';
 
@@ -17,33 +18,43 @@ const categoryItemsProps: ICategoryProps[] = [
   { title: 'title', imageNumber: 50 },
 ];
 
-const layout = new Layout();
-const home = new Home();
-const settings = new Settings();
-const categories = new Categories(categoryItemsProps);
-const category = new Category();
+const url = 'http://localhost:8080/database/images.json';
 
-const routes = {
-  '/': home,
-  '/settings': settings,
-  '/categories': categories,
-  '/categories/:id': category,
+const main = async () => {
+  const layout = new Layout();
+  const home = new Home();
+  const settings = new Settings();
+  const categories = new Categories(categoryItemsProps);
+  const images = await getImages(url);
+  const category = new Category(images);
+
+  const routes = {
+    '/': home,
+    '/settings': settings,
+    '/categories': categories,
+    '/categories/:id': category,
+  };
+
+  const router = new Router(routes);
+
+  const run = async () => {
+    await layout.clear();
+    const page = router.getPage();
+
+    if (page) {
+      await page.render();
+      await layout.render(page.element);
+      await page.afterRender();
+    } else {
+      const err = document.createElement('h2');
+      err.innerText = '404. Page not found';
+      await layout.render(err);
+    }
+  };
+
+  await run();
+
+  window.addEventListener('hashchange', run);
 };
 
-const router = new Router(routes);
-
-const run = async () => {
-  const page = router.getPage();
-
-  if (page) {
-    await page.render();
-    await layout.render(page.element);
-  } else {
-    const err = document.createElement('h2');
-    err.innerText = '404. Page not found';
-    await layout.render(err);
-  }
-};
-
-window.addEventListener('hashchange', run);
-window.addEventListener('load', run);
+window.addEventListener('load', main);
