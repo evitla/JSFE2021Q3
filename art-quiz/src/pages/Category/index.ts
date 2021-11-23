@@ -89,8 +89,15 @@ class Category extends BasePage {
     const target = e.target as HTMLElement;
     if (!target.closest('button')) return;
 
+    const options = this.optionsContainer.element.querySelectorAll('button');
+
+    options.forEach((option) => {
+      if (option.innerText === this.categoryImages[this.currentImage].author) {
+        option.className = 'button button-small button-success';
+      }
+    });
+
     if (target.innerText === this.categoryImages[this.currentImage].author) {
-      target.className = 'button button-small button-success';
       this.score++;
     } else {
       target.className = 'button button-small button-danger';
