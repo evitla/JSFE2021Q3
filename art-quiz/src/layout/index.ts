@@ -1,4 +1,4 @@
-class Layout {
+class MainLayout {
   readonly element = document.body;
 
   private main = document.createElement('main');
@@ -27,4 +27,4 @@ class Layout {
   }
 }
 
-export default Layout;
+export default MainLayout;

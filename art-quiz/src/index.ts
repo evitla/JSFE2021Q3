@@ -1,27 +1,18 @@
-import Layout from './layout';
-import { ICategoryProps } from './models';
+import MainLayout from './layout';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Router from './router';
 import { getImages } from './utils';
+import { categoryItemsProps } from './store';
 
 import './styles/style.scss';
-
-const categoryItemsProps: ICategoryProps[] = [
-  { title: 'title', imageNumber: 0, score: 3 },
-  { title: 'title', imageNumber: 10, score: 5 },
-  { title: 'title', imageNumber: 20 },
-  { title: 'title', imageNumber: 30 },
-  { title: 'title', imageNumber: 40 },
-  { title: 'title', imageNumber: 50 },
-];
 
 const url = 'http://localhost:8080/database/images.json';
 
 const main = async () => {
-  const layout = new Layout();
+  const mainLayout = new MainLayout();
   const home = new Home();
   const settings = new Settings();
   const categories = new Categories(categoryItemsProps);
@@ -38,17 +29,17 @@ const main = async () => {
   const router = new Router(routes);
 
   const run = async () => {
-    await layout.clear();
+    await mainLayout.clear();
     const page = router.getPage();
 
     if (page) {
       await page.render();
-      await layout.render(page.element);
+      await mainLayout.render(page.element);
       await page.afterRender();
     } else {
       const err = document.createElement('h2');
       err.innerText = '404. Page not found';
-      await layout.render(err);
+      await mainLayout.render(err);
     }
   };
 
