@@ -46,3 +46,9 @@ export const getRandomNumbers = (
 ): number[] =>
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Array.from({ length: len }, (_) => getRandomNumber(min, max));
+
+export const setLocalStorage = (key: string, value: string): void =>
+  localStorage.setItem(key, value);
+
+export const getLocalStorage = (key: string): string =>
+  localStorage.getItem(key) ? localStorage.getItem(key) : '';
