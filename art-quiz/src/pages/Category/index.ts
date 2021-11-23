@@ -1,11 +1,13 @@
 import BaseComponent from '../../components/BaseComponent';
-import { IImageProps } from '../../models';
+import { ICategoryProps, IImageProps } from '../../models';
+import { categoryItemsProps } from '../../store';
 import {
   delay,
   getImageURL,
   getRandomNumber,
   getRandomNumbers,
   parseRequestURL,
+  setLocalStorage,
 } from '../../utils';
 import BasePage from '../BasePage';
 
@@ -29,6 +31,9 @@ const getCategory = (images: IImageProps[], id: number) => {
   return categoryImages;
 };
 
+const getCategoryProps = (id: number) =>
+  categoryItemsProps.find((item) => item.imageNumber === id);
+
 class Category extends BasePage {
   private optionsContainer = new BaseComponent('div', ['options-container']);
 
@@ -38,6 +43,10 @@ class Category extends BasePage {
 
   private currentImage: number;
 
+  private id: number;
+
+  private props: ICategoryProps;
+
   score: number;
 
   constructor(private images: IImageProps[]) {
@@ -46,10 +55,12 @@ class Category extends BasePage {
 
   async render(): Promise<void> {
     const request = parseRequestURL();
+    this.id = +request.id * 10;
     this.currentImage = 0;
     this.score = 0;
 
-    this.categoryImages = getCategory(this.images, +request.id * 10);
+    this.props = getCategoryProps(this.id);
+    this.categoryImages = getCategory(this.images, this.id);
 
     this.imageContainer.element.style.backgroundImage = `
       url(${getImageURL(this.categoryImages[this.currentImage].imageNum)})
@@ -67,9 +78,9 @@ class Category extends BasePage {
     this.optionsContainer.element.onclick = this.handleClick;
   }
 
-  private getAuthors = () => {
-    return [...new Set(this.images.map((image) => image.author))];
-  };
+  private getAuthors = () => [
+    ...new Set(this.images.map((image) => image.author)),
+  ];
 
   private renderAnswerOptions = () => {
     const authors = this.getAuthors();
@@ -113,7 +124,7 @@ class Category extends BasePage {
       `;
       this.renderAnswerOptions();
     } else {
-      console.log('Your score is:', this.score);
+      setLocalStorage(`score-${this.props.title}`, this.score.toString());
     }
   };
 }
