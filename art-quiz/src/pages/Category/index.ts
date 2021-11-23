@@ -1,6 +1,7 @@
 import BaseComponent from '../../components/BaseComponent';
 import { IImageProps } from '../../models';
 import {
+  delay,
   getImageURL,
   getRandomNumber,
   getRandomNumbers,
@@ -29,7 +30,7 @@ const getCategory = (images: IImageProps[], id: number) => {
 };
 
 class Category extends BasePage {
-  private buttonsContainer = document.createElement('div');
+  private optionsContainer = new BaseComponent('div', ['options-container']);
 
   private imageContainer = new BaseComponent('figure', ['img-container']);
 
@@ -53,15 +54,17 @@ class Category extends BasePage {
     this.imageContainer.element.style.backgroundImage = `
       url(${getImageURL(this.categoryImages[this.currentImage].imageNum)})
     `;
-    console.log(this.categoryImages[this.currentImage].author);
 
     this.renderAnswerOptions();
 
-    this.element.append(this.imageContainer.element, this.buttonsContainer);
+    this.element.append(
+      this.imageContainer.element,
+      this.optionsContainer.element
+    );
   }
 
   async afterRender(): Promise<void> {
-    this.buttonsContainer.onclick = this.handleClick;
+    this.optionsContainer.element.onclick = this.handleClick;
   }
 
   private getAuthors = () => {
@@ -75,22 +78,27 @@ class Category extends BasePage {
     fourRandomAuthors[getRandomNumber(0, 4)] =
       this.categoryImages[this.currentImage].imageNum;
 
-    this.buttonsContainer.innerHTML = fourRandomAuthors
+    this.optionsContainer.element.innerHTML = fourRandomAuthors
       .map((randomAuthor) => {
-        return `<button>${this.images[randomAuthor].author}</button>`;
+        return `<button class="button button-small button-primary">${this.images[randomAuthor].author}</button>`;
       })
       .join('\n');
   };
 
-  private handleClick = (e: MouseEvent) => {
+  private handleClick = async (e: MouseEvent) => {
     const target = e.target as HTMLElement;
+    if (!target.closest('button')) return;
 
     if (target.innerText === this.categoryImages[this.currentImage].author) {
+      target.className = 'button button-small button-success';
       this.score++;
+    } else {
+      target.className = 'button button-small button-danger';
     }
 
     this.currentImage++;
-    console.log(this.categoryImages[this.currentImage].author);
+
+    await delay(750);
 
     if (this.currentImage < 10) {
       this.imageContainer.element.style.backgroundImage = `
