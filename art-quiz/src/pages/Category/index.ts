@@ -68,6 +68,7 @@ class Category extends BasePage {
 
     this.renderAnswerOptions();
 
+    this.element.innerHTML = `<h3 class="category-title">${this.props.title}</h3>`;
     this.element.append(
       this.imageContainer.element,
       this.optionsContainer.element
