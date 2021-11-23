@@ -1,5 +1,10 @@
 import { IImageProps } from '../models';
 
+export const delay = (timeout: number): Promise<void> =>
+  new Promise((resolve) => {
+    setTimeout(resolve, timeout);
+  });
+
 export const getImageURL = (imageNum: number): string => {
   const baseUrl =
     'https://raw.githubusercontent.com/evitla/image-data/master/img';
