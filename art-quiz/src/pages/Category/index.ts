@@ -68,7 +68,10 @@ class Category extends BasePage {
 
     this.renderAnswerOptions();
 
-    this.element.innerHTML = `<h3 class="category-title">${this.props.title}</h3>`;
+    this.element.innerHTML = `
+      <h3 class="category-title">${this.props.title}</h3>
+      <p class="question-title">Кто является автором данной картины?</p>
+    `;
     this.element.append(
       this.imageContainer.element,
       this.optionsContainer.element
@@ -126,6 +129,9 @@ class Category extends BasePage {
       this.renderAnswerOptions();
     } else {
       setLocalStorage(`score-${this.props.title}`, this.score.toString());
+      const link = document.createElement('a');
+      link.href = `/#/categories`;
+      link.click();
     }
   };
 }
