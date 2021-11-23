@@ -7,6 +7,12 @@ $colors: (
     120: hsl(48deg, 100%, 68%),
     130: hsl(48deg, 100%, 60%),
     140: hsl(48deg, 100%, 36%),
+    210: hsl(134, 61%, 57%),
+    230: hsl(134, 61%, 41%),
+    240: hsl(134, 61%, 25%),
+    310: hsl(4, 79%, 70%),
+    330: hsl(4, 79%, 54%),
+    340: hsl(4, 79%, 40%),
   ),
   'neutral': (
     100: #ffffff,
@@ -24,6 +30,14 @@ $neutral-colors: map-get($colors, 'neutral');
   --primary-color-120: #{map-get($primary-colors, 120)};
   --primary-color-130: #{map-get($primary-colors, 130)};
   --primary-color-140: #{map-get($primary-colors, 140)};
+
+  --primary-color-210: #{map-get($primary-colors, 210)};
+  --primary-color-230: #{map-get($primary-colors, 230)};
+  --primary-color-240: #{map-get($primary-colors, 240)};
+
+  --primary-color-310: #{map-get($primary-colors, 310)};
+  --primary-color-330: #{map-get($primary-colors, 330)};
+  --primary-color-340: #{map-get($primary-colors, 340)};
 
   --neutral-color-100: #{map-get($neutral-colors, 100)};
   --neutral-color-600: #{map-get($neutral-colors, 600)};

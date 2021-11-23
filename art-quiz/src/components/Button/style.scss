@@ -16,13 +16,18 @@
     transform: translateY(3px);
   }
 
-  &:not([href]) {
-    cursor: not-allowed;
+  // &:not([href]) {
+  //   cursor: not-allowed;
 
-    &:hover {
-      animation: disabled-button 0.24s forwards;
-    }
-  }
+  //   &:hover {
+  //     animation: disabled-button 0.24s forwards;
+  //   }
+  // }
+}
+
+.button.button-small {
+  font-size: 0.75rem;
+  height: 3rem;
 }
 
 .button-primary {
@@ -38,11 +43,23 @@
     box-shadow: 0 0 0 0 var(--primary-color-140);
   }
 
-  &:not([href]) {
-    background: var(--primary-color-100);
-    box-shadow: 0 3px 0 0 var(--primary-color-120);
-    color: var(--primary-color-130);
-  }
+  // &:not([href]) {
+  //   background: var(--primary-color-100);
+  //   box-shadow: 0 3px 0 0 var(--primary-color-120);
+  //   color: var(--primary-color-130);
+  // }
+}
+
+.button-success {
+  box-shadow: 0 3px 0 0 var(--primary-color-240);
+  background: var(--primary-color-230);
+  color: var(--neutral-color-600);
+}
+
+.button-danger {
+  box-shadow: 0 3px 0 0 var(--primary-color-340);
+  background: var(--primary-color-330);
+  color: var(--neutral-color-600);
 }
 
 @keyframes disabled-button {
