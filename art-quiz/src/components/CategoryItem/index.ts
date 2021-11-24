@@ -1,5 +1,5 @@
 import BaseComponent from '../BaseComponent';
-import { getImageURL } from '../../utils';
+import { getImageURL, getLocalStorage } from '../../utils';
 
 import './style.scss';
 import { ICategoryProps } from '../../models';
@@ -7,12 +7,15 @@ import { ICategoryProps } from '../../models';
 class CategoryItem extends BaseComponent {
   private link = document.createElement('a');
 
+  score: number;
+
   constructor(readonly props: ICategoryProps) {
     super('figure', ['category-item']);
     this.link.href = `/#/categories/${props.imageNumber / 10}`;
   }
 
   async render(): Promise<void> {
+    this.score = +getLocalStorage(`score-${this.props.title}`);
     this.element.append(this.link);
     this.renderTitle();
     const imageURL = getImageURL(this.props.imageNumber);
@@ -23,7 +26,7 @@ class CategoryItem extends BaseComponent {
     this.link.innerHTML = `
       <figcaption>
         <h3>${this.props.title}</h3>
-        ${this.props.score ? `<span>${this.props.score}/10</span>` : ''}
+        <span>${this.score ? `${this.score}/10` : ''}</span>
       </figcaption>
     `;
   }
@@ -32,7 +35,7 @@ class CategoryItem extends BaseComponent {
     const img = new Image();
     img.src = imageURL;
     img.alt = 'Category image';
-    if (this.props.score) {
+    if (this.score) {
       img.style.filter = 'none';
     }
 
