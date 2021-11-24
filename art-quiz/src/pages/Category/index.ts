@@ -4,7 +4,6 @@ import { categoryItemsProps } from '../../store';
 import {
   delay,
   getImageURL,
-  getRandomNumber,
   getUniqueRandomNumbers,
   parseRequestURL,
   setLocalStorage,
@@ -91,16 +90,18 @@ class Category extends BasePage {
   private renderAnswerOptions = () => {
     const authors = this.getAuthors();
 
-    const fourRandomAuthors = getUniqueRandomNumbers(4, 0, authors.length);
+    const threeRandomAuthors = getUniqueRandomNumbers(3, 0, authors.length).map(
+      (num) => authors[num]
+    );
 
-    if (!fourRandomAuthors.includes(this.currentImage)) {
-      fourRandomAuthors[getRandomNumber(0, 4)] =
-        this.categoryImages[this.currentImage].imageNum;
-    }
+    const options = [
+      ...threeRandomAuthors,
+      this.categoryImages[this.currentImage].author,
+    ].sort(() => 0.5 - Math.random());
 
-    this.optionsContainer.element.innerHTML = fourRandomAuthors
-      .map((randomAuthor) => {
-        return `<button class="button button-small button-primary">${this.images[randomAuthor].author}</button>`;
+    this.optionsContainer.element.innerHTML = options
+      .map((option) => {
+        return `<button class="button button-small button-primary">${option}</button>`;
       })
       .join('\n');
   };
