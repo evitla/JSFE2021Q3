@@ -25,28 +25,4 @@ export const categoryItemsProps: ICategoryProps[] = [
     title: 'avant-garde',
     imageNumber: 50,
   },
-  {
-    title: 'renaissance',
-    imageNumber: 60,
-  },
-  {
-    title: 'surrealism',
-    imageNumber: 70,
-  },
-  {
-    title: 'kitsch',
-    imageNumber: 80,
-  },
-  {
-    title: 'minimalism',
-    imageNumber: 90,
-  },
-  {
-    title: 'interior',
-    imageNumber: 100,
-  },
-  {
-    title: 'nude',
-    imageNumber: 110,
-  },
 ];
