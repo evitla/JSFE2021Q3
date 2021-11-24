@@ -22,10 +22,6 @@ li {
   list-style: none;
 }
 
-main {
-  padding-top: 1rem;
-}
-
 .visually-hidden {
   position: absolute;
   clip: rect(1px, 1px, 1px, 1px);
@@ -40,4 +36,16 @@ main {
 .wrapper {
   width: 95%;
   margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    width: 92%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 87%;
+  }
+
+  @media screen and (min-width: 1600px) {
+    width: 87%;
+  }
 }

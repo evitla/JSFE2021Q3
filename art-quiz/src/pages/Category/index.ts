@@ -73,10 +73,14 @@ class Category extends BasePage {
       <h3 class="category-title">${this.props.title}</h3>
       <p class="question-title">Кто является автором данной картины?</p>
     `;
-    this.element.append(
+
+    const questionContainer = new BaseComponent('div', ['question-container']);
+
+    questionContainer.element.append(
       this.imageContainer.element,
       this.optionsContainer.element
     );
+    this.element.append(questionContainer.element);
   }
 
   async afterRender(): Promise<void> {
