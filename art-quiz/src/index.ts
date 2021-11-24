@@ -9,6 +9,8 @@ import { categoryItemsProps } from './store';
 
 import './styles/style.scss';
 
+const ROOT_URL = 'evitla-JSFE2021Q1/match-match-game';
+
 const url = './images.json';
 
 const main = async () => {
@@ -26,7 +28,7 @@ const main = async () => {
     '/categories/:id': category,
   };
 
-  const router = new Router(routes);
+  const router = new Router(routes, ROOT_URL);
 
   const run = async () => {
     await mainLayout.clear();
