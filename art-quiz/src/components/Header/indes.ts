@@ -15,7 +15,7 @@ class Header extends BaseComponent {
   constructor() {
     super('header');
 
-    this.settingsIcon.element.setAttribute('href', '/#/settings');
+    this.settingsIcon.element.setAttribute('href', '#/settings');
 
     this.settingsIcon.element.innerHTML = `
       <img src=${gear} alt="settings" >
