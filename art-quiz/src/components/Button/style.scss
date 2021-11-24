@@ -1,7 +1,7 @@
 .button {
   display: inline-block;
   appearance: none;
-  margin: 4px 2px;
+  margin: 0 auto;
   border: none;
   font-size: 1.75rem;
   font-weight: bold;
@@ -11,6 +11,7 @@
   transition: all 0.14s;
   outline: none;
   text-align: center;
+  width: 100%;
 
   &:active {
     transform: translateY(3px);

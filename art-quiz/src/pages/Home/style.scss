@@ -5,7 +5,17 @@
 .btn-container {
   display: flex;
   flex-direction: column;
-  margin: 4rem auto;
-  width: 65%;
+  justify-content: space-between;
+  margin: 4rem auto 0;
+  width: max(65%, 300px);
   gap: 1.5rem;
+
+  .button {
+    width: max(70%, 300px);
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 600px;
+  }
 }
