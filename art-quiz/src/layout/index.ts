@@ -1,3 +1,4 @@
+import Footer from '../components/Footer';
 import Header from '../components/Header/indes';
 
 class MainLayout {
@@ -9,25 +10,22 @@ class MainLayout {
 
   private mainWrapper = document.createElement('div');
 
-  private footer = document.createElement('footer');
-
-  private footerWrapper = document.createElement('div');
+  private footer = new Footer();
 
   constructor() {
     this.mainWrapper.className = 'wrapper';
-    this.footerWrapper.className = 'wrapper';
   }
 
   async render(children: HTMLElement, hasHeader = false): Promise<void> {
     this.main.append(this.mainWrapper);
     this.mainWrapper.append(children);
-    this.footer.append(this.footerWrapper);
-    this.footerWrapper.innerHTML = `<h2>Footer</h2>`;
+
     if (hasHeader) {
       await this.header.render();
       this.element.append(this.header.element);
     }
-    this.element.append(this.main, this.footer);
+    await this.footer.render();
+    this.element.append(this.main, this.footer.element);
   }
 
   async clear(): Promise<void> {
