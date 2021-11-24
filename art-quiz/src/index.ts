@@ -9,7 +9,7 @@ import { categoryItemsProps } from './store';
 
 import './styles/style.scss';
 
-const url = 'http://localhost:8080/database/images.json';
+const url = './images.json';
 
 const main = async () => {
   const mainLayout = new MainLayout();
