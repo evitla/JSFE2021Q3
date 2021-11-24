@@ -9,7 +9,7 @@ import { categoryItemsProps } from './store';
 
 import './styles/style.scss';
 
-const ROOT_URL = 'evitla-JSFE2021Q3/match-match-game';
+const ROOT_URL = 'evitla-JSFE2021Q3/art-quiz';
 
 const url = './images.json';
 
