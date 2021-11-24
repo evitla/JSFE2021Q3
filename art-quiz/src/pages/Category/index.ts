@@ -5,7 +5,7 @@ import {
   delay,
   getImageURL,
   getRandomNumber,
-  getRandomNumbers,
+  getUniqueRandomNumbers,
   parseRequestURL,
   setLocalStorage,
 } from '../../utils';
@@ -91,9 +91,12 @@ class Category extends BasePage {
   private renderAnswerOptions = () => {
     const authors = this.getAuthors();
 
-    const fourRandomAuthors = getRandomNumbers(4, 0, authors.length);
-    fourRandomAuthors[getRandomNumber(0, 4)] =
-      this.categoryImages[this.currentImage].imageNum;
+    const fourRandomAuthors = getUniqueRandomNumbers(4, 0, authors.length);
+
+    if (!fourRandomAuthors.includes(this.currentImage)) {
+      fourRandomAuthors[getRandomNumber(0, 4)] =
+        this.categoryImages[this.currentImage].imageNum;
+    }
 
     this.optionsContainer.element.innerHTML = fourRandomAuthors
       .map((randomAuthor) => {

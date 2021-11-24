@@ -39,13 +39,19 @@ export const parseRequestURL = (): {
 export const getRandomNumber = (min: number, max: number): number =>
   Math.floor(Math.random() * max) + min;
 
-export const getRandomNumbers = (
+export const getUniqueRandomNumbers = (
   len: number,
   min: number,
   max: number
-): number[] =>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  Array.from({ length: len }, (_) => getRandomNumber(min, max));
+): number[] => {
+  const res: Set<number> = new Set();
+
+  while (res.size < len) {
+    res.add(getRandomNumber(min, max));
+  }
+
+  return [...res];
+};
 
 export const setLocalStorage = (key: string, value: string): void =>
   localStorage.setItem(key, value);
