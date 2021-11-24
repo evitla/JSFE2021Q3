@@ -2,24 +2,28 @@
   text-align: center;
   text-transform: capitalize;
   color: var(--neutral-color-100);
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .question-title {
   text-align: center;
   color: var(--neutral-color-100);
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
 }
 
 .img-container {
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   height: 320px;
+  border-radius: 0.5rem;
 }
 
 .options-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.25rem;
-  width: 94%;
   margin: 2rem auto;
 }

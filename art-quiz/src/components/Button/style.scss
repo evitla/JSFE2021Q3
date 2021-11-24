@@ -15,14 +15,6 @@
   &:active {
     transform: translateY(3px);
   }
-
-  // &:not([href]) {
-  //   cursor: not-allowed;
-
-  //   &:hover {
-  //     animation: disabled-button 0.24s forwards;
-  //   }
-  // }
 }
 
 .button.button-small {
@@ -42,12 +34,6 @@
   &:active {
     box-shadow: 0 0 0 0 var(--primary-color-140);
   }
-
-  // &:not([href]) {
-  //   background: var(--primary-color-100);
-  //   box-shadow: 0 3px 0 0 var(--primary-color-120);
-  //   color: var(--primary-color-130);
-  // }
 }
 
 .button-success {
@@ -60,9 +46,11 @@
   box-shadow: 0 3px 0 0 var(--primary-color-340);
   background: var(--primary-color-330);
   color: var(--neutral-color-600);
+
+  animation: error-button 0.24s forwards;
 }
 
-@keyframes disabled-button {
+@keyframes error-button {
   0% {
     transform: translateX(0);
   }

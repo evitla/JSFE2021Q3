@@ -22,6 +22,10 @@ li {
   list-style: none;
 }
 
+main {
+  padding-top: 1rem;
+}
+
 .visually-hidden {
   position: absolute;
   clip: rect(1px, 1px, 1px, 1px);
