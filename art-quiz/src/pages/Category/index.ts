@@ -35,6 +35,8 @@ const getCategoryProps = (id: number) =>
   categoryItemsProps.find((item) => item.imageNumber === id);
 
 class Category extends BasePage {
+  hasHeader = true;
+
   private optionsContainer = new BaseComponent('div', ['options-container']);
 
   private imageContainer = new BaseComponent('figure', ['img-container']);

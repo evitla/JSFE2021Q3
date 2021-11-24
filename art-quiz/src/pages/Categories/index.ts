@@ -5,6 +5,8 @@ import './style.scss';
 import { ICategoryProps } from '../../models';
 
 class Categories extends BasePage {
+  hasHeader = true;
+
   categoryItems: CategoryItem[];
 
   constructor(categoryItemsProps: ICategoryProps[]) {
@@ -20,6 +22,11 @@ class Categories extends BasePage {
     this.categoryItems.forEach(async (item) => {
       await item.render();
     });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async afterRender(): Promise<void> {
+    //
   }
 }
 

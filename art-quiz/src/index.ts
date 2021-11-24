@@ -34,7 +34,7 @@ const main = async () => {
 
     if (page) {
       await page.render();
-      await mainLayout.render(page.element);
+      await mainLayout.render(page.element, page.hasHeader);
       await page.afterRender();
     } else {
       const err = document.createElement('h2');

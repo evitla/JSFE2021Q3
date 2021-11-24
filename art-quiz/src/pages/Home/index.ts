@@ -6,6 +6,8 @@ import BasePage from '../BasePage';
 import './style.scss';
 
 class Home extends BasePage {
+  hasHeader = false;
+
   private logo = new Logo(['logo-main']);
 
   private buttonsContainer = new BaseComponent('div', ['btn-container']);
@@ -33,6 +35,11 @@ class Home extends BasePage {
     );
 
     this.element.append(this.logo.element, this.buttonsContainer.element);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async afterRender(): Promise<void> {
+    //
   }
 }
 

@@ -1,6 +1,8 @@
 import BaseComponent from '../components/BaseComponent';
 
 abstract class BasePage extends BaseComponent {
+  hasHeader: boolean;
+
   constructor(styles: string[] = []) {
     super('div', styles);
   }
