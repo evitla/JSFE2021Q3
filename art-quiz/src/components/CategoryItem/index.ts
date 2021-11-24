@@ -11,7 +11,7 @@ class CategoryItem extends BaseComponent {
 
   constructor(readonly props: ICategoryProps) {
     super('figure', ['category-item']);
-    this.link.href = `/#/categories/${props.imageNumber / 10}`;
+    this.link.href = `#/categories/${props.imageNumber / 10}`;
   }
 
   async render(): Promise<void> {

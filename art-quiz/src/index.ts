@@ -9,7 +9,8 @@ import { categoryItemsProps } from './store';
 
 import './styles/style.scss';
 
-const ROOT_URL = 'evitla-JSFE2021Q3/art-quiz';
+// const ROOT_URL = 'evitla-JSFE2021Q3/art-quiz';
+// const ROOT_URL = 'dist';
 
 const url = './images.json';
 
@@ -28,7 +29,7 @@ const main = async () => {
     '/categories/:id': category,
   };
 
-  const router = new Router(routes, ROOT_URL);
+  const router = new Router(routes);
 
   const run = async () => {
     await mainLayout.clear();

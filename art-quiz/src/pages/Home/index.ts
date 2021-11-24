@@ -15,13 +15,13 @@ class Home extends BasePage {
   private ArtistsQuizButton = new Button(
     'Artists Quiz',
     ['button-primary'],
-    '/#/categories'
+    '#/categories'
   );
 
   private PicturesQuizButton = new Button(
     'Pictures Quiz',
     ['button-primary'],
-    '/#/categories'
+    '#/categories'
   );
 
   constructor() {

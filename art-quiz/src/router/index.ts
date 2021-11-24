@@ -2,10 +2,7 @@ import BasePage from '../pages/BasePage';
 import { parseRequestURL } from '../utils';
 
 class Router {
-  constructor(
-    readonly routes: { [key: string]: BasePage },
-    readonly root: string
-  ) {}
+  constructor(readonly routes: { [key: string]: BasePage }) {}
 
   getPage(): BasePage {
     const request = parseRequestURL();
@@ -15,7 +12,7 @@ class Router {
       (request.id ? '/:id' : '') +
       (request.verb ? `/${request.verb}` : '');
 
-    return this.routes[`${this.root}/${parsedURL}`];
+    return this.routes[parsedURL];
   }
 }
 
