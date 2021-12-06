@@ -1,15 +1,19 @@
+type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+type EndpointType = 'everything' | 'top-headlines' | 'sources';
+
 class Loader {
-    baseLink: any;
+    baseLink: string;
 
-    options: any;
+    options: { apiKey: string };
 
-    constructor(baseLink: any, options: any) {
+    constructor(baseLink: string, options: { apiKey: string }) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: any; options: any },
+        { endpoint, options = {} }: { endpoint: EndpointType; options: any },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -27,7 +31,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: any, endpoint: any) {
+    makeUrl(options: any, endpoint: EndpointType) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -38,7 +42,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: any, endpoint: any, callback: any, options = {}) {
+    load(method: MethodType, endpoint: EndpointType, callback: any, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

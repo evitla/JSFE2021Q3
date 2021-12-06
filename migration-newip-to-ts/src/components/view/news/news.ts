@@ -1,13 +1,14 @@
+import { INewsProps } from '../../../types';
 import './news.css';
 
 class News {
-    draw(data: any) {
-        const news = data.length >= 10 ? data.filter((_item: any, idx: any) => idx < 10) : data;
+    draw(data: INewsProps[]) {
+        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement = document.querySelector('#newsItemTemp');
 
-        news.forEach((item: any, idx: any) => {
+        news.forEach((item, idx) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as HTMLElement;
 
             if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');

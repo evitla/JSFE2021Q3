@@ -1,11 +1,12 @@
+import { ISourceProps } from '../../../types';
 import './sources.css';
 
 class Sources {
-    draw(data: any) {
+    draw(data: ISourceProps[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = document.querySelector('#sourceItemTemp');
 
-        data.forEach((item: any) => {
+        data.forEach((item) => {
             const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
 
             sourceClone.querySelector('.source__item-name').textContent = item.name;

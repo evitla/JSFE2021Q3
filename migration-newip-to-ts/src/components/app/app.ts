@@ -1,21 +1,21 @@
+import { INewsProps, ISourceProps } from '../../types';
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
 class App {
-    controller: any;
+    controller = new AppController();
 
-    view: any;
+    view = new AppView();
 
-    constructor() {
-        this.controller = new AppController();
-        this.view = new AppView();
-    }
-
-    start() {
+    start(): void {
         document
             .querySelector('.sources')
-            .addEventListener('click', (e) => this.controller.getNews(e, (data: any) => this.view.drawNews(data)));
-        this.controller.getSources((data: any) => this.view.drawSources(data));
+            .addEventListener('click', (e) =>
+                this.controller.getNews(e, (data: { articles: INewsProps[]; status: string; totalResults: number }) =>
+                    this.view.drawNews(data)
+                )
+            );
+        this.controller.getSources((data: { sources: ISourceProps[]; status: string }) => this.view.drawSources(data));
     }
 }
 
