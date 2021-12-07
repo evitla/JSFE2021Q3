@@ -18,3 +18,14 @@ export interface INewsProps {
     url: string;
     urlToImage: string;
 }
+
+export interface ISourceData {
+    sources: ISourceProps[];
+    status: string;
+}
+
+export interface INewsData {
+    articles: INewsProps[];
+    status: string;
+    totalResults: number;
+}

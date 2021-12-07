@@ -1,4 +1,4 @@
-import { INewsProps, ISourceProps } from '../../types';
+import { INewsData, ISourceData } from '../../types';
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
 
@@ -11,11 +11,9 @@ class App {
         document
             .querySelector('.sources')
             .addEventListener('click', (e) =>
-                this.controller.getNews(e, (data: { articles: INewsProps[]; status: string; totalResults: number }) =>
-                    this.view.drawNews(data)
-                )
+                this.controller.getNews(e, (data: INewsData) => this.view.drawNews(data))
             );
-        this.controller.getSources((data: { sources: ISourceProps[]; status: string }) => this.view.drawSources(data));
+        this.controller.getSources((data: ISourceData) => this.view.drawSources(data));
     }
 }
 

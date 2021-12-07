@@ -1,19 +1,19 @@
 import News from './news/news';
 import Sources from './sources/sources';
 
-import { INewsProps, ISourceProps } from '../../types';
+import { INewsData, ISourceData } from '../../types';
 
 export class AppView {
     news = new News();
 
     sources = new Sources();
 
-    drawNews(data: { articles: INewsProps[]; status: string; totalResults: number }) {
+    drawNews(data: INewsData) {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data: { sources: ISourceProps[]; status: string }) {
+    drawSources(data: ISourceData) {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
