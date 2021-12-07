@@ -52,7 +52,7 @@ class Loader {
             .then(this.errorHandler)
             .then((res): Promise<T> => res.json())
             .then((data) => callback(data))
-            .catch((err) => console.error(err));
+            .catch((err: Error) => console.error(err));
     }
 }
 
