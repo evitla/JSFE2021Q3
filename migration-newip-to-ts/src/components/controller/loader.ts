@@ -12,16 +12,16 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    getResp<T>(
         { endpoint, options = {} }: { endpoint: EndpointType; options: { [key: string]: string } },
-        callback = () => {
+        callback: (data: T) => void = () => {
             console.error('No callback for GET response');
         }
-    ) {
+    ): void {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: any) {
+    errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -31,7 +31,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: { [key: string]: string }, endpoint: EndpointType) {
+    makeUrl(options: { [key: string]: string }, endpoint: EndpointType): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -42,10 +42,15 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: MethodType, endpoint: EndpointType, callback: any, options: { [key: string]: string } = {}) {
+    load<T>(
+        method: MethodType,
+        endpoint: EndpointType,
+        callback: (data: T) => void,
+        options: { [key: string]: string } = {}
+    ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
-            .then((res) => res.json())
+            .then((res): Promise<T> => res.json())
             .then((data) => callback(data))
             .catch((err) => console.error(err));
     }
