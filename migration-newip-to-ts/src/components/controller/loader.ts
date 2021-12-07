@@ -5,15 +5,15 @@ type EndpointType = 'everything' | 'top-headlines' | 'sources';
 class Loader {
     baseLink: string;
 
-    options: { apiKey: string };
+    options: { [key: string]: string };
 
-    constructor(baseLink: string, options: { apiKey: string }) {
+    constructor(baseLink: string, options: { [key: string]: string }) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: EndpointType; options: any },
+        { endpoint, options = {} }: { endpoint: EndpointType; options: { [key: string]: string } },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -31,7 +31,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: any, endpoint: EndpointType) {
+    makeUrl(options: { [key: string]: string }, endpoint: EndpointType) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -42,7 +42,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: MethodType, endpoint: EndpointType, callback: any, options = {}) {
+    load(method: MethodType, endpoint: EndpointType, callback: any, options: { [key: string]: string } = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
