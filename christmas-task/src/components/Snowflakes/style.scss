@@ -1,0 +1,50 @@
+.snowflake {
+  color: transparent;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  font-size: 1.25em;
+  position: fixed;
+  top: -10%;
+  z-index: 9999;
+  user-select: none;
+  cursor: default;
+  animation-name: snowflakes-fall, snowflakes-shake;
+  animation-duration: 10s, 3s;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-play-state: running, running;
+}
+
+$snowflake-positions: 1%, 10%, 20%, 25%, 30%, 40%, 45%, 50%, 60%, 65%, 70%, 80%,
+  85%, 90%;
+
+$snowflake-fall-delays: 3s, 1s, 6s, 4s, 2s, 8s, 6s, 2.5s, 1s, 5s, 2s, 8s, 0s, 5s;
+
+$snowflake-shake-delays: 0s, 2s, 0.5s, 2s, 2s, 3s, 2s, 1s, 0s, 1.5s, 0.5s, 2.5s,
+  1.5s, 0.5s;
+
+@for $i from 1 through length($snowflake-positions) {
+  .snowflake:nth-of-type(#{$i}) {
+    left: nth($snowflake-positions, $i);
+    animation-delay: nth($snowflake-fall-delays, $i),
+      nth($snowflake-shake-delays, $i);
+  }
+}
+
+@keyframes snowflakes-fall {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes snowflakes-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(80px);
+  }
+}
