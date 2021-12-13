@@ -1,0 +1,15 @@
+$primary-font: 'Mukta', sans-serif;
+
+$colors: (
+  'primary': (
+    100: hsl(151, 75%, 22%),
+    110: hsl(151, 52%, 17%),
+  ),
+);
+
+$primary-colors: map-get($colors, 'primary');
+
+:root {
+  --primary-color-100: #{map-get($primary-colors, 100)};
+  --primary-color-110: #{map-get($primary-colors, 110)};
+}
