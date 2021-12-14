@@ -10,8 +10,8 @@ class Home extends BasePage {
   private startButton = new Button(
     this.content.element,
     'Start Game',
-    ['button-primary']
-    // '#/categories'
+    ['button-primary'],
+    '#/tree'
   );
 
   constructor() {
@@ -28,9 +28,10 @@ class Home extends BasePage {
     this.element.append(this.content.element);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async afterRender(): Promise<void> {
-    //
+    this.startButton.afterRender(() => {
+      document.getElementById('tree').classList.add('active');
+    });
   }
 }
 
