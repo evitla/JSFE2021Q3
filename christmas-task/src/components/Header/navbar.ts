@@ -10,6 +10,8 @@ class Navbar extends BaseComponent {
   constructor(parentNode: HTMLElement) {
     super('nav', ['navbar']);
 
+    this.toys.id = 'toys';
+    this.tree.id = 'tree';
     this.toys.href = '#/toys';
     this.tree.href = '#/tree';
 
