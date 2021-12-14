@@ -12,8 +12,8 @@ class Navbar extends BaseComponent {
   render(): void {
     this.element.innerHTML = `
       <ul>
-        <li><a id="toys" href="#/"><h2>Toys</h2></a></li>
-        <li><a id="tree" href="#/"><h2>Tree</h2></a></li>
+        <li><a id="toys" href="#/toys"><h2>Toys</h2></a></li>
+        <li><a id="tree" href="#/tree"><h2>Tree</h2></a></li>
       </ul>
     `;
 
