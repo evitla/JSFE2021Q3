@@ -13,7 +13,7 @@
 }
 
 .search-input {
-  padding: 10px;
+  padding: 6px 10px;
   width: 100%;
   background-color: var(--primary-color-110);
   border: none;
@@ -22,4 +22,5 @@
   color: var(--neutral-color-100);
   outline: none;
   transition: 0.5s;
+  font-family: inherit;
 }
