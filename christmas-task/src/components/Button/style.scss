@@ -8,6 +8,7 @@
   transition: all 0.14s;
   outline: none;
   text-align: center;
+  font-family: inherit;
 
   &:active {
     transform: translateY(3px);
