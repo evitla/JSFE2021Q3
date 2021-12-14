@@ -1,0 +1,25 @@
+.search-bar {
+  width: 100%;
+  text-align: center;
+  position: relative;
+
+  img {
+    position: absolute;
+    width: 1.5rem;
+    top: 50%;
+    right: 3.5%;
+    transform: translateY(-50%);
+  }
+}
+
+.search-input {
+  padding: 10px;
+  width: 100%;
+  background-color: var(--primary-color-110);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  color: var(--neutral-color-100);
+  outline: none;
+  transition: 0.5s;
+}
