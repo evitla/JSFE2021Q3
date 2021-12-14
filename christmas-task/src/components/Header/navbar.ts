@@ -25,12 +25,12 @@ class Navbar extends BaseComponent {
     const tree: HTMLElement = this.element.querySelector('#tree');
 
     toys.onclick = () => {
-      toys.classList.toggle('active');
+      toys.classList.add('active');
       tree.className = '';
     };
 
     tree.onclick = () => {
-      tree.classList.toggle('active');
+      tree.classList.add('active');
       toys.className = '';
     };
   }
