@@ -51,10 +51,15 @@
   }
 }
 
+.header-left-side,
 .header-right-side {
   width: 30%;
   display: flex;
   align-items: center;
+  column-gap: 4rem;
+}
+
+.header-right-side {
   column-gap: 2rem;
 }
 

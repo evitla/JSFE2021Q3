@@ -11,11 +11,13 @@ class Header extends BaseComponent {
 
   wrapper = new BaseComponent('div', ['wrapper', 'header-wrapper']);
 
+  leftSide = new BaseComponent('div', ['header-left-side']);
+
   rightSide = new BaseComponent('div', ['header-right-side']);
 
-  logo = new Logo(this.wrapper.element);
+  logo = new Logo(this.leftSide.element);
 
-  navbar = new Navbar(this.wrapper.element);
+  navbar = new Navbar(this.leftSide.element);
 
   buttonGroup = new ButtonGroup(this.rightSide.element);
 
@@ -33,6 +35,7 @@ class Header extends BaseComponent {
     this.buttonGroup.render();
     this.searchBar.render();
 
+    this.wrapper.element.appendChild(this.leftSide.element);
     this.wrapper.element.appendChild(this.rightSide.element);
     this.element.appendChild(this.wrapper.element);
     this.parentNode.appendChild(this.element);
