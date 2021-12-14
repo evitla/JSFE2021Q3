@@ -4,12 +4,26 @@ $colors: (
   'primary': (
     100: hsl(151, 75%, 22%),
     110: hsl(151, 52%, 17%),
+    200: hsl(71, 67%, 46%),
+    210: hsl(71, 67%, 44%),
+    220: hsl(71, 67%, 24%),
+  ),
+  'neutral': (
+    100: hsl(49, 96%, 91%),
+    200: hsl(99, 20%, 65%),
   ),
 );
 
 $primary-colors: map-get($colors, 'primary');
+$neutral-colors: map-get($colors, 'neutral');
 
 :root {
   --primary-color-100: #{map-get($primary-colors, 100)};
   --primary-color-110: #{map-get($primary-colors, 110)};
+  --primary-color-200: #{map-get($primary-colors, 200)};
+  --primary-color-210: #{map-get($primary-colors, 210)};
+  --primary-color-220: #{map-get($primary-colors, 220)};
+
+  --neutral-color-100: #{map-get($neutral-colors, 100)};
+  --neutral-color-200: #{map-get($neutral-colors, 200)};
 }
