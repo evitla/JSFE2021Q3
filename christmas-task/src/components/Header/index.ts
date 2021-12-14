@@ -44,6 +44,11 @@ class Header extends BaseComponent {
   afterRender(): void {
     this.navbar.afterRender();
     this.buttonGroup.afterRender();
+
+    this.logo.element.onclick = () => {
+      this.navbar.toys.classList.remove('active');
+      this.navbar.tree.classList.remove('active');
+    };
   }
 }
 
