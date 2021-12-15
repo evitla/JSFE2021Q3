@@ -1,0 +1,35 @@
+.toy-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.toy-card {
+  color: var(--neutral-color-100);
+  border: 1px solid var(--primary-color-210);
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+
+  .toy-image {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .toy-info {
+    font-size: 0.85rem;
+
+    li + li {
+      margin-top: 0.25rem;
+    }
+  }
+}
