@@ -9,6 +9,9 @@ import './styles/style.scss';
 const imagesURL = './images.json';
 
 const app = async () => {
+  // go to home page on window reload
+  window.location.href = '#/';
+
   const layout = new Layout();
   const homePage = new HomePage();
 
