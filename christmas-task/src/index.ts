@@ -2,13 +2,18 @@ import Layout from './layout';
 import Router from './router';
 import { HomePage, ToysPage, TreePage } from './pages';
 import { Snowflakes } from './components';
+import { getImages } from './utils';
 
 import './styles/style.scss';
+
+const imagesURL = './images.json';
 
 const app = async () => {
   const layout = new Layout();
   const homePage = new HomePage();
-  const toysPage = new ToysPage();
+
+  const images = await getImages(imagesURL);
+  const toysPage = new ToysPage(images);
   const treePage = new TreePage();
 
   const snowflakes = new Snowflakes(layout.element);
