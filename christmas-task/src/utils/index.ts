@@ -1,3 +1,5 @@
+import { IToyProps } from '../types';
+
 export const parseRequestURL = (): {
   resource: string;
   id: string;
@@ -14,4 +16,16 @@ export const parseRequestURL = (): {
   };
 
   return request;
+};
+
+export const getImages = async (url: string): Promise<IToyProps[]> => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.images;
+};
+
+export const getImageURL = (folder: string, imageNum: number): string => {
+  const baseURL = `./images/${folder}`;
+
+  return `${baseURL}/${imageNum}.png`;
 };
