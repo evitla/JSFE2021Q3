@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const PrettierPlugin = require('prettier-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const devServer = (isDev) =>
   !isDev
@@ -13,6 +14,7 @@ const devServer = (isDev) =>
           open: true,
           hot: true,
           port: 8080,
+          contentBase: path.join(__dirname, 'public'),
         },
       };
 
@@ -75,6 +77,13 @@ module.exports = ({ develop }) => ({
       singleQuote: true,
       encoding: 'utf-8',
       extensions: ['.ts', '.js', '.css', '.sass', '.scss'],
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './public',
+        },
+      ],
     }),
     ...esLintPlugin(develop),
   ],
