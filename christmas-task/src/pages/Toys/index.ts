@@ -1,21 +1,14 @@
 import BasePage from '../BasePage';
-import BaseComponent from '../../components/BaseComponent';
 import Button from '../../components/Button';
-import FilterByValue from '../../components/FilterByValue';
+import FiltersByValueContainer from '../../components/FiltersByValueContainer';
 import ToyCards from '../../components/ToyCards';
 import { FilterType, IToyProps } from '../../types';
-
-import './style.scss';
 import { parseImages } from '../../utils';
 
+import './style.scss';
+
 class Toys extends BasePage {
-  filtersContainer = new BaseComponent('div', ['filters']);
-
-  shapeFiltersContainer: FilterByValue;
-
-  colorFiltersContainer: FilterByValue;
-
-  sizeFiltersContainer: FilterByValue;
+  filtersByValueContainer: FiltersByValueContainer;
 
   sortButton = new Button(this.element, 'Sort', ['button-primary']);
 
@@ -26,47 +19,24 @@ class Toys extends BasePage {
 
     const { shapes, colors, sizes } = parseImages(items);
 
-    this.shapeFiltersContainer = new FilterByValue(
-      this.filtersContainer.element,
-      'shape',
-      shapes
-    );
-
-    this.colorFiltersContainer = new FilterByValue(
-      this.filtersContainer.element,
-      'color',
-      colors
-    );
-
-    this.sizeFiltersContainer = new FilterByValue(
-      this.filtersContainer.element,
-      'size',
+    this.filtersByValueContainer = new FiltersByValueContainer(
+      this.element,
+      shapes,
+      colors,
       sizes
     );
     this.toyCards = new ToyCards(this.element, items);
   }
 
   async render(): Promise<void> {
-    this.shapeFiltersContainer.render();
-    this.colorFiltersContainer.render();
-    this.sizeFiltersContainer.render();
-
-    this.element.appendChild(this.filtersContainer.element);
+    this.filtersByValueContainer.render();
 
     this.sortButton.render();
     this.toyCards.render();
   }
 
   async afterRender(): Promise<void> {
-    this.shapeFiltersContainer.afterRender(
-      this.applyFilter,
-      this.restoreFilters
-    );
-    this.colorFiltersContainer.afterRender(
-      this.applyFilter,
-      this.restoreFilters
-    );
-    this.sizeFiltersContainer.afterRender(
+    this.filtersByValueContainer.afterRender(
       this.applyFilter,
       this.restoreFilters
     );
