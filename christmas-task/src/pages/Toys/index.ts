@@ -6,19 +6,16 @@ import ToyCards from '../../components/ToyCards';
 import { FilterType, IToyProps } from '../../types';
 
 import './style.scss';
+import { parseImages } from '../../utils';
 
 class Toys extends BasePage {
   filtersContainer = new BaseComponent('div', ['filters']);
 
-  shapeFiltersContainer = new Filter(this.filtersContainer.element, 'shape', [
-    'ball',
-    'bell',
-  ]);
+  shapeFiltersContainer: Filter;
 
-  colorFiltersContainer = new Filter(this.filtersContainer.element, 'color', [
-    'red',
-    'green',
-  ]);
+  colorFiltersContainer: Filter;
+
+  sizeFiltersContainer: Filter;
 
   sortButton = new Button(this.element, 'Sort', ['button-primary']);
 
@@ -27,12 +24,32 @@ class Toys extends BasePage {
   constructor(items: IToyProps[]) {
     super(['toys-page']);
 
+    const { shapes, colors, sizes } = parseImages(items);
+
+    this.shapeFiltersContainer = new Filter(
+      this.filtersContainer.element,
+      'shape',
+      shapes
+    );
+
+    this.colorFiltersContainer = new Filter(
+      this.filtersContainer.element,
+      'color',
+      colors
+    );
+
+    this.sizeFiltersContainer = new Filter(
+      this.filtersContainer.element,
+      'size',
+      sizes
+    );
     this.toyCards = new ToyCards(this.element, items);
   }
 
   async render(): Promise<void> {
     this.shapeFiltersContainer.render();
     this.colorFiltersContainer.render();
+    this.sizeFiltersContainer.render();
 
     this.element.appendChild(this.filtersContainer.element);
 
@@ -46,6 +63,10 @@ class Toys extends BasePage {
       this.restoreFilters
     );
     this.colorFiltersContainer.afterRender(
+      this.applyFilter,
+      this.restoreFilters
+    );
+    this.sizeFiltersContainer.afterRender(
       this.applyFilter,
       this.restoreFilters
     );

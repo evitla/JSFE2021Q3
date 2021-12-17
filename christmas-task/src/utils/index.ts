@@ -29,3 +29,23 @@ export const getImageURL = (folder: string, imageNum: number): string => {
 
   return `${baseURL}/${imageNum}.png`;
 };
+
+export const parseImages = (
+  images: IToyProps[]
+): { shapes: string[]; colors: string[]; sizes: string[] } => {
+  const shapes = new Set<string>();
+  const colors = new Set<string>();
+  const sizes = new Set<string>();
+
+  images.forEach((image) => {
+    shapes.add(image.shape);
+    colors.add(image.color);
+    sizes.add(image.size);
+  });
+
+  return {
+    shapes: [...shapes],
+    colors: [...colors],
+    sizes: [...sizes],
+  };
+};
