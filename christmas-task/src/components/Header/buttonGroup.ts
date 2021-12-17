@@ -10,14 +10,13 @@ class ButtonGroup extends BaseComponent {
   snowflakeButton = new Button(
     this.element,
     `<img src=${snowflakeIcon} alt="snowflake">`,
-    ['button-primary', 'icon-button']
+    ['button-primary', 'icon-button', 'active']
   );
 
   audioButton = new Button(this.element, `<img src=${audioIcon} alt="audio">`, [
     'button-primary',
     'icon-button',
     'audio-icon',
-    'off',
   ]);
 
   constructor(parentNode: HTMLElement) {
@@ -35,11 +34,11 @@ class ButtonGroup extends BaseComponent {
 
   afterRender(): void {
     this.snowflakeButton.element.onclick = () => {
-      this.snowflakeButton.element.classList.toggle('off');
+      this.snowflakeButton.element.classList.toggle('active');
     };
 
     this.audioButton.element.onclick = () => {
-      this.audioButton.element.classList.toggle('off');
+      this.audioButton.element.classList.toggle('active');
     };
   }
 }
