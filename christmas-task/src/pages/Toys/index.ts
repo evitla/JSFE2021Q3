@@ -1,12 +1,24 @@
 import BasePage from '../BasePage';
+import BaseComponent from '../../components/BaseComponent';
 import Button from '../../components/Button';
+import Filter from '../../components/Filter';
 import ToyCards from '../../components/ToyCards';
 import { IToyProps } from '../../types';
 
 import './style.scss';
 
 class Toys extends BasePage {
-  filterButton = new Button(this.element, 'Filter', ['button-primary']);
+  filtersContainer = new BaseComponent('div', ['filters']);
+
+  shapeFiltersContainer = new Filter(this.filtersContainer.element, 'shape', [
+    'ball',
+    'bell',
+  ]);
+
+  colorFiltersContainer = new Filter(this.filtersContainer.element, 'color', [
+    'red',
+    'green',
+  ]);
 
   sortButton = new Button(this.element, 'Sort', ['button-primary']);
 
@@ -19,19 +31,26 @@ class Toys extends BasePage {
   }
 
   async render(): Promise<void> {
-    this.filterButton.render();
+    this.shapeFiltersContainer.render();
+    this.colorFiltersContainer.render();
+
+    this.element.appendChild(this.filtersContainer.element);
+
     this.sortButton.render();
     this.toyCards.render();
   }
 
   async afterRender(): Promise<void> {
-    this.filterButton.element.onclick = () => {
+    const filterCards = (type: 'shape' | 'color' | 'size', filter: string) => {
       this.toyCards.cards.forEach((card) => {
-        if (card.props.year > 1980) {
-          card.element.style.display = 'none';
+        if (card.props[type] !== filter) {
+          card.element.classList.toggle(`visibility-hidden-${type}`);
         }
       });
     };
+
+    this.shapeFiltersContainer.afterRender(filterCards);
+    this.colorFiltersContainer.afterRender(filterCards);
 
     this.sortButton.element.onclick = () => {
       this.toyCards.cards.sort((a, b) => {
