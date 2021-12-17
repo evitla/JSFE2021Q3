@@ -1,7 +1,7 @@
 import BasePage from '../BasePage';
 import BaseComponent from '../../components/BaseComponent';
 import Button from '../../components/Button';
-import Filter from '../../components/Filter';
+import FilterByValue from '../../components/FilterByValue';
 import ToyCards from '../../components/ToyCards';
 import { FilterType, IToyProps } from '../../types';
 
@@ -11,11 +11,11 @@ import { parseImages } from '../../utils';
 class Toys extends BasePage {
   filtersContainer = new BaseComponent('div', ['filters']);
 
-  shapeFiltersContainer: Filter;
+  shapeFiltersContainer: FilterByValue;
 
-  colorFiltersContainer: Filter;
+  colorFiltersContainer: FilterByValue;
 
-  sizeFiltersContainer: Filter;
+  sizeFiltersContainer: FilterByValue;
 
   sortButton = new Button(this.element, 'Sort', ['button-primary']);
 
@@ -26,19 +26,19 @@ class Toys extends BasePage {
 
     const { shapes, colors, sizes } = parseImages(items);
 
-    this.shapeFiltersContainer = new Filter(
+    this.shapeFiltersContainer = new FilterByValue(
       this.filtersContainer.element,
       'shape',
       shapes
     );
 
-    this.colorFiltersContainer = new Filter(
+    this.colorFiltersContainer = new FilterByValue(
       this.filtersContainer.element,
       'color',
       colors
     );
 
-    this.sizeFiltersContainer = new Filter(
+    this.sizeFiltersContainer = new FilterByValue(
       this.filtersContainer.element,
       'size',
       sizes

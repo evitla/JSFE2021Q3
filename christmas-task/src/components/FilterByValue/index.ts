@@ -2,7 +2,7 @@ import BaseComponent from '../BaseComponent';
 import ToggleButtonGroup from '../ToggleButtonGroup';
 import { FilterType } from '../../types';
 
-class Filter extends BaseComponent {
+class FilterByValue extends BaseComponent {
   parentNode: HTMLElement;
 
   type: FilterType;
@@ -41,4 +41,4 @@ class Filter extends BaseComponent {
   }
 }
 
-export default Filter;
+export default FilterByValue;
