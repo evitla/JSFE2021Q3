@@ -11,7 +11,7 @@ class ToggleButtonGroup extends BaseComponent {
 
     this.parentNode = parentNode;
     this.buttons = items.map(
-      (item) => new Button(this.element, item, ['primary-button'])
+      (item) => new Button(this.element, item, ['button-primary'])
     );
   }
 
@@ -21,9 +21,19 @@ class ToggleButtonGroup extends BaseComponent {
     this.parentNode.appendChild(this.element);
   }
 
-  afterRender(eventListener: (target: HTMLElement) => void = () => {}): void {
+  afterRender(
+    callback: (target: HTMLElement) => void = () => {},
+    restore: () => void = () => {}
+  ): void {
     this.element.onclick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('button');
+      if (target === null) return;
+
+      if (target.classList.contains('active')) {
+        target.classList.remove('active');
+        restore();
+        return;
+      }
 
       this.buttons.forEach((button) =>
         button.element.classList.remove('active')
@@ -31,7 +41,7 @@ class ToggleButtonGroup extends BaseComponent {
 
       target.classList.add('active');
 
-      eventListener(target);
+      callback(target);
     };
   }
 }

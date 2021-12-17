@@ -1,7 +1,6 @@
 import BaseComponent from '../BaseComponent';
 import ToggleButtonGroup from '../ToggleButtonGroup';
-
-type FilterType = 'shape' | 'color' | 'size';
+import { FilterType } from '../../types';
 
 class Filter extends BaseComponent {
   parentNode: HTMLElement;
@@ -27,14 +26,18 @@ class Filter extends BaseComponent {
     this.parentNode.appendChild(this.element);
   }
 
-  afterRender(callback: (type: FilterType, filter: string) => void): void {
-    const eventListener = (target: HTMLElement) => {
+  afterRender(
+    applyFilter: (type: FilterType, filter: string) => void,
+    restoreFilters: (type: FilterType) => void
+  ): void {
+    const callback = (target: HTMLElement) => {
       const { filter } = target.dataset;
-
-      callback(this.type, filter);
+      applyFilter(this.type, filter);
     };
 
-    this.filterButtonGroup.afterRender(eventListener);
+    const restore = () => restoreFilters(this.type);
+
+    this.filterButtonGroup.afterRender(callback, restore);
   }
 }
 

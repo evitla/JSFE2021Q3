@@ -3,7 +3,7 @@ import BaseComponent from '../../components/BaseComponent';
 import Button from '../../components/Button';
 import Filter from '../../components/Filter';
 import ToyCards from '../../components/ToyCards';
-import { IToyProps } from '../../types';
+import { FilterType, IToyProps } from '../../types';
 
 import './style.scss';
 
@@ -41,16 +41,14 @@ class Toys extends BasePage {
   }
 
   async afterRender(): Promise<void> {
-    const filterCards = (type: 'shape' | 'color' | 'size', filter: string) => {
-      this.toyCards.cards.forEach((card) => {
-        if (card.props[type] !== filter) {
-          card.element.classList.toggle(`visibility-hidden-${type}`);
-        }
-      });
-    };
-
-    this.shapeFiltersContainer.afterRender(filterCards);
-    this.colorFiltersContainer.afterRender(filterCards);
+    this.shapeFiltersContainer.afterRender(
+      this.applyFilter,
+      this.restoreFilters
+    );
+    this.colorFiltersContainer.afterRender(
+      this.applyFilter,
+      this.restoreFilters
+    );
 
     this.sortButton.element.onclick = () => {
       this.toyCards.cards.sort((a, b) => {
@@ -64,6 +62,22 @@ class Toys extends BasePage {
       });
     };
   }
+
+  private restoreFilters = (type: FilterType) => {
+    this.toyCards.cards.forEach((card) => {
+      card.element.classList.remove(`visibility-hidden-${type}`);
+    });
+  };
+
+  private applyFilter = (type: FilterType, filter: string) => {
+    this.toyCards.cards.forEach((card) => {
+      card.element.classList.remove(`visibility-hidden-${type}`);
+
+      if (card.props[type] !== filter) {
+        card.element.classList.toggle(`visibility-hidden-${type}`);
+      }
+    });
+  };
 }
 
 export default Toys;

@@ -9,3 +9,5 @@ export type IToyProps = {
   size: string;
   favorite: boolean;
 };
+
+export type FilterType = 'shape' | 'color' | 'size';
