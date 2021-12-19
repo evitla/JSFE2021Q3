@@ -1,6 +1,7 @@
 import BasePage from '../BasePage';
 import Button from '../../components/Button';
 import FiltersByValueContainer from '../../components/FiltersByValueContainer';
+import FilterByInput from '../../components/FilterByInput';
 import ToyCards from '../../components/ToyCards';
 import { FilterType, IToyProps } from '../../types';
 import { parseImages } from '../../utils';
@@ -9,6 +10,8 @@ import './style.scss';
 
 class Toys extends BasePage {
   filtersByValueContainer: FiltersByValueContainer;
+
+  filterByInput: FilterByInput;
 
   sortButton = new Button(this.element, 'Sort', ['button-primary']);
 
@@ -25,11 +28,13 @@ class Toys extends BasePage {
       colors,
       sizes
     );
+    this.filterByInput = new FilterByInput(this.element);
     this.toyCards = new ToyCards(this.element, items);
   }
 
   async render(): Promise<void> {
     this.filtersByValueContainer.render();
+    this.filterByInput.render();
 
     this.sortButton.render();
     this.toyCards.render();
@@ -40,6 +45,7 @@ class Toys extends BasePage {
       this.applyFilter,
       this.restoreFilters
     );
+    this.filterByInput.afterRender();
 
     this.sortButton.element.onclick = () => {
       this.toyCards.cards.sort((a, b) => {
