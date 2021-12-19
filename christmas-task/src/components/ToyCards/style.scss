@@ -10,7 +10,8 @@
   padding: 0.5rem;
 
   &.visibility-hidden-shape,
-  &.visibility-hidden-color {
+  &.visibility-hidden-color,
+  &.visibility-hidden-size {
     display: none;
   }
 }
