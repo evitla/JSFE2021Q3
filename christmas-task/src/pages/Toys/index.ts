@@ -17,6 +17,8 @@ class Toys extends BasePage {
 
   toyCards: ToyCards;
 
+  searchInput: HTMLInputElement = document.querySelector('.search-input');
+
   constructor(items: IToyProps[]) {
     super(['toys-page']);
 
@@ -48,6 +50,8 @@ class Toys extends BasePage {
     this.filtersByValueContainer.afterRender(this.applyFilter);
     this.filtersByInputContainer.afterRender(this.applyFilter);
 
+    this.searchInput.oninput = this.search;
+
     this.sortButton.element.onclick = () => {
       this.toyCards.cards.sort((a, b) => {
         if (a.props.name > b.props.name) return 1;
@@ -74,6 +78,18 @@ class Toys extends BasePage {
 
       if (filters.length !== 0 && !filters.includes(card.props[type])) {
         card.element.classList.toggle(`hide-by-${type}`);
+      }
+    });
+  };
+
+  private search = () => {
+    const { value } = this.searchInput;
+
+    this.toyCards.cards.forEach((card) => {
+      card.element.classList.remove(`hide-by-search`);
+
+      if (!card.props.name.toLowerCase().includes(value.toLowerCase())) {
+        card.element.classList.add(`hide-by-search`);
       }
     });
   };

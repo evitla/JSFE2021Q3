@@ -14,7 +14,8 @@
   &.hide-by-size,
   &.hide-by-count,
   &.hide-by-year,
-  &.hide-by-favorite {
+  &.hide-by-favorite,
+  &.hide-by-search {
     display: none;
   }
 }
