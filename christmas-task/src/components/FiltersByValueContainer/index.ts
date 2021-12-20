@@ -45,7 +45,7 @@ class FiltersByValueContainer extends BaseComponent {
   }
 
   afterRender(
-    applyFilter: (type: FilterType, filter: string) => void,
+    applyFilter: (type: FilterType, filters: string[]) => void,
     restoreFilters: (type: FilterType) => void
   ): void {
     this.shapeFiltersContainer.afterRender(applyFilter, restoreFilters);

@@ -32,20 +32,32 @@ export const getImageURL = (folder: string, imageNum: number): string => {
 
 export const parseImages = (
   images: IToyProps[]
-): { shapes: string[]; colors: string[]; sizes: string[] } => {
+): {
+  shapes: string[];
+  colors: string[];
+  sizes: string[];
+  counts: number[];
+  years: number[];
+} => {
   const shapes = new Set<string>();
   const colors = new Set<string>();
   const sizes = new Set<string>();
+  const counts = new Set<number>();
+  const years = new Set<number>();
 
   images.forEach((image) => {
     shapes.add(image.shape);
     colors.add(image.color);
     sizes.add(image.size);
+    counts.add(image.count);
+    years.add(image.year);
   });
 
   return {
     shapes: [...shapes],
     colors: [...colors],
     sizes: [...sizes],
+    counts: [...counts],
+    years: [...years],
   };
 };

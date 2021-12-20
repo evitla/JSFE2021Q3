@@ -27,12 +27,12 @@ class FilterByValue extends BaseComponent {
   }
 
   afterRender(
-    applyFilter: (type: FilterType, filter: string) => void,
+    applyFilter: (type: FilterType, filters: (string | number)[]) => void,
     restoreFilters: (type: FilterType) => void
   ): void {
     const callback = (target: HTMLElement) => {
       const { filter } = target.dataset;
-      applyFilter(this.type, filter);
+      applyFilter(this.type, [filter]);
     };
 
     const restore = () => restoreFilters(this.type);

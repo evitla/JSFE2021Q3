@@ -11,7 +11,9 @@
 
   &.hide-by-shape,
   &.hide-by-color,
-  &.hide-by-size {
+  &.hide-by-size,
+  &.hide-by-count,
+  &.hide-by-year {
     display: none;
   }
 }

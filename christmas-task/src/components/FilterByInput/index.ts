@@ -2,26 +2,33 @@ import noUiSlider, { target } from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
 import BaseComponent from '../BaseComponent';
+import { FilterType } from '../../types';
 
 import './style.scss';
 
 class FilterByInput extends BaseComponent {
   parentNode: HTMLElement;
 
-  constructor(parentNode: HTMLElement) {
-    super('div', ['count']);
+  type: FilterType;
 
-    this.element.id = 'count-slider';
+  constructor(parentNode: HTMLElement, type: FilterType, range: number[]) {
+    super('div', [type]);
+
+    this.element.id = `${type}-slider`;
     this.parentNode = parentNode;
 
+    this.type = type;
+
+    const [min, max, step] = range;
+
     noUiSlider.create(this.element, {
-      start: [1, 12],
+      start: [min, max],
       connect: true,
       range: {
-        min: 1,
-        max: 12,
+        min,
+        max,
       },
-      step: 1,
+      step,
       tooltips: [true, true],
       format: {
         from: (value) => +value,
@@ -34,11 +41,17 @@ class FilterByInput extends BaseComponent {
     this.parentNode.appendChild(this.element);
   }
 
-  afterRender(): void {
+  afterRender(
+    applyFilter: (type: FilterType, filters: (string | number)[]) => void
+  ): void {
     (this.element as target).noUiSlider.on('update', (values) => {
       const minValue = values[0];
       const maxValue = values[1];
-      console.log(minValue, maxValue);
+      const filters = [...Array(+maxValue - +minValue + 1).keys()].map((n) =>
+        (n + +minValue).toString()
+      );
+
+      applyFilter(this.type, filters);
     });
   }
 }

@@ -10,4 +10,4 @@ export type IToyProps = {
   favorite: boolean;
 };
 
-export type FilterType = 'shape' | 'color' | 'size';
+export type FilterType = 'shape' | 'color' | 'size' | 'count' | 'year';
