@@ -11,6 +11,8 @@ class FiltersByValueContainer extends BaseComponent {
 
   sizeFiltersContainer: FilterByValue;
 
+  favoriteFilterContainer: FilterByValue;
+
   constructor(
     parentNode: HTMLElement,
     shapes: string[],
@@ -33,6 +35,10 @@ class FiltersByValueContainer extends BaseComponent {
 
     this.sizeFiltersContainer = new FilterByValue(this.element, 'size', sizes);
 
+    this.favoriteFilterContainer = new FilterByValue(this.element, 'favorite', [
+      'favorite',
+    ]);
+
     this.parentNode = parentNode;
   }
 
@@ -40,6 +46,7 @@ class FiltersByValueContainer extends BaseComponent {
     this.shapeFiltersContainer.render();
     this.colorFiltersContainer.render();
     this.sizeFiltersContainer.render();
+    this.favoriteFilterContainer.render();
 
     this.parentNode.appendChild(this.element);
   }
@@ -51,6 +58,7 @@ class FiltersByValueContainer extends BaseComponent {
     this.shapeFiltersContainer.afterRender(applyFilter, restoreFilters);
     this.colorFiltersContainer.afterRender(applyFilter, restoreFilters);
     this.sizeFiltersContainer.afterRender(applyFilter, restoreFilters);
+    this.favoriteFilterContainer.afterRender(applyFilter, restoreFilters);
   }
 }
 

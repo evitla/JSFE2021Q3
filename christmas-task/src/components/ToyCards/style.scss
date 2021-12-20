@@ -13,7 +13,8 @@
   &.hide-by-color,
   &.hide-by-size,
   &.hide-by-count,
-  &.hide-by-year {
+  &.hide-by-year,
+  &.hide-by-favorite {
     display: none;
   }
 }

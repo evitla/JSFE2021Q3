@@ -70,9 +70,16 @@ class Toys extends BasePage {
     });
   };
 
-  private applyFilter = (type: FilterType, filters: (string | number)[]) => {
+  private applyFilter = (
+    type: FilterType,
+    filters: (string | number | boolean)[]
+  ) => {
     this.toyCards.cards.forEach((card) => {
       card.element.classList.remove(`hide-by-${type}`);
+
+      if (type === 'favorite' && card.props.favorite) {
+        card.element.classList.toggle(`hide-by-favorite`);
+      }
 
       if (!filters.includes(card.props[type])) {
         card.element.classList.toggle(`hide-by-${type}`);
