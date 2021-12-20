@@ -62,16 +62,16 @@ class Toys extends BasePage {
 
   private restoreFilters = (type: FilterType) => {
     this.toyCards.cards.forEach((card) => {
-      card.element.classList.remove(`visibility-hidden-${type}`);
+      card.element.classList.remove(`hide-by-${type}`);
     });
   };
 
   private applyFilter = (type: FilterType, filter: string) => {
     this.toyCards.cards.forEach((card) => {
-      card.element.classList.remove(`visibility-hidden-${type}`);
+      card.element.classList.remove(`hide-by-${type}`);
 
       if (card.props[type] !== filter) {
-        card.element.classList.toggle(`visibility-hidden-${type}`);
+        card.element.classList.toggle(`hide-by-${type}`);
       }
     });
   };

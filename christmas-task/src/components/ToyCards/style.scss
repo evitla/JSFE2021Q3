@@ -9,9 +9,9 @@
   border: 1px solid var(--primary-color-210);
   padding: 0.5rem;
 
-  &.visibility-hidden-shape,
-  &.visibility-hidden-color,
-  &.visibility-hidden-size {
+  &.hide-by-shape,
+  &.hide-by-color,
+  &.hide-by-size {
     display: none;
   }
 }
