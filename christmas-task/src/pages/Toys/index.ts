@@ -45,10 +45,7 @@ class Toys extends BasePage {
   }
 
   async afterRender(): Promise<void> {
-    this.filtersByValueContainer.afterRender(
-      this.applyFilter,
-      this.restoreFilters
-    );
+    this.filtersByValueContainer.afterRender(this.applyFilter);
     this.filtersByInputContainer.afterRender(this.applyFilter);
 
     this.sortButton.element.onclick = () => {
@@ -64,12 +61,6 @@ class Toys extends BasePage {
     };
   }
 
-  private restoreFilters = (type: FilterType) => {
-    this.toyCards.cards.forEach((card) => {
-      card.element.classList.remove(`hide-by-${type}`);
-    });
-  };
-
   private applyFilter = (
     type: FilterType,
     filters: (string | number | boolean)[]
@@ -81,7 +72,7 @@ class Toys extends BasePage {
         card.element.classList.toggle(`hide-by-favorite`);
       }
 
-      if (!filters.includes(card.props[type])) {
+      if (filters.length !== 0 && !filters.includes(card.props[type])) {
         card.element.classList.toggle(`hide-by-${type}`);
       }
     });

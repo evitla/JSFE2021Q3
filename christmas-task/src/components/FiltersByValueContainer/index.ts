@@ -52,13 +52,12 @@ class FiltersByValueContainer extends BaseComponent {
   }
 
   afterRender(
-    applyFilter: (type: FilterType, filters: string[]) => void,
-    restoreFilters: (type: FilterType) => void
+    applyFilter: (type: FilterType, filters: string[]) => void
   ): void {
-    this.shapeFiltersContainer.afterRender(applyFilter, restoreFilters);
-    this.colorFiltersContainer.afterRender(applyFilter, restoreFilters);
-    this.sizeFiltersContainer.afterRender(applyFilter, restoreFilters);
-    this.favoriteFilterContainer.afterRender(applyFilter, restoreFilters);
+    this.shapeFiltersContainer.afterRender(applyFilter);
+    this.colorFiltersContainer.afterRender(applyFilter);
+    this.sizeFiltersContainer.afterRender(applyFilter);
+    this.favoriteFilterContainer.afterRender(applyFilter);
   }
 }
 

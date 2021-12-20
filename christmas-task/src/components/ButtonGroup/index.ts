@@ -1,7 +1,7 @@
 import BaseComponent from '../BaseComponent';
 import Button from '../Button';
 
-class ToggleButtonGroup extends BaseComponent {
+class ButtonGroup extends BaseComponent {
   parentNode: HTMLElement;
 
   buttons: Button[];
@@ -21,29 +21,16 @@ class ToggleButtonGroup extends BaseComponent {
     this.parentNode.appendChild(this.element);
   }
 
-  afterRender(
-    callback: (target: HTMLElement) => void = () => {},
-    restore: () => void = () => {}
-  ): void {
+  afterRender(callback: (target: HTMLElement) => void): void {
     this.element.onclick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('button');
       if (target === null) return;
 
-      if (target.classList.contains('active')) {
-        target.classList.remove('active');
-        restore();
-        return;
-      }
-
-      this.buttons.forEach((button) =>
-        button.element.classList.remove('active')
-      );
-
-      target.classList.add('active');
+      target.classList.toggle('active');
 
       callback(target);
     };
   }
 }
 
-export default ToggleButtonGroup;
+export default ButtonGroup;

@@ -1,5 +1,5 @@
 import BaseComponent from '../BaseComponent';
-import ToggleButtonGroup from '../ToggleButtonGroup';
+import ButtonGroup from '../ButtonGroup';
 import { FilterType } from '../../types';
 
 class FilterByValue extends BaseComponent {
@@ -7,7 +7,7 @@ class FilterByValue extends BaseComponent {
 
   type: FilterType;
 
-  filterButtonGroup: ToggleButtonGroup;
+  filterButtonGroup: ButtonGroup;
 
   constructor(parentNode: HTMLElement, type: FilterType, filters: string[]) {
     super('div', [type]);
@@ -15,7 +15,7 @@ class FilterByValue extends BaseComponent {
     this.parentNode = parentNode;
     this.type = type;
 
-    this.filterButtonGroup = new ToggleButtonGroup(this.element, filters);
+    this.filterButtonGroup = new ButtonGroup(this.element, filters);
     this.filterButtonGroup.buttons.forEach((button, index) => {
       button.element.dataset.filter = filters[index];
     });
@@ -27,17 +27,17 @@ class FilterByValue extends BaseComponent {
   }
 
   afterRender(
-    applyFilter: (type: FilterType, filters: (string | number)[]) => void,
-    restoreFilters: (type: FilterType) => void
+    applyFilter: (type: FilterType, filters: string[]) => void
   ): void {
-    const callback = (target: HTMLElement) => {
-      const { filter } = target.dataset;
-      applyFilter(this.type, [filter]);
+    const callback = () => {
+      const filters = this.filterButtonGroup.buttons
+        .filter((button) => button.element.classList.contains('active'))
+        .map((activeButton) => activeButton.element.dataset.filter);
+
+      applyFilter(this.type, filters);
     };
 
-    const restore = () => restoreFilters(this.type);
-
-    this.filterButtonGroup.afterRender(callback, restore);
+    this.filterButtonGroup.afterRender(callback);
   }
 }
 
