@@ -10,7 +10,7 @@ class FiltersByInputContainer extends BaseComponent {
   yearFilter: FilterByInput;
 
   constructor(parentNode: HTMLElement, counts: number[], years: number[]) {
-    super('div', ['filters-by-value']);
+    super('div', ['filters-by-input']);
 
     const countMin = Math.min(...counts);
     const countMax = Math.max(...counts);
