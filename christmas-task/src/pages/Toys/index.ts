@@ -1,19 +1,26 @@
 import BasePage from '../BasePage';
-import Button from '../../components/Button';
+import ButtonGroup from '../../components/ButtonGroup';
 import FiltersByValueContainer from '../../components/FiltersByValueContainer';
 import FiltersByInputContainer from '../../components/FiltersByInputContainer';
 import ToyCards from '../../components/ToyCards';
 import { FilterType, IToyProps } from '../../types';
-import { parseImages } from '../../utils';
+import { parseImages, sort } from '../../utils';
 
 import './style.scss';
 
 class Toys extends BasePage {
+  controller = document.createElement('div');
+
   filtersByValueContainer: FiltersByValueContainer;
 
   filtersByInputContainer: FiltersByInputContainer;
 
-  sortButton = new Button(this.element, 'Sort', ['button-primary']);
+  sortButtonGroup = new ButtonGroup(this.controller, [
+    'asc by name',
+    'desc by name',
+    'asc by year',
+    'desc by year',
+  ]);
 
   toyCards: ToyCards;
 
@@ -22,16 +29,18 @@ class Toys extends BasePage {
   constructor(items: IToyProps[]) {
     super(['toys-page']);
 
+    this.controller.className = 'controller';
+
     const { shapes, colors, sizes, counts, years } = parseImages(items);
 
     this.filtersByValueContainer = new FiltersByValueContainer(
-      this.element,
+      this.controller,
       shapes,
       colors,
       sizes
     );
     this.filtersByInputContainer = new FiltersByInputContainer(
-      this.element,
+      this.controller,
       counts,
       years
     );
@@ -39,10 +48,11 @@ class Toys extends BasePage {
   }
 
   async render(): Promise<void> {
+    this.element.appendChild(this.controller);
     this.filtersByValueContainer.render();
     this.filtersByInputContainer.render();
 
-    this.sortButton.render();
+    this.sortButtonGroup.render();
     this.toyCards.render();
   }
 
@@ -52,17 +62,25 @@ class Toys extends BasePage {
 
     this.searchInput.oninput = this.search;
 
-    this.sortButton.element.onclick = () => {
-      this.toyCards.cards.sort((a, b) => {
-        if (a.props.name > b.props.name) return 1;
-        if (a.props.name < b.props.name) return -1;
-        return 0;
-      });
+    this.sortButtonGroup.afterRender((target) => {
+      switch (target.innerText) {
+        case 'asc by name':
+          this.toyCards.cards.sort((a, b) => sort(a.props.name, b.props.name));
+          break;
+        case 'desc by name':
+          this.toyCards.cards.sort((a, b) => sort(b.props.name, a.props.name));
+          break;
+        case 'asc by year':
+          this.toyCards.cards.sort((a, b) => sort(a.props.year, b.props.year));
+          break;
+        default:
+          this.toyCards.cards.sort((a, b) => sort(b.props.year, a.props.year));
+      }
 
       this.toyCards.cards.forEach((card, index) => {
         card.element.style.order = index.toString();
       });
-    };
+    });
   }
 
   private applyFilter = (
