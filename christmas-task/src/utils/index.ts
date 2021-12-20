@@ -61,3 +61,9 @@ export const parseImages = (
     years: [...years],
   };
 };
+
+export const sort = (a: string | number, b: string | number): number => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
+};
