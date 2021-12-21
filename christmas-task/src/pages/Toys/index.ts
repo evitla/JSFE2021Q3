@@ -90,11 +90,14 @@ class Toys extends BasePage {
     filters: (string | number | boolean)[]
   ) => {
     this.toyCards.cards.forEach((card) => {
-      card.element.classList.remove(`hide-by-${type}`);
-
-      if (type === 'favorite' && card.props.favorite) {
-        card.element.classList.toggle(`hide-by-favorite`);
+      if (type === 'favorite') {
+        if (!card.props.favorite) {
+          card.element.classList.toggle(`hide-by-favorite`);
+        }
+        return;
       }
+
+      card.element.classList.remove(`hide-by-${type}`);
 
       if (filters.length !== 0 && !filters.includes(card.props[type])) {
         card.element.classList.toggle(`hide-by-${type}`);
