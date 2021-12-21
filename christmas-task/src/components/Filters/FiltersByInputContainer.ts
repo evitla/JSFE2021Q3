@@ -1,5 +1,5 @@
 import BaseComponent from '../BaseComponent';
-import FilterByInput from '../FilterByInput';
+import FilterByInput from './FilterByInput';
 import { FilterType } from '../../types';
 
 class FiltersByInputContainer extends BaseComponent {

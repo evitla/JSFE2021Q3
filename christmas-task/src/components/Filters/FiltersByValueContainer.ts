@@ -1,6 +1,6 @@
 import { FilterType } from '../../types';
 import BaseComponent from '../BaseComponent';
-import FilterByValue from '../FilterByValue';
+import FilterByValue from './FilterByValue';
 
 class FiltersByValueContainer extends BaseComponent {
   parentNode: HTMLElement;

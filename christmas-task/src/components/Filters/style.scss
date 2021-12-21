@@ -1,3 +1,18 @@
+.filters-by-value {
+  display: grid;
+  grid-template-columns: 0.33fr 1fr;
+}
+
+.filter-title,
+.input-range-title {
+  color: var(--neutral-color-100);
+  font-weight: 500;
+}
+
+.input-range-title {
+  margin-bottom: 3.5rem;
+}
+
 #count-slider,
 #year-slider {
   margin: 20px;

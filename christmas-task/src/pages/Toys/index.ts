@@ -1,7 +1,9 @@
 import BasePage from '../BasePage';
 import ButtonGroup from '../../components/ButtonGroup';
-import FiltersByValueContainer from '../../components/FiltersByValueContainer';
-import FiltersByInputContainer from '../../components/FiltersByInputContainer';
+import {
+  FiltersByInputContainer,
+  FiltersByValueContainer,
+} from '../../components/Filters';
 import ToyCards from '../../components/ToyCards';
 import { FilterType, IToyProps } from '../../types';
 import { parseImages, sort } from '../../utils';

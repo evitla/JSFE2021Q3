@@ -4,8 +4,6 @@ import 'nouislider/dist/nouislider.css';
 import BaseComponent from '../BaseComponent';
 import { FilterType } from '../../types';
 
-import './style.scss';
-
 class FilterByInput extends BaseComponent {
   parentNode: HTMLElement;
 
