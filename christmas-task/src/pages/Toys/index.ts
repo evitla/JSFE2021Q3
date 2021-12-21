@@ -3,6 +3,7 @@ import {
   FiltersByInputContainer,
   FiltersByValueContainer,
 } from '../../components/Filters';
+import Button from '../../components/Button';
 import ToyCards from '../../components/ToyCards';
 import Select from '../../components/Select';
 import { FilterType, IToyProps } from '../../types';
@@ -33,6 +34,11 @@ class Toys extends BasePage {
 
   searchInput: HTMLInputElement = document.querySelector('.search-input');
 
+  restoreButton = new Button(this.controller, 'Restore Settings', [
+    'button-primary',
+    'restore-button',
+  ]);
+
   constructor(items: IToyProps[]) {
     super(['toys-page']);
 
@@ -60,6 +66,9 @@ class Toys extends BasePage {
     this.filtersByInputContainer.render();
 
     this.sortSelect.render();
+
+    this.restoreButton.render();
+
     this.toyCards.render();
   }
 
@@ -70,6 +79,38 @@ class Toys extends BasePage {
     this.searchInput.oninput = this.search;
 
     this.sortSelect.afterRender(this.sort);
+
+    this.restoreButton.element.onclick = () => {
+      this.filtersByValueContainer.shapeFiltersContainer.filterButtonGroup.buttons.forEach(
+        (b) => b.element.classList.remove('active')
+      );
+
+      this.filtersByValueContainer.colorFiltersContainer.filterButtonGroup.buttons.forEach(
+        (b) => b.element.classList.remove('active')
+      );
+
+      this.filtersByValueContainer.sizeFiltersContainer.filterButtonGroup.buttons.forEach(
+        (b) => b.element.classList.remove('active')
+      );
+
+      this.filtersByValueContainer.favoriteFilterContainer.filterButtonGroup.buttons.forEach(
+        (b) => b.element.classList.remove('active')
+      );
+
+      this.toyCards.cards.forEach((card) =>
+        card.element.classList.remove(
+          ...[
+            'hide-by-shape',
+            'hide-by-color',
+            'hide-by-size',
+            'hide-by-favorite',
+            'hide-by-search',
+            'hide-by-count',
+            'hide-by-year',
+          ]
+        )
+      );
+    };
   }
 
   private applyFilter = (

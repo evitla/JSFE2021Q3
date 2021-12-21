@@ -2,10 +2,17 @@
   display: flex;
   justify-content: space-between;
   column-gap: 2rem;
+  position: relative;
 }
 
 .filters-by-value,
 .filters-by-input,
 .sort-select {
   width: 33%;
+}
+
+.restore-button {
+  position: absolute;
+  right: 1%;
+  bottom: 10%;
 }
