@@ -1,4 +1,11 @@
 .controller {
   display: flex;
   justify-content: space-between;
+  column-gap: 2rem;
+}
+
+.filters-by-value,
+.filters-by-input,
+.sort-select {
+  width: 33%;
 }
