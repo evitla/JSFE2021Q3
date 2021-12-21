@@ -11,6 +11,8 @@ class FilterByInput extends BaseComponent {
 
   type: FilterType;
 
+  title = new BaseComponent('h3', ['input-range-title']);
+
   constructor(parentNode: HTMLElement, type: FilterType, range: number[]) {
     super('div', [type]);
 
@@ -37,8 +39,10 @@ class FilterByInput extends BaseComponent {
     });
   }
 
-  render(): void {
-    this.parentNode.appendChild(this.element);
+  render(title: string): void {
+    this.title.element.innerText = title;
+
+    this.parentNode.append(this.title.element, this.element);
   }
 
   afterRender(

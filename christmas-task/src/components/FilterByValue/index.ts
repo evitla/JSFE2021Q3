@@ -9,6 +9,8 @@ class FilterByValue extends BaseComponent {
 
   filterButtonGroup: ButtonGroup;
 
+  title = new BaseComponent('h3', ['filter-title']);
+
   constructor(parentNode: HTMLElement, type: FilterType, filters: string[]) {
     super('div', [type]);
 
@@ -21,9 +23,10 @@ class FilterByValue extends BaseComponent {
     });
   }
 
-  render(): void {
+  render(title: string): void {
+    this.title.element.innerText = title;
     this.filterButtonGroup.render();
-    this.parentNode.appendChild(this.element);
+    this.parentNode.append(this.title.element, this.element);
   }
 
   afterRender(

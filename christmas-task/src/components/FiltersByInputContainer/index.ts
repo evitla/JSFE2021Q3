@@ -33,8 +33,9 @@ class FiltersByInputContainer extends BaseComponent {
   }
 
   render(): void {
-    this.countFilter.render();
-    this.yearFilter.render();
+    this.countFilter.render('Amount of toys:');
+
+    this.yearFilter.render('Purchase year:');
 
     this.parentNode.appendChild(this.element);
   }

@@ -43,10 +43,10 @@ class FiltersByValueContainer extends BaseComponent {
   }
 
   render(): void {
-    this.shapeFiltersContainer.render();
-    this.colorFiltersContainer.render();
-    this.sizeFiltersContainer.render();
-    this.favoriteFilterContainer.render();
+    this.shapeFiltersContainer.render('Shape:');
+    this.colorFiltersContainer.render('Color:');
+    this.sizeFiltersContainer.render('Size:');
+    this.favoriteFilterContainer.render('Favorite:');
 
     this.parentNode.appendChild(this.element);
   }
