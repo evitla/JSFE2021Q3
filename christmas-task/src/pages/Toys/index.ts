@@ -1,10 +1,10 @@
 import BasePage from '../BasePage';
-import ButtonGroup from '../../components/ButtonGroup';
 import {
   FiltersByInputContainer,
   FiltersByValueContainer,
 } from '../../components/Filters';
 import ToyCards from '../../components/ToyCards';
+import Select from '../../components/Select';
 import { FilterType, IToyProps } from '../../types';
 import { parseImages, sort } from '../../utils';
 
@@ -17,12 +17,17 @@ class Toys extends BasePage {
 
   filtersByInputContainer: FiltersByInputContainer;
 
-  sortButtonGroup = new ButtonGroup(this.controller, [
-    'asc by name',
-    'desc by name',
-    'asc by year',
-    'desc by year',
-  ]);
+  sortSelect = new Select(
+    this.controller,
+    [
+      'Sort toys:',
+      'Ascending order by name',
+      'Descending order by name',
+      'Ascending order by year',
+      'Descending order by year',
+    ],
+    ['sort-select']
+  );
 
   toyCards: ToyCards;
 
@@ -54,7 +59,7 @@ class Toys extends BasePage {
     this.filtersByValueContainer.render();
     this.filtersByInputContainer.render();
 
-    this.sortButtonGroup.render();
+    this.sortSelect.render();
     this.toyCards.render();
   }
 
@@ -64,25 +69,7 @@ class Toys extends BasePage {
 
     this.searchInput.oninput = this.search;
 
-    this.sortButtonGroup.afterRender((target) => {
-      switch (target.innerText) {
-        case 'asc by name':
-          this.toyCards.cards.sort((a, b) => sort(a.props.name, b.props.name));
-          break;
-        case 'desc by name':
-          this.toyCards.cards.sort((a, b) => sort(b.props.name, a.props.name));
-          break;
-        case 'asc by year':
-          this.toyCards.cards.sort((a, b) => sort(a.props.year, b.props.year));
-          break;
-        default:
-          this.toyCards.cards.sort((a, b) => sort(b.props.year, a.props.year));
-      }
-
-      this.toyCards.cards.forEach((card, index) => {
-        card.element.style.order = index.toString();
-      });
-    });
+    this.sortSelect.afterRender(this.sort);
   }
 
   private applyFilter = (
@@ -102,6 +89,29 @@ class Toys extends BasePage {
       if (filters.length !== 0 && !filters.includes(card.props[type])) {
         card.element.classList.toggle(`hide-by-${type}`);
       }
+    });
+  };
+
+  private sort = (target: HTMLElement) => {
+    switch (target.innerText) {
+      case 'Ascending order by name':
+        this.toyCards.cards.sort((a, b) => sort(a.props.name, b.props.name));
+        break;
+      case 'Descending order by name':
+        this.toyCards.cards.sort((a, b) => sort(b.props.name, a.props.name));
+        break;
+      case 'Ascending order by year':
+        this.toyCards.cards.sort((a, b) => sort(a.props.year, b.props.year));
+        break;
+      case 'Descending order by year':
+        this.toyCards.cards.sort((a, b) => sort(b.props.year, a.props.year));
+        break;
+      default:
+        this.toyCards.cards.sort((a, b) => sort(a.props.num, b.props.num));
+    }
+
+    this.toyCards.cards.forEach((card, index) => {
+      card.element.style.order = index.toString();
     });
   };
 

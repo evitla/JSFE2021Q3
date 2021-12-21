@@ -1,0 +1,13 @@
+.sort-select {
+  select {
+    width: 80%;
+    height: 2.5rem;
+    font-size: 1.15rem;
+    border: 1px solid var(--primary-color-110);
+    border-radius: 1rem;
+    appearance: none;
+    font-family: inherit;
+    background: url('../../assets/svg/chevron-down.svg') 96% / 15% no-repeat
+      var(--neutral-color-100);
+  }
+}
