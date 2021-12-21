@@ -1,6 +1,7 @@
 .filters-by-value {
   display: grid;
   grid-template-columns: 0.33fr 1fr;
+  align-items: center;
 }
 
 .filter-title,
