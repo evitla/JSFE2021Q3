@@ -11,13 +11,18 @@ class FilterByValue extends BaseComponent {
 
   title = new BaseComponent('h3', ['filter-title']);
 
-  constructor(parentNode: HTMLElement, type: FilterType, filters: string[]) {
+  constructor(
+    parentNode: HTMLElement,
+    type: FilterType,
+    contents: string[],
+    filters: string[]
+  ) {
     super('div', [type]);
 
     this.parentNode = parentNode;
     this.type = type;
 
-    this.filterButtonGroup = new ButtonGroup(this.element, filters);
+    this.filterButtonGroup = new ButtonGroup(this.element, contents);
     this.filterButtonGroup.buttons.forEach((button, index) => {
       button.element.dataset.filter = filters[index];
     });

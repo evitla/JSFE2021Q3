@@ -1,6 +1,15 @@
 import { FilterType } from '../../types';
 import BaseComponent from '../BaseComponent';
+import { ball, bell, cone, snowflake, toy } from '../Icons';
 import FilterByValue from './FilterByValue';
+
+const shapeIcons: { [key: string]: string } = {
+  ball,
+  bell,
+  cone,
+  snowflake,
+  toy,
+};
 
 class FiltersByValueContainer extends BaseComponent {
   parentNode: HTMLElement;
@@ -24,20 +33,32 @@ class FiltersByValueContainer extends BaseComponent {
     this.shapeFiltersContainer = new FilterByValue(
       this.element,
       'shape',
+      shapes.map((shape) => shapeIcons[shape]),
       shapes
     );
 
     this.colorFiltersContainer = new FilterByValue(
       this.element,
       'color',
+      colors.map(
+        (color) => `<div class="box" style="background-color: ${color}"></div>`
+      ),
       colors
     );
 
-    this.sizeFiltersContainer = new FilterByValue(this.element, 'size', sizes);
+    this.sizeFiltersContainer = new FilterByValue(
+      this.element,
+      'size',
+      sizes.map(() => ball),
+      sizes
+    );
 
-    this.favoriteFilterContainer = new FilterByValue(this.element, 'favorite', [
+    this.favoriteFilterContainer = new FilterByValue(
+      this.element,
       'favorite',
-    ]);
+      [`<div class="box"></div>`],
+      ['favorite']
+    );
 
     this.parentNode = parentNode;
   }
