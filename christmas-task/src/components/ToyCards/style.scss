@@ -8,6 +8,7 @@
   color: var(--neutral-color-100);
   border: 1px solid var(--primary-color-210);
   padding: 0.5rem;
+  cursor: pointer;
 
   &.hide-by-shape,
   &.hide-by-color,
@@ -42,4 +43,8 @@
       margin-top: 0.25rem;
     }
   }
+}
+
+.favorite-toy {
+  background-color: rgba($color: gold, $alpha: 0.2);
 }

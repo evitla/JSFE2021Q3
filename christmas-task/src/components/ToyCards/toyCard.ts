@@ -14,7 +14,7 @@ class ToyCard extends BaseComponent {
     this.element.style.order = props.num.toString();
 
     this.parentNode = parentNode;
-    this.props = props;
+    this.props = { ...props, personalFavorite: false };
   }
 
   render(): void {
@@ -34,6 +34,13 @@ class ToyCard extends BaseComponent {
     `;
 
     this.parentNode.appendChild(this.element);
+  }
+
+  afterRender(): void {
+    this.element.onclick = () => {
+      this.props.personalFavorite = !this.props.personalFavorite;
+      this.element.classList.toggle('favorite-toy');
+    };
   }
 }
 

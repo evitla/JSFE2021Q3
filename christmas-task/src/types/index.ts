@@ -8,6 +8,7 @@ export type IToyProps = {
   color: string;
   size: string;
   favorite: boolean;
+  personalFavorite: boolean;
 };
 
 export type FilterType =

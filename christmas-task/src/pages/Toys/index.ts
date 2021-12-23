@@ -75,6 +75,8 @@ class Toys extends BasePage {
   }
 
   async afterRender(): Promise<void> {
+    this.toyCards.afterRender();
+
     this.filtersByValueContainer.afterRender(this.applyFilter);
     this.filtersByInputContainer.afterRender(this.applyFilter);
 

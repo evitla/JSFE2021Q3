@@ -30,6 +30,10 @@ class ToyCards extends BaseComponent {
 
     this.parentNode.appendChild(this.element);
   }
+
+  afterRender(): void {
+    this.cards.forEach((card) => card.afterRender());
+  }
 }
 
 export default ToyCards;
