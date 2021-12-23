@@ -1,3 +1,5 @@
+import { target } from 'nouislider';
+
 import BasePage from '../BasePage';
 import {
   FiltersByInputContainer,
@@ -80,37 +82,7 @@ class Toys extends BasePage {
 
     this.sortSelect.afterRender(this.sort);
 
-    this.restoreButton.element.onclick = () => {
-      this.filtersByValueContainer.shapeFiltersContainer.filterButtonGroup.buttons.forEach(
-        (b) => b.element.classList.remove('active')
-      );
-
-      this.filtersByValueContainer.colorFiltersContainer.filterButtonGroup.buttons.forEach(
-        (b) => b.element.classList.remove('active')
-      );
-
-      this.filtersByValueContainer.sizeFiltersContainer.filterButtonGroup.buttons.forEach(
-        (b) => b.element.classList.remove('active')
-      );
-
-      this.filtersByValueContainer.favoriteFilterContainer.filterButtonGroup.buttons.forEach(
-        (b) => b.element.classList.remove('active')
-      );
-
-      this.toyCards.cards.forEach((card) =>
-        card.element.classList.remove(
-          ...[
-            'hide-by-shape',
-            'hide-by-color',
-            'hide-by-size',
-            'hide-by-favorite',
-            'hide-by-search',
-            'hide-by-count',
-            'hide-by-year',
-          ]
-        )
-      );
-    };
+    this.restoreButton.element.onclick = this.restoreFilters;
   }
 
   private applyFilter = (
@@ -154,6 +126,52 @@ class Toys extends BasePage {
     this.toyCards.cards.forEach((card, index) => {
       card.element.style.order = index.toString();
     });
+  };
+
+  private restoreFilters = () => {
+    this.searchInput.value = '';
+
+    (this.filtersByInputContainer.countFilter.element as target).noUiSlider.set(
+      [
+        this.filtersByInputContainer.countFilter.min,
+        this.filtersByInputContainer.countFilter.max,
+      ]
+    );
+
+    (this.filtersByInputContainer.yearFilter.element as target).noUiSlider.set([
+      this.filtersByInputContainer.yearFilter.min,
+      this.filtersByInputContainer.yearFilter.max,
+    ]);
+
+    this.filtersByValueContainer.shapeFiltersContainer.filterButtonGroup.buttons.forEach(
+      (b) => b.element.classList.remove('active')
+    );
+
+    this.filtersByValueContainer.colorFiltersContainer.filterButtonGroup.buttons.forEach(
+      (b) => b.element.classList.remove('active')
+    );
+
+    this.filtersByValueContainer.sizeFiltersContainer.filterButtonGroup.buttons.forEach(
+      (b) => b.element.classList.remove('active')
+    );
+
+    this.filtersByValueContainer.favoriteFilterContainer.filterButtonGroup.buttons.forEach(
+      (b) => b.element.classList.remove('active')
+    );
+
+    this.toyCards.cards.forEach((card) =>
+      card.element.classList.remove(
+        ...[
+          'hide-by-shape',
+          'hide-by-color',
+          'hide-by-size',
+          'hide-by-favorite',
+          'hide-by-search',
+          'hide-by-count',
+          'hide-by-year',
+        ]
+      )
+    );
   };
 
   private search = () => {
