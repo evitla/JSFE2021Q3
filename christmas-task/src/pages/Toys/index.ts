@@ -1,5 +1,3 @@
-import { target } from 'nouislider';
-
 import BasePage from '../BasePage';
 import {
   FiltersByInputContainer,
@@ -133,14 +131,12 @@ class Toys extends BasePage {
   private restoreFilters = () => {
     this.searchInput.value = '';
 
-    (this.filtersByInputContainer.countFilter.element as target).noUiSlider.set(
-      [
-        this.filtersByInputContainer.countFilter.min,
-        this.filtersByInputContainer.countFilter.max,
-      ]
-    );
+    this.filtersByInputContainer.countFilter.element.noUiSlider.set([
+      this.filtersByInputContainer.countFilter.min,
+      this.filtersByInputContainer.countFilter.max,
+    ]);
 
-    (this.filtersByInputContainer.yearFilter.element as target).noUiSlider.set([
+    this.filtersByInputContainer.yearFilter.element.noUiSlider.set([
       this.filtersByInputContainer.yearFilter.min,
       this.filtersByInputContainer.yearFilter.max,
     ]);

@@ -4,7 +4,9 @@ import 'nouislider/dist/nouislider.css';
 import BaseComponent from '../BaseComponent';
 import { FilterType } from '../../types';
 
-class FilterByInput extends BaseComponent {
+class FilterByInput {
+  element = document.createElement('div') as target;
+
   parentNode: HTMLElement;
 
   type: FilterType;
@@ -16,16 +18,18 @@ class FilterByInput extends BaseComponent {
   max: number;
 
   constructor(parentNode: HTMLElement, type: FilterType, range: number[]) {
-    super('div', [type]);
+    this.element.classList.add(type);
+
+    this.element = this.element as target;
 
     this.element.id = `${type}-slider`;
     this.parentNode = parentNode;
 
     this.type = type;
 
-    const min = (this.min = range[0]);
-    const max = (this.max = range[1]);
-    const step = range[2];
+    const [min, max, step] = range;
+    this.min = min;
+    this.max = max;
 
     noUiSlider.create(this.element, {
       start: [min, max],
@@ -52,7 +56,7 @@ class FilterByInput extends BaseComponent {
   afterRender(
     applyFilter: (type: FilterType, filters: (string | number)[]) => void
   ): void {
-    (this.element as target).noUiSlider.on('update', (values) => {
+    this.element.noUiSlider.on('update', (values) => {
       const minValue = values[0];
       const maxValue = values[1];
       const filters = [...Array(+maxValue - +minValue + 1).keys()].map((n) =>
