@@ -11,6 +11,10 @@ class FilterByInput extends BaseComponent {
 
   title = new BaseComponent('h3', ['input-range-title']);
 
+  min: number;
+
+  max: number;
+
   constructor(parentNode: HTMLElement, type: FilterType, range: number[]) {
     super('div', [type]);
 
@@ -19,7 +23,9 @@ class FilterByInput extends BaseComponent {
 
     this.type = type;
 
-    const [min, max, step] = range;
+    const min = (this.min = range[0]);
+    const max = (this.max = range[1]);
+    const step = range[2];
 
     noUiSlider.create(this.element, {
       start: [min, max],
