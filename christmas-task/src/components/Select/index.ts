@@ -32,9 +32,10 @@ class Select extends BaseComponent {
   }
 
   afterRender(callback: (target: HTMLElement) => void): void {
-    this.element.onclick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest('option');
-      if (target === null) return;
+    this.select.element.onchange = (e: MouseEvent) => {
+      const target = e.target as HTMLSelectElement;
+
+      if (target.value === null) return;
 
       callback(target);
     };

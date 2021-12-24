@@ -105,8 +105,8 @@ class Toys extends BasePage {
     });
   };
 
-  private sort = (target: HTMLElement) => {
-    switch (target.innerText) {
+  private sort = (target: HTMLSelectElement) => {
+    switch (target.value) {
       case 'Ascending order by name':
         this.toyCards.cards.sort((a, b) => sort(a.props.name, b.props.name));
         break;
