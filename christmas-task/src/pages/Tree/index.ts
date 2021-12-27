@@ -1,21 +1,22 @@
 import BaseComponent from '../../components/BaseComponent';
 import BasePage from '../BasePage';
+import ToyCard from '../../components/ToyCards/toyCard';
+import { PageClassNameType } from '../../types';
 
 import './style.scss';
 
 class Tree extends BasePage {
-  private content = new BaseComponent('div', ['tree-content']);
+  favoriteCards: ToyCard[];
 
-  constructor() {
-    super(['tree-page']);
+  constructor(name: PageClassNameType) {
+    super(name);
   }
 
-  async render(): Promise<void> {
-    this.content.element.innerHTML = `
-      <h2>Tree Page</h2>
-    `;
-
-    this.element.append(this.content.element);
+  async render(toyCards: ToyCard[]): Promise<void> {
+    const favoriteCards = toyCards.filter(
+      (card) => card.props.personalFavorite
+    );
+    this.element.append(...favoriteCards.map((c) => c.element));
   }
 
   // eslint-disable-next-line class-methods-use-this
