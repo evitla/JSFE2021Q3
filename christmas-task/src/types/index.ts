@@ -18,3 +18,5 @@ export type FilterType =
   | 'count'
   | 'year'
   | 'favorite';
+
+export type PageClassNameType = 'home-page' | 'toys-page' | 'tree-page';

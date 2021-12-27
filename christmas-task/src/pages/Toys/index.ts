@@ -6,7 +6,7 @@ import {
 import Button from '../../components/Button';
 import ToyCards from '../../components/ToyCards';
 import Select from '../../components/Select';
-import { FilterType, IToyProps } from '../../types';
+import { FilterType, IToyProps, PageClassNameType } from '../../types';
 import { parseImages, sort } from '../../utils';
 
 import './style.scss';
@@ -39,8 +39,8 @@ class Toys extends BasePage {
     'restore-button',
   ]);
 
-  constructor(items: IToyProps[]) {
-    super(['toys-page']);
+  constructor(name: PageClassNameType, items: IToyProps[]) {
+    super(name);
 
     this.controller.className = 'controller';
 
