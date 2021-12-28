@@ -7,17 +7,21 @@ import './style.scss';
 class SearchBar extends BaseComponent {
   parentNode: HTMLElement;
 
+  input = document.createElement('input');
+
+  icon = new Image();
+
   constructor(parentNode: HTMLElement) {
     super('div', ['search-bar']);
 
     this.parentNode = parentNode;
+    this.input.className = 'search-input';
+    this.icon.src = searchIcon;
+    this.icon.alt = 'search-icon';
   }
 
   render(): void {
-    this.element.innerHTML = `
-      <input class="search-input" type="text" placeholder="Search">
-      <img src=${searchIcon} alt="search-icon">
-    `;
+    this.element.append(this.input, this.icon);
 
     this.parentNode.appendChild(this.element);
   }
