@@ -2,11 +2,14 @@ import BaseComponent from '../BaseComponent';
 import ButtonGroup from './buttonGroup';
 import Logo from './logo';
 import Navbar from './navbar';
+import { Snowflakes } from '..';
 
 import './style.scss';
 
 class Header extends BaseComponent {
   parentNode: HTMLElement;
+
+  snowflakes = new Snowflakes(document.body);
 
   wrapper = new BaseComponent('div', ['wrapper', 'header-wrapper']);
 
@@ -25,6 +28,7 @@ class Header extends BaseComponent {
   }
 
   render(): void {
+    this.snowflakes.render();
     this.logo.render();
     this.navbar.render();
 

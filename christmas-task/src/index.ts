@@ -1,7 +1,6 @@
 import Layout from './layout';
 import Router from './router';
 import { HomePage, ToysPage, TreePage } from './pages';
-import { Snowflakes } from './components';
 import { getImages } from './utils';
 import ToyCard from './components/ToyCards/toyCard';
 
@@ -19,9 +18,6 @@ const app = async () => {
   const images = await getImages(imagesURL);
   const toysPage = new ToysPage('toys-page', images);
   const treePage = new TreePage('tree-page');
-
-  const snowflakes = new Snowflakes(layout.element);
-  snowflakes.render();
 
   const routes = {
     '/': homePage,
