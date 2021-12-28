@@ -4,6 +4,7 @@ import Button from '../Button';
 import snowflakeIcon from '../../assets/svg/snowflake.svg';
 import audioIcon from '../../assets/svg/audio.svg';
 import audioFile from '../../assets/audio/audio.mp3';
+import { Snowflakes } from '..';
 
 class ButtonGroup extends BaseComponent {
   parentNode: HTMLElement;
@@ -35,9 +36,16 @@ class ButtonGroup extends BaseComponent {
     this.parentNode.appendChild(this.element);
   }
 
-  afterRender(): void {
+  afterRender(snowflakes: Snowflakes): void {
     this.snowflakeButton.element.onclick = () => {
-      this.snowflakeButton.element.classList.toggle('active');
+      if (this.snowflakeButton.element.classList.contains('active')) {
+        this.snowflakeButton.element.classList.remove('active');
+        snowflakes.element.remove();
+        return;
+      }
+
+      this.snowflakeButton.element.classList.add('active');
+      snowflakes.render();
     };
 
     this.audioButton.element.onclick = () => {
