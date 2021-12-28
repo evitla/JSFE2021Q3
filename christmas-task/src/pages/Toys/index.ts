@@ -5,6 +5,7 @@ import {
 } from '../../components/Filters';
 import Button from '../../components/Button';
 import ToyCards from '../../components/ToyCards';
+import SearchBar from '../../components/SearchBar';
 import Select from '../../components/Select';
 import { FilterType, IToyProps, PageClassNameType } from '../../types';
 import { parseImages, sort } from '../../utils';
@@ -18,8 +19,10 @@ class Toys extends BasePage {
 
   filtersByInputContainer: FiltersByInputContainer;
 
+  rightSide = document.createElement('div');
+
   sortSelect = new Select(
-    this.controller,
+    this.rightSide,
     [
       'Sort toys:',
       'Ascending order by name',
@@ -32,6 +35,8 @@ class Toys extends BasePage {
 
   toyCards: ToyCards;
 
+  searchBar = new SearchBar(this.rightSide);
+
   searchInput: HTMLInputElement = document.querySelector('.search-input');
 
   restoreButton = new Button(this.controller, 'Restore Settings', [
@@ -43,6 +48,7 @@ class Toys extends BasePage {
     super(name);
 
     this.controller.className = 'controller';
+    this.rightSide.className = 'controller-right-side';
 
     const { shapes, colors, sizes, counts, years } = parseImages(items);
 
@@ -64,7 +70,9 @@ class Toys extends BasePage {
     this.element.appendChild(this.controller);
     this.filtersByValueContainer.render();
     this.filtersByInputContainer.render();
+    this.controller.appendChild(this.rightSide);
 
+    this.searchBar.render();
     this.sortSelect.render();
 
     this.restoreButton.render();

@@ -2,7 +2,6 @@ import BaseComponent from '../BaseComponent';
 import ButtonGroup from './buttonGroup';
 import Logo from './logo';
 import Navbar from './navbar';
-import SearchBar from '../SearchBar';
 
 import './style.scss';
 
@@ -13,15 +12,11 @@ class Header extends BaseComponent {
 
   leftSide = new BaseComponent('div', ['header-left-side']);
 
-  rightSide = new BaseComponent('div', ['header-right-side']);
-
   logo = new Logo(this.leftSide.element);
 
   navbar = new Navbar(this.leftSide.element);
 
-  buttonGroup = new ButtonGroup(this.rightSide.element);
-
-  searchBar = new SearchBar(this.rightSide.element);
+  buttonGroup = new ButtonGroup(this.wrapper.element);
 
   constructor(parentNode: HTMLElement) {
     super('header', ['header']);
@@ -32,11 +27,9 @@ class Header extends BaseComponent {
   render(): void {
     this.logo.render();
     this.navbar.render();
-    this.buttonGroup.render();
-    this.searchBar.render();
 
     this.wrapper.element.appendChild(this.leftSide.element);
-    this.wrapper.element.appendChild(this.rightSide.element);
+    this.buttonGroup.render();
     this.element.appendChild(this.wrapper.element);
     this.parentNode.appendChild(this.element);
   }
