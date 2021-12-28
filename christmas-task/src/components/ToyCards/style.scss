@@ -9,6 +9,7 @@
   border: 1px solid var(--primary-color-210);
   padding: 0.5rem;
   cursor: pointer;
+  position: relative;
 
   &.hide-by-shape,
   &.hide-by-color,
@@ -19,6 +20,25 @@
   &.hide-by-search {
     display: none;
   }
+
+  .toy-amount {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    left: 0;
+    bottom: 0;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-color: var(--neutral-color-100);
+    color: var(--primary-color-110);
+    border-radius: 50%;
+  }
+}
+
+.toy-image-for-tree {
+  width: 3rem;
 }
 
 .card-title {
