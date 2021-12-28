@@ -3,9 +3,12 @@ import Button from '../Button';
 
 import snowflakeIcon from '../../assets/svg/snowflake.svg';
 import audioIcon from '../../assets/svg/audio.svg';
+import audioFile from '../../assets/audio/audio.mp3';
 
 class ButtonGroup extends BaseComponent {
   parentNode: HTMLElement;
+
+  audio = new Audio(audioFile);
 
   snowflakeButton = new Button(
     this.element,
@@ -38,7 +41,16 @@ class ButtonGroup extends BaseComponent {
     };
 
     this.audioButton.element.onclick = () => {
-      this.audioButton.element.classList.toggle('active');
+      if (this.audioButton.element.classList.contains('active')) {
+        this.audioButton.element.classList.remove('active');
+        this.audio.pause();
+        return;
+      }
+
+      this.audioButton.element.classList.add('active');
+
+      this.audio.currentTime = 0;
+      this.audio.play();
     };
   }
 }

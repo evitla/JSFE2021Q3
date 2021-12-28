@@ -55,6 +55,10 @@ module.exports = ({ develop }) => ({
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
+      {
+        test: /\.mp3$/,
+        use: 'file-loader',
+      },
     ],
   },
   resolve: {
