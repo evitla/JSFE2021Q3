@@ -1,7 +1,6 @@
 import BaseComponent from '../../components/BaseComponent';
 import Button from '../../components/Button';
 import BasePage from '../BasePage';
-import { PageClassNameType } from '../../types';
 
 import './style.scss';
 
@@ -14,10 +13,6 @@ class Home extends BasePage {
     ['button-primary'],
     '#/tree'
   );
-
-  constructor(name: PageClassNameType) {
-    super(name);
-  }
 
   async render(): Promise<void> {
     this.content.element.innerHTML = `
