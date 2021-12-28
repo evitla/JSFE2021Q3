@@ -1,4 +1,4 @@
-import { Header } from '../components';
+import Header from '../components/Header';
 
 class Layout {
   readonly element = document.body;

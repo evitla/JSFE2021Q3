@@ -1,10 +1,10 @@
 import BaseComponent from '../BaseComponent';
 import Button from '../Button';
+import Snowflakes from '../Snowflakes';
 
 import snowflakeIcon from '../../assets/svg/snowflake.svg';
 import audioIcon from '../../assets/svg/audio.svg';
 import audioFile from '../../assets/audio/audio.mp3';
-import { Snowflakes } from '..';
 
 class ButtonGroup extends BaseComponent {
   parentNode: HTMLElement;

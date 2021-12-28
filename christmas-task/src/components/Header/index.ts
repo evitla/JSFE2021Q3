@@ -2,7 +2,7 @@ import BaseComponent from '../BaseComponent';
 import ButtonGroup from './buttonGroup';
 import Logo from './logo';
 import Navbar from './navbar';
-import { Snowflakes } from '..';
+import Snowflakes from '../Snowflakes';
 
 import './style.scss';
 
