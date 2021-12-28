@@ -1,0 +1,16 @@
+.tree-page {
+  display: flex;
+
+  .toys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+
+    .toy-card {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      background-color: hsla(49, 96%, 91%, 50%);
+    }
+  }
+}
