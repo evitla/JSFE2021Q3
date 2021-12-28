@@ -17,7 +17,15 @@ class ToyCard extends BaseComponent {
     this.props = { ...props, personalFavorite: false };
   }
 
-  render(): void {
+  render(forTreePage = false): void {
+    if (forTreePage) {
+      this.element.innerHTML = `
+        <img class="toy-image-for-tree" src=${this.props.image} alt="toy">
+        <span class="toy-amount">${this.props.count}<span>
+      `;
+      return;
+    }
+
     this.element.innerHTML = `
       <h3 class="card-title">${this.props.name}</h3>
       <div class="card-content">
