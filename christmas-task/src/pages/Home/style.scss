@@ -3,7 +3,7 @@
   background-image: url('../../assets/santa.png');
   background-repeat: no-repeat;
   background-size: contain;
-  height: 500px;
+  height: clamp(300px, 100vw / 768 * 400, 500px);
   position: relative;
 }
 
@@ -14,14 +14,14 @@
 
   h1 {
     color: var(--neutral-color-100);
-    font-size: 4.5rem;
-    line-height: 5.5rem;
+    font-size: clamp(40px, 100vw / 768 * 48, 72px);
+    line-height: clamp(50px, 100vw / 768 * 60, 80px);
     letter-spacing: 3px;
     margin-bottom: 3rem;
   }
 
   .button {
-    font-size: 2rem;
+    font-size: clamp(18px, 100vw / 768 * 24, 32px);
     font-weight: 600;
   }
 }
