@@ -37,8 +37,6 @@ class Toys extends BasePage {
 
   searchBar = new SearchBar(this.rightSide);
 
-  searchInput: HTMLInputElement = document.querySelector('.search-input');
-
   restoreButton = new Button(this.controller, 'Restore Settings', [
     'button-primary',
     'restore-button',
@@ -86,7 +84,7 @@ class Toys extends BasePage {
     this.filtersByValueContainer.afterRender(this.applyFilter);
     this.filtersByInputContainer.afterRender(this.applyFilter);
 
-    this.searchInput.oninput = this.search;
+    this.searchBar.input.oninput = this.search;
 
     this.sortSelect.afterRender(this.sort);
 
@@ -137,7 +135,7 @@ class Toys extends BasePage {
   };
 
   private restoreFilters = () => {
-    this.searchInput.value = '';
+    this.searchBar.input.value = '';
 
     this.filtersByInputContainer.countFilter.element.noUiSlider.set([
       this.filtersByInputContainer.countFilter.min,
@@ -181,7 +179,7 @@ class Toys extends BasePage {
   };
 
   private search = () => {
-    const { value } = this.searchInput;
+    const { value } = this.searchBar.input;
 
     this.toyCards.cards.forEach((card) => {
       card.element.classList.remove(`hide-by-search`);
