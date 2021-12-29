@@ -1,0 +1,13 @@
+.trees-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.tree-image {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: hsla(49, 96%, 91%, 50%);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
