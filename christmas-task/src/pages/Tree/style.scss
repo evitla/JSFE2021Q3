@@ -18,8 +18,12 @@
     background-size: cover;
     background-position: center;
 
-    img {
+    .main-tree-image {
       width: 72%;
+    }
+
+    .toy-image-for-tree {
+      position: absolute;
     }
   }
 
