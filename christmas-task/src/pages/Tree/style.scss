@@ -1,5 +1,6 @@
 .tree-page {
   display: flex;
+  column-gap: 2rem;
 
   .left-side {
     width: 25%;
@@ -8,6 +9,13 @@
   .main-tree {
     width: 50%;
     text-align: center;
+    background-image: url('../../assets/bg/1.jpg');
+    background-size: cover;
+    background-position: center;
+
+    img {
+      width: 72%;
+    }
   }
 
   .toys {
@@ -19,10 +27,14 @@
 
     .toy-card {
       text-align: center;
-      padding: 0.5rem;
+      padding: 10%;
       border-radius: 0.5rem;
       border: none;
       background-color: hsla(49, 96%, 91%, 50%);
+
+      img {
+        width: 100%;
+      }
     }
   }
 }
