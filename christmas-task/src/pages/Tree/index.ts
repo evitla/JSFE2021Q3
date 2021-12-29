@@ -30,6 +30,7 @@ class Tree extends BasePage {
     super(pageName);
 
     this.mainTreeImage.src = this.treesContainer.trees[0].src;
+    this.mainTreeImage.className = 'main-tree-image';
     this.mainTreeImage.alt = 'main-tree';
   }
 
@@ -51,6 +52,18 @@ class Tree extends BasePage {
     this.bgsContainer.afterRender((target: HTMLImageElement) => {
       this.mainTree.element.style.backgroundImage = `url(${target.src})`;
     });
+
+    this.toys.element.onmousedown = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('img');
+      if (target === null) return;
+
+      this.mainTreeImage.ondrop = (ev: DragEvent) =>
+        this.dropHandler(ev, target);
+
+      this.mainTreeImage.ondragover = (ev: DragEvent) => {
+        ev.preventDefault();
+      };
+    };
   }
 
   private renderFavoriteToys(toyCards: ToyCard[]) {
@@ -71,6 +84,20 @@ class Tree extends BasePage {
       })
     );
     this.rightSide.element.appendChild(this.toys.element);
+  }
+
+  private dropHandler(e: DragEvent, target: HTMLImageElement) {
+    e.preventDefault();
+    const x = e.clientX;
+    const y = e.clientY;
+    const copy = new Image();
+    copy.className = `${target.className} copy`;
+    copy.src = target.src;
+    copy.alt = target.alt;
+    copy.style.left = `${x}px`;
+    copy.style.top = `${y}px`;
+    copy.style.transform = 'translate(-50%, -50%)';
+    this.mainTree.element.appendChild(copy);
   }
 }
 
