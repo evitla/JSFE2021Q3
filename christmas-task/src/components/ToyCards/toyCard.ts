@@ -8,10 +8,6 @@ class ToyCard extends BaseComponent {
 
   props: IToyProps;
 
-  toyImage = new Image();
-
-  toyAmount = new BaseComponent('span', ['toy-amount']);
-
   constructor(parentNode: HTMLElement, props: IToyProps) {
     super('div', ['toy-card']);
 
@@ -19,18 +15,19 @@ class ToyCard extends BaseComponent {
 
     this.parentNode = parentNode;
     this.props = { ...props, personalFavorite: false };
-
-    this.toyImage.src = this.props.image;
-    this.toyImage.alt = 'toy';
-    this.toyAmount.element.innerText = this.props.count.toString();
   }
 
   render(forTreePage = false): void {
     if (forTreePage) {
-      this.toyImage.className = 'toy-image-for-tree';
-      this.toyImage.draggable = true;
-
-      this.element.append(this.toyImage, this.toyAmount.element);
+      this.element.innerHTML = `
+        <img
+          class="toy-image"
+          src=${this.props.image}
+          alt="toy"
+          draggable="true"
+        >
+        <span class="toy-amount">${this.props.count}</span>
+      `;
       return;
     }
 
