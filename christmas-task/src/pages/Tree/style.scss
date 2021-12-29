@@ -1,12 +1,24 @@
 .tree-page {
   display: flex;
 
+  .left-side {
+    width: 25%;
+  }
+
+  .main-tree {
+    width: 50%;
+    text-align: center;
+  }
+
   .toys {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
+    width: 25%;
+    height: 100%;
 
     .toy-card {
+      text-align: center;
       padding: 0.5rem;
       border-radius: 0.5rem;
       border: none;
