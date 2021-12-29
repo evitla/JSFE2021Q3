@@ -1,0 +1,13 @@
+.bgs-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.bg-image {
+  width: 100%;
+  height: clamp(24px, 100vw / 768 * 36, 72px);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid var(--neutral-color-100);
+}
