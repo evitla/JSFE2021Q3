@@ -14,6 +14,8 @@ const images = [tree1, tree2, tree3, tree4, tree5, tree6];
 class Trees extends BaseComponent {
   parentNode: HTMLElement;
 
+  treesContainer = new BaseComponent('div', ['trees-container']);
+
   trees = images.map((image) => {
     const img = new Image();
     img.src = image;
@@ -23,13 +25,20 @@ class Trees extends BaseComponent {
   });
 
   constructor(parentNode: HTMLElement) {
-    super('div', ['trees-container']);
+    super('div', ['trees']);
 
     this.parentNode = parentNode;
   }
 
   render(): void {
-    this.element.append(...this.trees);
+    this.element.innerHTML = `
+      <h3 class="tree-title">
+        Choose Tree
+      </h3>
+    `;
+    this.treesContainer.element.append(...this.trees);
+
+    this.element.appendChild(this.treesContainer.element);
     this.parentNode.appendChild(this.element);
   }
 

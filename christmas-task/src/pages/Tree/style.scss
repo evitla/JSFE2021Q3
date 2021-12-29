@@ -3,6 +3,11 @@
   column-gap: 2rem;
 
   .left-side {
+    display: grid;
+    width: 25%;
+  }
+
+  .right-side {
     width: 25%;
   }
 
@@ -22,8 +27,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
-    width: 25%;
-    height: 100%;
 
     .toy-card {
       text-align: center;
@@ -37,4 +40,9 @@
       }
     }
   }
+}
+
+.tree-title {
+  color: var(--neutral-color-100);
+  margin: 1rem 0 0.5rem;
 }

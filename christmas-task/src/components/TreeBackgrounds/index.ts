@@ -17,6 +17,8 @@ const images = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9];
 class TreeBackgrounds extends BaseComponent {
   parentNode: HTMLElement;
 
+  bgsContainer = new BaseComponent('div', ['bgs-container']);
+
   bgs = images.map((image) => {
     const img = new Image();
     img.src = image;
@@ -26,13 +28,20 @@ class TreeBackgrounds extends BaseComponent {
   });
 
   constructor(parentNode: HTMLElement) {
-    super('div', ['bgs-container']);
+    super('div', ['bgs']);
 
     this.parentNode = parentNode;
   }
 
   render(): void {
-    this.element.append(...this.bgs);
+    this.element.innerHTML = `
+      <h3 class="tree-title">
+        Choose Background
+      </h3>
+    `;
+
+    this.bgsContainer.element.append(...this.bgs);
+    this.element.appendChild(this.bgsContainer.element);
     this.parentNode.appendChild(this.element);
   }
 

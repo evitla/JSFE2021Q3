@@ -16,6 +16,8 @@ class Tree extends BasePage {
 
   mainTree = new BaseComponent('div', ['main-tree']);
 
+  rightSide = new BaseComponent('div', ['right-side']);
+
   mainTreeImage = new Image();
 
   treesContainer = new Trees(this.leftSide.element);
@@ -37,6 +39,7 @@ class Tree extends BasePage {
     this.mainTree.element.appendChild(this.mainTreeImage);
     this.element.appendChild(this.leftSide.element);
     this.element.appendChild(this.mainTree.element);
+    this.element.appendChild(this.rightSide.element);
     this.renderFavoriteToys(toyCards);
   }
 
@@ -51,6 +54,12 @@ class Tree extends BasePage {
   }
 
   private renderFavoriteToys(toyCards: ToyCard[]) {
+    this.rightSide.element.innerHTML = `
+      <h3 class="tree-title">
+        Toys
+      </h3>
+    `;
+
     const cards = toyCards.slice(0, MAX_TOYS);
 
     cards.forEach((card) => card.render(true));
@@ -63,7 +72,7 @@ class Tree extends BasePage {
         (c) => c.element
       )
     );
-    this.element.appendChild(this.toys.element);
+    this.rightSide.element.appendChild(this.toys.element);
   }
 }
 
