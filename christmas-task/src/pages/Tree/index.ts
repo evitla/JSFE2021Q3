@@ -1,6 +1,7 @@
 import BasePage from '../BasePage';
 import BaseComponent from '../../components/BaseComponent';
 import ToyCard from '../../components/ToyCards/toyCard';
+import TreeBackgrounds from '../../components/TreeBackgrounds';
 import Trees from '../../components/Trees';
 import { PageClassNameType } from '../../types';
 
@@ -19,6 +20,8 @@ class Tree extends BasePage {
 
   treesContainer = new Trees(this.leftSide.element);
 
+  bgsContainer = new TreeBackgrounds(this.leftSide.element);
+
   toys = new BaseComponent('div', ['toys']);
 
   constructor(pageName: PageClassNameType) {
@@ -30,6 +33,7 @@ class Tree extends BasePage {
 
   async render(toyCards: ToyCard[]): Promise<void> {
     this.treesContainer.render();
+    this.bgsContainer.render();
     this.mainTree.element.appendChild(this.mainTreeImage);
     this.element.appendChild(this.leftSide.element);
     this.element.appendChild(this.mainTree.element);
@@ -39,6 +43,10 @@ class Tree extends BasePage {
   async afterRender(): Promise<void> {
     this.treesContainer.afterRender((target: HTMLImageElement) => {
       this.mainTreeImage.src = target.src;
+    });
+
+    this.bgsContainer.afterRender((target: HTMLImageElement) => {
+      this.mainTree.element.style.backgroundImage = `url(${target.src})`;
     });
   }
 
