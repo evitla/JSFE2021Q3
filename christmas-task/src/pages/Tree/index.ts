@@ -60,17 +60,15 @@ class Tree extends BasePage {
       </h3>
     `;
 
-    const cards = toyCards.slice(0, MAX_TOYS);
+    this.favoriteCards = toyCards.some((card) => card.props.personalFavorite)
+      ? toyCards.filter((card) => card.props.personalFavorite)
+      : toyCards.slice(0, MAX_TOYS);
 
-    cards.forEach((card) => card.render(true));
-
-    const favoriteCards = toyCards.filter(
-      (card) => card.props.personalFavorite
-    );
     this.toys.element.append(
-      ...(favoriteCards.length !== 0 ? favoriteCards : cards).map(
-        (c) => c.element
-      )
+      ...this.favoriteCards.map((card) => {
+        card.render(true);
+        return card.element;
+      })
     );
     this.rightSide.element.appendChild(this.toys.element);
   }
