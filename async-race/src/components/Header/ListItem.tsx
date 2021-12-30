@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { NavLinks } from '../../constants';
 import { StyledListItem } from '../../styles/components';
 
 const ListItem = ({ item, active, onSelect }: ListProps) => {
   return (
     <StyledListItem active={active} onClick={onSelect}>
-      {item}
+      <Link to={NavLinks[item]}>{item}</Link>
     </StyledListItem>
   );
 };
