@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Logo from './Logo';
 import Navbar from './Navbar';
@@ -10,7 +11,9 @@ import logo from '../../assets/images/logo.svg';
 const Header = () => (
   <header>
     <HeaderWrapper>
-      <Logo logo={logo} />
+      <Link to="/">
+        <Logo logo={logo} />
+      </Link>
       <Navbar items={['Race', 'Winners']} />
     </HeaderWrapper>
   </header>
