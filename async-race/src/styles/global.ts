@@ -14,6 +14,11 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.bg};
     color: ${({ theme }) => theme.colors.font};
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export default GlobalStyles;
