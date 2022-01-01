@@ -16,6 +16,15 @@ const Button = styled.button`
   width: 100%;
   font-family: inherit;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    box-shadow: none !important;
+    animation: disabled-button 0.24s forwards;
+  }
+
   &:active {
     transform: translateY(3px);
   }
@@ -31,6 +40,36 @@ const Button = styled.button`
 
     &:active {
       box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.primary[140]};
+    }
+
+    &:disabled {
+      background: ${({ theme }) => theme.colors.primary[100]};
+      box-shadow: 0 3px 0 0 ${({ theme }) => theme.colors.primary[140]} !important;
+      color: ${({ theme }) => theme.colors.primary[140]};
+    }
+  }
+
+  @keyframes disabled-button {
+    0% {
+      transform: translateX(0);
+    }
+    14% {
+      transform: translateX(-2px);
+    }
+    28% {
+      transform: translateX(0);
+    }
+    42% {
+      transform: translateX(2px);
+    }
+    56% {
+      transform: translateX(0);
+    }
+    84% {
+      transform: translateX(-2px);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 `;
