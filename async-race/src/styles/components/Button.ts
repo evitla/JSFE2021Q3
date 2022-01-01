@@ -5,7 +5,7 @@ const Button = styled.button`
   appearance: none;
   margin: 0 auto;
   border: none;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
   padding: 0.5em 1em;
   border-radius: 4px;
@@ -26,7 +26,7 @@ const Button = styled.button`
     color: ${({ theme }) => theme.colors.bg};
 
     &:hover {
-      background: ${({ theme }) => theme.colors.primary[110]};
+      box-shadow: 0 0 3px 2px ${({ theme }) => theme.colors.primary[130]};
     }
 
     &:active {
