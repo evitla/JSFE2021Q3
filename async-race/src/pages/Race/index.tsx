@@ -1,5 +1,12 @@
 import React from 'react';
 
-const Race = () => <h2>Race Content</h2>;
+import CarForm from '../../components/Race/CarForm';
+
+const Race = () => (
+  <>
+    <CarForm content="Create" />
+    <CarForm content="Update" isDisabled={true} />
+  </>
+);
 
 export default Race;
