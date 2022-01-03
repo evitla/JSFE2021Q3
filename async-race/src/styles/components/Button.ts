@@ -21,7 +21,6 @@ const Button = styled.button`
   }
 
   &:disabled:hover {
-    box-shadow: none !important;
     animation: disabled-button 0.24s forwards;
   }
 
@@ -29,14 +28,18 @@ const Button = styled.button`
     transform: translateY(3px);
   }
 
+  &.medium-button {
+    padding: 0.25em 0.5em;
+  }
+
+  &.small-button {
+    padding: 0.25em;
+  }
+
   &.button-primary {
     box-shadow: 0 3px 0 0 ${({ theme }) => theme.colors.primary[140]};
     background: ${({ theme }) => theme.colors.primary[130]};
     color: ${({ theme }) => theme.colors.bg};
-
-    &:hover {
-      box-shadow: 0 0 3px 2px ${({ theme }) => theme.colors.primary[130]};
-    }
 
     &:active {
       box-shadow: 0 0 0 0 ${({ theme }) => theme.colors.primary[140]};
@@ -44,8 +47,28 @@ const Button = styled.button`
 
     &:disabled {
       background: ${({ theme }) => theme.colors.primary[100]};
-      box-shadow: 0 3px 0 0 ${({ theme }) => theme.colors.primary[140]} !important;
+      box-shadow: 0 3px 0 0 ${({ theme }) => theme.colors.primary[140]};
       color: ${({ theme }) => theme.colors.primary[140]};
+    }
+  }
+
+  &.button-success {
+    box-shadow: 0 3px 0 0 ${({ theme }) => theme.colors.primary[310]};
+    background: ${({ theme }) => theme.colors.primary[300]};
+    color: ${({ theme }) => theme.colors.font};
+
+    &:disabled {
+      opacity: 0.8;
+    }
+  }
+
+  &.button-danger {
+    box-shadow: 0 3px 0 0 ${({ theme }) => theme.colors.primary[210]};
+    background: ${({ theme }) => theme.colors.primary[200]};
+    color: ${({ theme }) => theme.colors.font};
+
+    &:disabled {
+      opacity: 0.8;
     }
   }
 
