@@ -8,16 +8,18 @@ import { StyledCar } from '../../styles/components';
 const Car = ({
   carProps,
   onSelectCar,
+  onRemoveCar,
 }: {
   carProps: ICarProps;
   onSelectCar: () => void;
+  onRemoveCar: () => void;
 }) => {
   return (
     <StyledCar>
       <CarController />
       <figure>
         <CarIcon color={carProps.color} />
-        <CarTooltip onSelect={onSelectCar} />
+        <CarTooltip onSelect={onSelectCar} onRemove={onRemoveCar} />
         <span>{carProps.model}</span>
       </figure>
     </StyledCar>

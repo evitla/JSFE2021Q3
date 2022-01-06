@@ -41,6 +41,10 @@ const Race = () => {
     }
   };
 
+  const handleRemoveCar = (id: number) => {
+    setCars(cars.filter((car) => car.id !== id));
+  };
+
   return (
     <>
       <CarForm content="Create" />
@@ -54,6 +58,7 @@ const Race = () => {
           key={car.id}
           carProps={car}
           onSelectCar={() => handleSelectCar(car.id)}
+          onRemoveCar={() => handleRemoveCar(car.id)}
         />
       ))}
     </>

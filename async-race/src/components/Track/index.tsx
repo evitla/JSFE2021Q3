@@ -6,12 +6,18 @@ import { StyledTrack } from '../../styles/components';
 const Track = ({
   carProps,
   onSelectCar,
+  onRemoveCar,
 }: {
   carProps: ICarProps;
   onSelectCar: () => void;
+  onRemoveCar: () => void;
 }) => (
   <StyledTrack>
-    <Car carProps={carProps} onSelectCar={onSelectCar} />
+    <Car
+      carProps={carProps}
+      onSelectCar={onSelectCar}
+      onRemoveCar={onRemoveCar}
+    />
   </StyledTrack>
 );
 
