@@ -43,13 +43,13 @@ const CarForm = styled.form`
 
   input[type='color'] {
     width: 12%;
-    border: 1px solid ${({ theme }) => theme.colors.primary[300]};
+    border: 1px solid ${({ theme }) => theme.colors.picker};
     cursor: pointer;
 
     &:hover,
     &:focus,
     &:active {
-      box-shadow: 0 0 3px 2px ${({ theme }) => theme.colors.primary[300]};
+      box-shadow: 0 0 3px 2px ${({ theme }) => theme.colors.picker};
       outline: none;
     }
 
