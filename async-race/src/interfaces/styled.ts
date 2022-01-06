@@ -16,5 +16,6 @@ export interface ITheme {
 
     bg: string;
     font: string;
+    picker: string;
   };
 }
