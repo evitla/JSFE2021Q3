@@ -18,5 +18,6 @@ export const baseTheme: ITheme = {
 
     bg: '#070417',
     font: 'white',
+    picker: '#29a847',
   },
 };
