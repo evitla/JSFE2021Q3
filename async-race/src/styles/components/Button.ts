@@ -20,10 +20,6 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 
-  &:disabled:hover {
-    animation: disabled-button 0.24s forwards;
-  }
-
   &:active {
     transform: translateY(3px);
   }
@@ -69,30 +65,6 @@ const Button = styled.button`
 
     &:disabled {
       opacity: 0.8;
-    }
-  }
-
-  @keyframes disabled-button {
-    0% {
-      transform: translateX(0);
-    }
-    14% {
-      transform: translateX(-2px);
-    }
-    28% {
-      transform: translateX(0);
-    }
-    42% {
-      transform: translateX(2px);
-    }
-    56% {
-      transform: translateX(0);
-    }
-    84% {
-      transform: translateX(-2px);
-    }
-    100% {
-      transform: translateX(0);
     }
   }
 `;
