@@ -2,27 +2,24 @@ import React from 'react';
 import { StyledButton, StyledCarForm } from '../../styles/components';
 import { baseTheme } from '../../styles/theme';
 
-const initialFormData: { model: string; color: string; modelValid: boolean } = {
-  model: '',
-  color: baseTheme.colors.primary[300],
-  modelValid: true,
+const initialFormData: { model: string | null; color: string } = {
+  model: null,
+  color: baseTheme.colors.picker,
 };
 
 const CarForm = ({
   content,
   isDisabled = false,
-}: {
-  content: string;
-  isDisabled?: boolean;
-}) => {
+  onUpdateCar = () => {},
+}: CarFormProps) => {
   const [state, setState] = React.useState(initialFormData);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
+    console.log(value);
 
-    name === 'model' && (state.modelValid = value !== '');
-    name === 'color' && (baseTheme.colors.primary[300] = value);
+    name === 'color' && (baseTheme.colors.picker = value);
 
     setState({ ...state, [name]: value });
   };
@@ -30,14 +27,16 @@ const CarForm = ({
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
 
-    if (state.model === '') {
-      setState({ ...initialFormData, modelValid: false });
+    if (!state.model) {
+      setState({ ...initialFormData, model: '' });
       return;
     }
 
+    onUpdateCar(state.model, state.color);
+
     console.log(state.model);
     console.log(state.color);
-    baseTheme.colors.primary[300] = initialFormData.color;
+    baseTheme.colors.picker = initialFormData.color;
     setState(initialFormData);
   };
 
@@ -46,13 +45,13 @@ const CarForm = ({
       <input
         type="text"
         name="model"
-        className={!state.modelValid ? 'not-valid' : ''}
-        value={state.model}
+        className={state.model === '' ? 'not-valid' : ''}
+        value={state.model || ''}
         placeholder="Enter a car model"
         disabled={isDisabled}
         onChange={handleInputChange}
       />
-      {!state.modelValid && <span>Not Valid</span>}
+      {state.model === '' && <span>Not Valid</span>}
       <input
         type="color"
         name="color"
@@ -73,3 +72,9 @@ const CarForm = ({
 };
 
 export default CarForm;
+
+type CarFormProps = {
+  content: string;
+  isDisabled?: boolean;
+  onUpdateCar?: (model: string, color: string) => void;
+};
