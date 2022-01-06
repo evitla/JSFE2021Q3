@@ -14,6 +14,20 @@ const Race = () => {
   const [cars, setCars] = React.useState(carsData);
   const [selectedCar, setSelectedCar] = React.useState<ICarProps | null>(null);
 
+  const handleCreate = (model: string, color: string) => {
+    console.log('create');
+    const lastId = carsData[carsData.length - 1].id;
+
+    setCars([
+      ...carsData,
+      {
+        id: lastId + 1,
+        model,
+        color,
+      },
+    ]);
+  };
+
   const handleUpdate = (model: string, color: string) => {
     const selectedCarIndex = cars.findIndex(
       (car) => car.id === selectedCar?.id,
@@ -47,7 +61,7 @@ const Race = () => {
 
   return (
     <>
-      <CarForm content="Create" />
+      <CarForm content="Create" onCreateCar={handleCreate} />
       <CarForm
         content="Update"
         isDisabled={selectedCar === null}

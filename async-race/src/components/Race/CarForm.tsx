@@ -10,6 +10,7 @@ const initialFormData: { model: string | null; color: string } = {
 const CarForm = ({
   content,
   isDisabled = false,
+  onCreateCar = () => {},
   onUpdateCar = () => {},
 }: CarFormProps) => {
   const [state, setState] = React.useState(initialFormData);
@@ -17,7 +18,6 @@ const CarForm = ({
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(value);
 
     name === 'color' && (baseTheme.colors.picker = value);
 
@@ -32,6 +32,7 @@ const CarForm = ({
       return;
     }
 
+    onCreateCar(state.model, state.color);
     onUpdateCar(state.model, state.color);
 
     console.log(state.model);
@@ -76,5 +77,6 @@ export default CarForm;
 type CarFormProps = {
   content: string;
   isDisabled?: boolean;
+  onCreateCar?: (model: string, color: string) => void;
   onUpdateCar?: (model: string, color: string) => void;
 };
