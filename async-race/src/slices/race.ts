@@ -23,8 +23,12 @@ const raceSlice = createSlice({
       );
       state.cars[selectedCarIndex] = payload;
     },
+
+    deleteCarById: (state, { payload }: PayloadAction<number>) => {
+      state.cars = state.cars.filter((car) => car.id !== payload);
+    },
   },
 });
 
 export const raceReducer = raceSlice.reducer;
-export const { addCar, updateCar } = raceSlice.actions;
+export const { addCar, updateCar, deleteCarById } = raceSlice.actions;
