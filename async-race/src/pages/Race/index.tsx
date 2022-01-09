@@ -5,30 +5,35 @@ import CarForm from '../../components/Race/CarForm';
 import Track from '../../components/Track';
 
 import {
+  onSaveCars,
   onGetCar,
-  onAddCar,
+  onCreateCar,
   onUpdateCar,
   onDeleteCar,
 } from '../../slices/race';
 import { TStore } from '../../store';
+import { getCars, createCar } from '../../utils';
+
+const URL = 'http://localhost:3000/garage';
 
 const Race = () => {
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    getCars(URL).then((data) => dispatch(onSaveCars(data)));
+  }, [dispatch]);
 
   const { cars, selectedCar } = useSelector(
     (state: TStore) => state.raceReducer,
   );
 
-  const handleCreate = (model: string, color: string) => {
-    const lastId = cars[cars.length - 1].id;
-    const newCar = { id: lastId + 1, model, color };
-
-    dispatch(onAddCar(newCar));
+  const handleCreate = (name: string, color: string) => {
+    createCar(URL, { name, color }).then((data) => dispatch(onCreateCar(data)));
   };
 
-  const handleUpdate = (model: string, color: string) => {
+  const handleUpdate = (name: string, color: string) => {
     if (selectedCar !== null) {
-      const updatedCar = { ...selectedCar, model, color };
+      const updatedCar = { ...selectedCar, name, color };
       dispatch(onUpdateCar(updatedCar));
     }
   };
