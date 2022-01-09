@@ -20,7 +20,7 @@ const Car = ({
       <figure>
         <CarIcon color={carProps.color} />
         <CarTooltip onSelect={onSelectCar} onRemove={onRemoveCar} />
-        <span>{carProps.model}</span>
+        <span>{carProps.name}</span>
       </figure>
     </StyledCar>
   );
