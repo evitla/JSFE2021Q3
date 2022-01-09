@@ -3,17 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CarForm from '../../components/Race/CarForm';
 import Track from '../../components/Track';
-import { ICarProps } from '../../interfaces/CarProps';
 
-import { addCar, updateCar, deleteCarById } from '../../slices/race';
+import {
+  addCar,
+  updateCar,
+  deleteCarById,
+  selectCarById,
+} from '../../slices/race';
 import { TStore } from '../../store';
 
 const Race = () => {
   const dispatch = useDispatch();
 
-  const { cars } = useSelector((state: TStore) => state.raceReducer);
-
-  const [selectedCar, setSelectedCar] = React.useState<ICarProps | null>(null);
+  const { cars, selectedCar } = useSelector(
+    (state: TStore) => state.raceReducer,
+  );
 
   const handleCreate = (model: string, color: string) => {
     const lastId = cars[cars.length - 1].id;
@@ -30,10 +34,7 @@ const Race = () => {
   };
 
   const handleSelectCar = (id: number) => {
-    const selected = cars.find((car) => car.id === id);
-    if (selected !== undefined) {
-      setSelectedCar(selected);
-    }
+    dispatch(selectCarById(id));
   };
 
   const handleRemove = (id: number) => {
