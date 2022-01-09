@@ -17,30 +17,30 @@ const raceSlice = createSlice({
   name: 'race',
   initialState: initialState,
   reducers: {
-    addCar: (state, { payload }: PayloadAction<ICarProps>) => {
+    onGetCar: (state, { payload }: PayloadAction<number>) => {
+      const car = state.cars.find((car) => car.id === payload);
+      if (car !== undefined) {
+        state.selectedCar = car;
+      }
+    },
+
+    onAddCar: (state, { payload }: PayloadAction<ICarProps>) => {
       state.cars.push(payload);
     },
 
-    updateCar: (state, { payload }: PayloadAction<ICarProps>) => {
+    onUpdateCar: (state, { payload }: PayloadAction<ICarProps>) => {
       const selectedCarIndex = state.cars.findIndex(
         (car) => car.id === payload.id,
       );
       state.cars[selectedCarIndex] = payload;
     },
 
-    deleteCarById: (state, { payload }: PayloadAction<number>) => {
+    onDeleteCar: (state, { payload }: PayloadAction<number>) => {
       state.cars = state.cars.filter((car) => car.id !== payload);
-    },
-
-    selectCarById: (state, { payload }: PayloadAction<number>) => {
-      const selectedCar = state.cars.find((car) => car.id === payload);
-      if (selectedCar !== undefined) {
-        state.selectedCar = selectedCar;
-      }
     },
   },
 });
 
 export const raceReducer = raceSlice.reducer;
-export const { addCar, updateCar, deleteCarById, selectCarById } =
+export const { onGetCar, onAddCar, onUpdateCar, onDeleteCar } =
   raceSlice.actions;

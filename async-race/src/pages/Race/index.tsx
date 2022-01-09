@@ -5,10 +5,10 @@ import CarForm from '../../components/Race/CarForm';
 import Track from '../../components/Track';
 
 import {
-  addCar,
-  updateCar,
-  deleteCarById,
-  selectCarById,
+  onGetCar,
+  onAddCar,
+  onUpdateCar,
+  onDeleteCar,
 } from '../../slices/race';
 import { TStore } from '../../store';
 
@@ -23,22 +23,22 @@ const Race = () => {
     const lastId = cars[cars.length - 1].id;
     const newCar = { id: lastId + 1, model, color };
 
-    dispatch(addCar(newCar));
+    dispatch(onAddCar(newCar));
   };
 
   const handleUpdate = (model: string, color: string) => {
     if (selectedCar !== null) {
       const updatedCar = { ...selectedCar, model, color };
-      dispatch(updateCar(updatedCar));
+      dispatch(onUpdateCar(updatedCar));
     }
   };
 
   const handleSelect = (id: number) => {
-    dispatch(selectCarById(id));
+    dispatch(onGetCar(id));
   };
 
   const handleRemove = (id: number) => {
-    dispatch(deleteCarById(id));
+    dispatch(onDeleteCar(id));
   };
 
   return (
