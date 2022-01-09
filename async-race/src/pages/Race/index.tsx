@@ -1,50 +1,31 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CarForm from '../../components/Race/CarForm';
 import Track from '../../components/Track';
 import { ICarProps } from '../../interfaces/CarProps';
 
-const carsData: ICarProps[] = [
-  { id: 1, model: 'BMW', color: 'green' },
-  { id: 2, model: 'Ford', color: 'white' },
-  { id: 3, model: 'Kia', color: 'red' },
-];
+import { addCar, updateCar, deleteCarById } from '../../slices/race';
+import { TStore } from '../../store';
 
 const Race = () => {
-  const [cars, setCars] = React.useState(carsData);
+  const dispatch = useDispatch();
+
+  const { cars } = useSelector((state: TStore) => state.raceReducer);
+
   const [selectedCar, setSelectedCar] = React.useState<ICarProps | null>(null);
 
   const handleCreate = (model: string, color: string) => {
-    console.log('create');
-    const lastId = carsData[carsData.length - 1].id;
+    const lastId = cars[cars.length - 1].id;
+    const newCar = { id: lastId + 1, model, color };
 
-    setCars([
-      ...carsData,
-      {
-        id: lastId + 1,
-        model,
-        color,
-      },
-    ]);
+    dispatch(addCar(newCar));
   };
 
   const handleUpdate = (model: string, color: string) => {
-    const selectedCarIndex = cars.findIndex(
-      (car) => car.id === selectedCar?.id,
-    );
-
-    if (selectedCarIndex !== -1) {
-      const updatedCar = cars[selectedCarIndex];
-      updatedCar.model = model;
-      updatedCar.color = color;
-
-      setCars([
-        ...cars.slice(0, selectedCarIndex),
-        updatedCar,
-        ...cars.slice(selectedCarIndex + 1),
-      ]);
-
-      setSelectedCar(null);
+    if (selectedCar !== null) {
+      const updatedCar = { ...selectedCar, model, color };
+      dispatch(updateCar(updatedCar));
     }
   };
 
@@ -55,8 +36,8 @@ const Race = () => {
     }
   };
 
-  const handleRemoveCar = (id: number) => {
-    setCars(cars.filter((car) => car.id !== id));
+  const handleRemove = (id: number) => {
+    dispatch(deleteCarById(id));
   };
 
   return (
@@ -72,7 +53,7 @@ const Race = () => {
           key={car.id}
           carProps={car}
           onSelectCar={() => handleSelectCar(car.id)}
-          onRemoveCar={() => handleRemoveCar(car.id)}
+          onRemoveCar={() => handleRemove(car.id)}
         />
       ))}
     </>
