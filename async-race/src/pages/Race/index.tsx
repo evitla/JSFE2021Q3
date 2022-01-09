@@ -33,7 +33,7 @@ const Race = () => {
     }
   };
 
-  const handleSelectCar = (id: number) => {
+  const handleSelect = (id: number) => {
     dispatch(selectCarById(id));
   };
 
@@ -53,7 +53,7 @@ const Race = () => {
         <Track
           key={car.id}
           carProps={car}
-          onSelectCar={() => handleSelectCar(car.id)}
+          onSelectCar={() => handleSelect(car.id)}
           onRemoveCar={() => handleRemove(car.id)}
         />
       ))}
