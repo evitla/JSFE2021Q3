@@ -24,7 +24,7 @@ const raceSlice = createSlice({
       }
     },
 
-    onAddCar: (state, { payload }: PayloadAction<ICarProps>) => {
+    onCreateCar: (state, { payload }: PayloadAction<ICarProps>) => {
       state.cars.push(payload);
     },
 
@@ -42,5 +42,5 @@ const raceSlice = createSlice({
 });
 
 export const raceReducer = raceSlice.reducer;
-export const { onSaveCars, onGetCar, onAddCar, onUpdateCar, onDeleteCar } =
+export const { onSaveCars, onGetCar, onCreateCar, onUpdateCar, onDeleteCar } =
   raceSlice.actions;
