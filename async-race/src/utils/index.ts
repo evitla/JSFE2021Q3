@@ -30,3 +30,8 @@ export const updateCar = async (
 
   return await response.json();
 };
+
+export const deleteCar = async (url: string, id: number) => {
+  const response = await fetch(`${url}/${id}`, { method: 'DELETE' });
+  return await response.json();
+};

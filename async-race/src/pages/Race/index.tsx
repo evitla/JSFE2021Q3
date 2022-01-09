@@ -11,7 +11,7 @@ import {
   onDeleteCar,
 } from '../../slices/race';
 import { TStore } from '../../store';
-import { createCar, updateCar } from '../../utils';
+import { createCar, deleteCar, updateCar } from '../../utils';
 
 const URL = 'http://localhost:3000/garage';
 
@@ -37,7 +37,7 @@ const Race = () => {
   };
 
   const handleRemove = (id: number) => {
-    dispatch(onDeleteCar(id));
+    deleteCar(URL, id).then((_) => dispatch(onDeleteCar(id)));
   };
 
   return (
