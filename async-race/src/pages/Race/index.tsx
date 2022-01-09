@@ -4,14 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import CarForm from '../../components/Race/CarForm';
 import Track from '../../components/Track';
 
-import {
-  onGetCar,
-  onCreateCar,
-  onUpdateCar,
-  onDeleteCar,
-} from '../../slices/race';
+import { onCreateCar, onUpdateCar } from '../../slices/race';
 import { TStore } from '../../store';
-import { createCar, deleteCar, updateCar } from '../../utils';
+import { createCar, updateCar } from '../../utils';
 
 const URL = 'http://localhost:3000/garage';
 
@@ -32,14 +27,6 @@ const Race = () => {
     }
   };
 
-  const handleSelect = (id: number) => {
-    dispatch(onGetCar(id));
-  };
-
-  const handleRemove = (id: number) => {
-    deleteCar(URL, id).then((_) => dispatch(onDeleteCar(id)));
-  };
-
   return (
     <>
       <CarForm content="Create" onCreateCar={handleCreate} />
@@ -49,12 +36,7 @@ const Race = () => {
         onUpdateCar={handleUpdate}
       />
       {cars.map((car) => (
-        <Track
-          key={car.id}
-          carProps={car}
-          onSelectCar={() => handleSelect(car.id)}
-          onRemoveCar={() => handleRemove(car.id)}
-        />
+        <Track key={car.id} carProps={car} />
       ))}
     </>
   );
