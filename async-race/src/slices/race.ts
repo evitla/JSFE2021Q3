@@ -16,8 +16,15 @@ const raceSlice = createSlice({
     addCar: (state, { payload }: PayloadAction<ICarProps>) => {
       state.cars.push(payload);
     },
+
+    updateCar: (state, { payload }: PayloadAction<ICarProps>) => {
+      const selectedCarIndex = state.cars.findIndex(
+        (car) => car.id === payload.id,
+      );
+      state.cars[selectedCarIndex] = payload;
+    },
   },
 });
 
 export const raceReducer = raceSlice.reducer;
-export const { addCar } = raceSlice.actions;
+export const { addCar, updateCar } = raceSlice.actions;
