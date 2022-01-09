@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICarProps } from '../interfaces/CarProps';
 
 const initialState = {
   cars: [
@@ -11,7 +12,12 @@ const initialState = {
 const raceSlice = createSlice({
   name: 'race',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    addCar: (state, { payload }: PayloadAction<ICarProps>) => {
+      state.cars.push(payload);
+    },
+  },
 });
 
 export const raceReducer = raceSlice.reducer;
+export const { addCar } = raceSlice.actions;
