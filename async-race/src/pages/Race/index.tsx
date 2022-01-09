@@ -12,7 +12,7 @@ import {
   onDeleteCar,
 } from '../../slices/race';
 import { TStore } from '../../store';
-import { getCars, createCar } from '../../utils';
+import { getCars, createCar, updateCar } from '../../utils';
 
 const URL = 'http://localhost:3000/garage';
 
@@ -34,7 +34,7 @@ const Race = () => {
   const handleUpdate = (name: string, color: string) => {
     if (selectedCar !== null) {
       const updatedCar = { ...selectedCar, name, color };
-      dispatch(onUpdateCar(updatedCar));
+      updateCar(URL, updatedCar).then((data) => dispatch(onUpdateCar(data)));
     }
   };
 

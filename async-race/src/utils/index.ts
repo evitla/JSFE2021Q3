@@ -17,3 +17,16 @@ export const createCar = async (
 
   return await response.json();
 };
+
+export const updateCar = async (
+  url: string,
+  updatedCar: ICarProps,
+): Promise<ICarProps> => {
+  const response = await fetch(`${url}/${updatedCar.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(updatedCar),
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  return await response.json();
+};
