@@ -5,24 +5,18 @@ import CarForm from '../../components/Race/CarForm';
 import Track from '../../components/Track';
 
 import {
-  onSaveCars,
   onGetCar,
   onCreateCar,
   onUpdateCar,
   onDeleteCar,
 } from '../../slices/race';
 import { TStore } from '../../store';
-import { getCars, createCar, updateCar } from '../../utils';
+import { createCar, updateCar } from '../../utils';
 
 const URL = 'http://localhost:3000/garage';
 
 const Race = () => {
   const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    getCars(URL).then((data) => dispatch(onSaveCars(data)));
-  }, [dispatch]);
-
   const { cars, selectedCar } = useSelector(
     (state: TStore) => state.raceReducer,
   );
