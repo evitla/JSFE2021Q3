@@ -5,11 +5,7 @@ const initialState: {
   cars: ICarProps[];
   selectedCar: ICarProps | null;
 } = {
-  cars: [
-    { id: 1, model: 'BMW', color: 'green' },
-    { id: 2, model: 'Ford', color: 'white' },
-    { id: 3, model: 'Kia', color: 'red' },
-  ],
+  cars: [],
   selectedCar: null,
 };
 
@@ -17,6 +13,10 @@ const raceSlice = createSlice({
   name: 'race',
   initialState: initialState,
   reducers: {
+    onSaveCars: (state, { payload }: PayloadAction<ICarProps[]>) => {
+      state.cars = payload;
+    },
+
     onGetCar: (state, { payload }: PayloadAction<number>) => {
       const car = state.cars.find((car) => car.id === payload);
       if (car !== undefined) {
@@ -42,5 +42,5 @@ const raceSlice = createSlice({
 });
 
 export const raceReducer = raceSlice.reducer;
-export const { onGetCar, onAddCar, onUpdateCar, onDeleteCar } =
+export const { onSaveCars, onGetCar, onAddCar, onUpdateCar, onDeleteCar } =
   raceSlice.actions;
