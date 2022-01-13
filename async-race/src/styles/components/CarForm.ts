@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CarForm = styled.form`
+const CarForm = styled.form<{ pickedColor: string }>`
   display: flex;
   column-gap: 0.375rem;
   width: 33%;
@@ -43,13 +43,13 @@ const CarForm = styled.form`
 
   input[type='color'] {
     width: 12%;
-    border: 1px solid ${({ theme }) => theme.colors.picker};
+    border: 1px solid ${({ pickedColor }) => pickedColor};
     cursor: pointer;
 
     &:hover,
     &:focus,
     &:active {
-      box-shadow: 0 0 3px 2px ${({ theme }) => theme.colors.picker};
+      box-shadow: 0 0 3px 2px ${({ pickedColor }) => pickedColor};
       outline: none;
     }
 

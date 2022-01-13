@@ -42,7 +42,7 @@ const CarForm = ({
   };
 
   return (
-    <StyledCarForm>
+    <StyledCarForm pickedColor={state.color}>
       <input
         type="text"
         name="model"
