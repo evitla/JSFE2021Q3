@@ -9,7 +9,7 @@ export const getCars = async (url: string): Promise<ICarProps[]> => {
 
 export const createCar = async (
   url: string,
-  car: ICarPropsToCreate,
+  car: ICarPropsToCreate
 ): Promise<ICarProps> => {
   const response = await fetch(url, {
     method: 'POST',
@@ -24,7 +24,7 @@ export const createCar = async (
 
 export const updateCar = async (
   url: string,
-  updatedCar: ICarProps,
+  updatedCar: ICarProps
 ): Promise<ICarProps> => {
   const response = await fetch(`${url}/${updatedCar.id}`, {
     method: 'PUT',
