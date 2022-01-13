@@ -3,8 +3,6 @@ import styled from 'styled-components';
 const CarForm = styled.form<{ pickedColor: string }>`
   display: flex;
   column-gap: 0.375rem;
-  width: 33%;
-  margin-top: 2rem;
 
   input {
     border-radius: 4px;
