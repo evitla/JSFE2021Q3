@@ -9,8 +9,7 @@ import { ICarProps } from '../../interfaces/CarProps';
 import { StyledCar } from '../../styles/components';
 import { onDeleteCar, onGetCar } from '../../slices/race';
 import { deleteCar } from '../../utils';
-
-const URL = 'http://localhost:3000/garage';
+import { URL } from '../../constants';
 
 const Car = ({ carProps }: { carProps: ICarProps }) => {
   const dispatch = useDispatch();

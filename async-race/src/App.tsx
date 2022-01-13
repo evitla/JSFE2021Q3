@@ -7,12 +7,11 @@ import Header from './components/Header';
 import { Race, Winners } from './pages';
 import { onSaveCars } from './slices/race';
 import { getCars } from './utils';
+import { URL } from './constants';
 
 import GlobalStyles from './styles/global';
 import { baseTheme } from './styles/theme';
 import Wrapper from './styles/components/Wrapper';
-
-const URL = 'http://localhost:3000/garage';
 
 function App() {
   const dispatch = useDispatch();

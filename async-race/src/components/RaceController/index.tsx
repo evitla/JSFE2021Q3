@@ -5,8 +5,7 @@ import { onCreateCar, onUpdateCar } from '../../slices/race';
 import { StyledButton, StyledRaceController } from '../../styles/components';
 import { createCar, updateCar } from '../../utils';
 import CarForm from './CarForm';
-
-const URL = 'http://localhost:3000/garage';
+import { URL } from '../../constants';
 
 const RaceController = ({ selectedCar }: { selectedCar: ICarProps | null }) => {
   const dispatch = useDispatch();
