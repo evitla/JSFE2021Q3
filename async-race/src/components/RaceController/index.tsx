@@ -10,14 +10,15 @@ import { URL } from '../../constants';
 const RaceController = ({ selectedCar }: { selectedCar: ICarProps | null }) => {
   const dispatch = useDispatch();
 
-  const handleCreate = (name: string, color: string) => {
-    createCar(URL, { name, color }).then((data) => dispatch(onCreateCar(data)));
+  const handleCreate = async (name: string, color: string) => {
+    const newCar = await createCar(URL, { name, color });
+    dispatch(onCreateCar(newCar));
   };
 
-  const handleUpdate = (name: string, color: string) => {
+  const handleUpdate = async (name: string, color: string) => {
     if (selectedCar !== null) {
-      const updatedCar = { ...selectedCar, name, color };
-      updateCar(URL, updatedCar).then((data) => dispatch(onUpdateCar(data)));
+      const newCar = await updateCar(URL, { ...selectedCar, name, color });
+      dispatch(onUpdateCar(newCar));
     }
   };
 

@@ -18,8 +18,9 @@ const Car = ({ carProps }: { carProps: ICarProps }) => {
     dispatch(onGetCar(id));
   };
 
-  const handleRemove = (id: number) => {
-    deleteCar(URL, id).then(() => dispatch(onDeleteCar(id)));
+  const handleRemove = async (id: number) => {
+    await deleteCar(URL, id);
+    dispatch(onDeleteCar(id));
   };
 
   return (
