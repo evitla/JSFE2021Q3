@@ -20,7 +20,7 @@ const Car = ({ carProps }: { carProps: ICarProps }) => {
   };
 
   const handleRemove = (id: number) => {
-    deleteCar(URL, id).then((_) => dispatch(onDeleteCar(id)));
+    deleteCar(URL, id).then(() => dispatch(onDeleteCar(id)));
   };
 
   return (
