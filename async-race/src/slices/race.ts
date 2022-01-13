@@ -33,6 +33,7 @@ const raceSlice = createSlice({
         (car) => car.id === payload.id
       );
       state.cars[selectedCarIndex] = payload;
+      state.selectedCar = null;
     },
 
     onDeleteCar: (state, { payload }: PayloadAction<number>) => {
