@@ -18,7 +18,7 @@ const raceSlice = createSlice({
     },
 
     onGetCar: (state, { payload }: PayloadAction<number>) => {
-      const car = state.cars.find((car) => car.id === payload);
+      const car = state.cars.find((c) => c.id === payload);
       if (car !== undefined) {
         state.selectedCar = car;
       }
@@ -30,7 +30,7 @@ const raceSlice = createSlice({
 
     onUpdateCar: (state, { payload }: PayloadAction<ICarProps>) => {
       const selectedCarIndex = state.cars.findIndex(
-        (car) => car.id === payload.id,
+        (car) => car.id === payload.id
       );
       state.cars[selectedCarIndex] = payload;
     },

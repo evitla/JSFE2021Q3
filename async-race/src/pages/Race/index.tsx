@@ -13,7 +13,7 @@ const URL = 'http://localhost:3000/garage';
 const Race = () => {
   const dispatch = useDispatch();
   const { cars, selectedCar } = useSelector(
-    (state: TStore) => state.raceReducer,
+    (state: TStore) => state.raceReducer
   );
 
   const handleCreate = (name: string, color: string) => {

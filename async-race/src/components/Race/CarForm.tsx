@@ -19,7 +19,9 @@ const CarForm = ({
     const name = e.target.name;
     const value = e.target.value;
 
-    name === 'color' && (baseTheme.colors.picker = value);
+    if (name === 'color') {
+      baseTheme.colors.picker = value;
+    }
 
     setState({ ...state, [name]: value });
   };
@@ -35,8 +37,6 @@ const CarForm = ({
     onCreateCar(state.model, state.color);
     onUpdateCar(state.model, state.color);
 
-    console.log(state.model);
-    console.log(state.color);
     baseTheme.colors.picker = initialFormData.color;
     setState(initialFormData);
   };
@@ -65,7 +65,8 @@ const CarForm = ({
         className="button-primary"
         type="submit"
         disabled={isDisabled}
-        onClick={handleSubmit}>
+        onClick={handleSubmit}
+      >
         {content}
       </StyledButton>
     </StyledCarForm>

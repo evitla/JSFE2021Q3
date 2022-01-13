@@ -2,12 +2,14 @@ import { ICarProps, ICarPropsToCreate } from '../interfaces/CarProps';
 
 export const getCars = async (url: string): Promise<ICarProps[]> => {
   const response = await fetch(url);
-  return await response.json();
+  const car = await response.json();
+
+  return car;
 };
 
 export const createCar = async (
   url: string,
-  car: ICarPropsToCreate,
+  car: ICarPropsToCreate
 ): Promise<ICarProps> => {
   const response = await fetch(url, {
     method: 'POST',
@@ -15,12 +17,14 @@ export const createCar = async (
     headers: { 'Content-Type': 'application/json' },
   });
 
-  return await response.json();
+  const newCar = await response.json();
+
+  return newCar;
 };
 
 export const updateCar = async (
   url: string,
-  updatedCar: ICarProps,
+  updatedCar: ICarProps
 ): Promise<ICarProps> => {
   const response = await fetch(`${url}/${updatedCar.id}`, {
     method: 'PUT',
@@ -28,10 +32,13 @@ export const updateCar = async (
     headers: { 'Content-Type': 'application/json' },
   });
 
-  return await response.json();
+  const car = await response.json();
+
+  return car;
 };
 
 export const deleteCar = async (url: string, id: number) => {
   const response = await fetch(`${url}/${id}`, { method: 'DELETE' });
-  return await response.json();
+  const car = await response.json();
+  return car;
 };
