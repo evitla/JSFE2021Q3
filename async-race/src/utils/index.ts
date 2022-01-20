@@ -68,3 +68,53 @@ export const generateCars = (count: number): ICarPropsToCreate[] => {
     color: getRandomColor(),
   }));
 };
+
+export const startEngine = async (
+  url: string,
+  carId: number
+): Promise<{ velocity: number; distance: number }> => {
+  const response = await fetch(`${url}/?id=${carId}&status=started`, {
+    method: 'PATCH',
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const stopEngine = async (url: string, carId: number) => {
+  await fetch(`${url}/?id=${carId}&status=stopped`, {
+    method: 'PATCH',
+  });
+};
+
+export const drive = async (url: string, carId: number) => {
+  const response = await fetch(`${url}?id=${carId}&status=drive`, {
+    method: 'PATCH',
+  }).catch();
+
+  return { success: response.ok };
+};
+
+export const animate = (
+  distance: number,
+  duration: number,
+  draw: (progress: number) => void
+) => {
+  let start: number | null = null;
+  const state: { id: number | null } = { id: null };
+
+  const step = (timestamp: number) => {
+    if (start === null) start = timestamp;
+    const time = timestamp - start;
+    const progress = Math.round((time * distance) / duration);
+
+    draw(Math.min(progress, distance));
+
+    if (progress < distance) {
+      state.id = window.requestAnimationFrame(step);
+    }
+  };
+
+  state.id = window.requestAnimationFrame(step);
+
+  return state;
+};
