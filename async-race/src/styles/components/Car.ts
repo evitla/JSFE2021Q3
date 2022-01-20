@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const Car = styled.div`
+const Car = styled.div<{ carWidth: number }>`
   display: flex;
   column-gap: 1rem;
   align-items: center;
 
   figure {
-    width: 100px;
     position: relative;
+    width: ${({ carWidth }) => `${carWidth}px`};
 
     svg:hover + .tooltip {
       display: flex;
