@@ -1,15 +1,23 @@
 import React from 'react';
 import { StyledButton } from '../../styles/components';
 
-const CarContoller = () => {
+const CarController = ({
+  onStart,
+  onStop,
+}: {
+  onStart: () => void;
+  onStop: () => void;
+}) => {
   return (
     <div className="car-controller">
-      <StyledButton className="small-button button-success">Go</StyledButton>
-      <StyledButton className="small-button button-danger" disabled>
+      <StyledButton className="small-button button-success" onClick={onStart}>
+        Go
+      </StyledButton>
+      <StyledButton className="small-button button-danger" onClick={onStop}>
         Stop
       </StyledButton>
     </div>
   );
 };
 
-export default CarContoller;
+export default CarController;
