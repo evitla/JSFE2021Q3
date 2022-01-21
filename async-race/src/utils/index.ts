@@ -3,9 +3,11 @@ import { ICarProps, ICarPropsToCreate } from '../interfaces/CarProps';
 
 export const getCars = async (url: string): Promise<ICarProps[]> => {
   const response = await fetch(url);
-  const car = await response.json();
+  const cars: ICarProps[] = await response.json();
 
-  return car;
+  return cars.map((car) => {
+    return { ...car, velocity: 0, distance: 0 };
+  });
 };
 
 export const createCar = async (

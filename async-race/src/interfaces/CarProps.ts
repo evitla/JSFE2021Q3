@@ -5,4 +5,6 @@ export interface ICarPropsToCreate {
 
 export interface ICarProps extends ICarPropsToCreate {
   id: number;
+  velocity: number;
+  distance: number;
 }
