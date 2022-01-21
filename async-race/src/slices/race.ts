@@ -39,9 +39,31 @@ const raceSlice = createSlice({
     onDeleteCar: (state, { payload }: PayloadAction<number>) => {
       state.cars = state.cars.filter((car) => car.id !== payload);
     },
+
+    onStartEngine: (
+      state,
+      {
+        payload,
+      }: PayloadAction<{ id: number; velocity: number; distance: number }>
+    ) => {
+      const index = state.cars.findIndex((c) => c.id === payload.id);
+      state.cars[index] = { ...state.cars[index], ...payload };
+    },
+
+    onStopEngine: (state, { payload }: PayloadAction<{ id: number }>) => {
+      const index = state.cars.findIndex((c) => c.id === payload.id);
+      state.cars[index] = { ...state.cars[index], velocity: 0, distance: 0 };
+    },
   },
 });
 
 export const raceReducer = raceSlice.reducer;
-export const { onSaveCars, onGetCar, onCreateCar, onUpdateCar, onDeleteCar } =
-  raceSlice.actions;
+export const {
+  onSaveCars,
+  onGetCar,
+  onCreateCar,
+  onUpdateCar,
+  onDeleteCar,
+  onStartEngine,
+  onStopEngine,
+} = raceSlice.actions;
