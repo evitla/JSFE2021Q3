@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/evitla-JSFE2021Q3/static/css/main.ef1c32db.css",
+    "main.js": "/evitla-JSFE2021Q3/static/js/main.2deb355b.js",
+    "static/js/787.67d81210.chunk.js": "/evitla-JSFE2021Q3/static/js/787.67d81210.chunk.js",
+    "static/media/logo.svg": "/evitla-JSFE2021Q3/static/media/logo.d90abdc4cd0963afea19ae3e5f56767e.svg",
+    "index.html": "/evitla-JSFE2021Q3/index.html",
+    "main.2deb355b.js.map": "/evitla-JSFE2021Q3/static/js/main.2deb355b.js.map",
+    "787.67d81210.chunk.js.map": "/evitla-JSFE2021Q3/static/js/787.67d81210.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef1c32db.css",
+    "static/js/main.2deb355b.js"
+  ]
+}
