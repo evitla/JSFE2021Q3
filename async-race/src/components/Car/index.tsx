@@ -7,7 +7,12 @@ import CarTooltip from './CarTooltip';
 import { ICarProps } from '../../interfaces/CarProps';
 
 import { StyledCar } from '../../styles/components';
-import { onDeleteCar, onGetCar } from '../../slices/race';
+import {
+  onDeleteCar,
+  onGetCar,
+  onStartEngine,
+  onStopEngine,
+} from '../../slices/race';
 import {
   animate,
   deleteCar,
@@ -47,10 +52,17 @@ const Car = ({
     dispatch(onDeleteCar(id));
   };
 
+  const handleStart = async () => {
+    if (carContainer === null) throw new Error('');
+
+    const { velocity, distance } = await startEngine(ENGINE_URL, carProps.id);
+
+    dispatch(onStartEngine({ id: carProps.id, velocity, distance }));
+  };
+
   let animationState: { id: number | null } = { id: null };
 
-  const startDriving = async () => {
-    const { velocity, distance } = await startEngine(ENGINE_URL, carProps.id);
+  const startDriving = async (velocity: number, distance: number) => {
     const duration = Math.round(distance / velocity);
     const htmlDistance = trackLength - CAR_WIDTH;
 
@@ -70,6 +82,8 @@ const Car = ({
   const stopDriving = async () => {
     await stopEngine(ENGINE_URL, carProps.id);
 
+    dispatch(onStopEngine({ id: carProps.id }));
+
     if (carContainer !== null) {
       carContainer.style.transform = `translateX(${CAR_INITIAL_POSITION}px)`;
     }
@@ -79,9 +93,15 @@ const Car = ({
     }
   };
 
+  React.useEffect(() => {
+    if (carProps.velocity !== 0) {
+      startDriving(carProps.velocity, carProps.distance);
+    }
+  }, [carProps.velocity]);
+
   return (
     <StyledCar carWidth={CAR_WIDTH}>
-      <CarController onStart={startDriving} onStop={stopDriving} />
+      <CarController onStart={handleStart} onStop={stopDriving} />
       <figure ref={carRef}>
         <CarIcon color={carProps.color} />
         <CarTooltip
