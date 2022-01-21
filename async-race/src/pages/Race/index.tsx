@@ -13,7 +13,7 @@ const Race = () => {
 
   return (
     <>
-      <RaceController selectedCar={selectedCar} />
+      <RaceController cars={cars} selectedCar={selectedCar} />
       {cars.map((car) => (
         <Track key={car.id} carProps={car} />
       ))}
