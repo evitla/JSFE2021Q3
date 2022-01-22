@@ -7,7 +7,7 @@ import Header from './components/Header';
 import { Race, Winners } from './pages';
 import { onSaveCars } from './slices/race';
 import { getCars } from './utils';
-import { GARAGE_URL } from './constants';
+import { CARS_PER_PAGE, GARAGE_URL } from './constants';
 
 import GlobalStyles from './styles/global';
 import { baseTheme } from './styles/theme';
@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    getCars(`${GARAGE_URL}?_page=${1}&_limit=${7}`).then((data) =>
+    getCars(`${GARAGE_URL}?_page=${1}&_limit=${CARS_PER_PAGE}`).then((data) =>
       dispatch(onSaveCars(data))
     );
   }, [dispatch]);
