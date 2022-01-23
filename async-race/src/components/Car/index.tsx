@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { motion, useAnimation } from 'framer-motion';
 
 import CarController from './CarController';
 import CarIcon from './CarIcon';
@@ -13,13 +14,7 @@ import {
   onStartEngine,
   onStopEngine,
 } from '../../slices/race';
-import {
-  animate,
-  deleteCar,
-  drive,
-  startEngine,
-  stopEngine,
-} from '../../utils';
+import { deleteCar, drive, startEngine, stopEngine } from '../../utils';
 import { ENGINE_URL, GARAGE_URL } from '../../constants';
 
 const CAR_INITIAL_POSITION = 0;
@@ -32,8 +27,6 @@ const Car = ({
   carProps: ICarProps;
   trackLength: number;
 }) => {
-  const carRef = React.useRef<SVGSVGElement>(null);
-
   const dispatch = useDispatch();
 
   const handleSelect = (id: number) => {
@@ -51,37 +44,30 @@ const Car = ({
     dispatch(onStartEngine({ id: carProps.id, velocity, distance }));
   };
 
-  let animationState: { id: number | null } = { id: null };
+  const controls = useAnimation();
 
   const startDriving = async (velocity: number, distance: number) => {
-    const duration = Math.round(distance / velocity);
+    const duration = Math.round(distance / velocity) / 1000;
     const htmlDistance = trackLength - CAR_WIDTH;
 
-    animationState = animate(htmlDistance, duration, (progress) => {
-      if (carRef.current !== null) {
-        carRef.current.style.transform = `translateX(${progress}px)`;
-      }
+    controls.start({
+      x: `${htmlDistance}px`,
+      transition: { ease: 'linear', duration },
     });
 
     const { success } = await drive(ENGINE_URL, carProps.id);
 
-    if (!success && animationState.id !== null) {
-      window.cancelAnimationFrame(animationState.id);
+    if (!success) {
+      controls.stop();
     }
   };
 
   const stopDriving = async () => {
     await stopEngine(ENGINE_URL, carProps.id);
-
     dispatch(onStopEngine(carProps.id));
 
-    if (carRef.current !== null) {
-      carRef.current.style.transform = `translateX(${CAR_INITIAL_POSITION}px)`;
-    }
-
-    if (animationState.id !== null) {
-      window.cancelAnimationFrame(animationState.id);
-    }
+    controls.stop();
+    controls.set({ x: CAR_INITIAL_POSITION });
   };
 
   React.useEffect(() => {
@@ -94,7 +80,9 @@ const Car = ({
     <StyledCar carWidth={CAR_WIDTH}>
       <CarController onStart={handleStart} onStop={stopDriving} />
       <figure>
-        <CarIcon carRef={carRef} color={carProps.color} />
+        <motion.div animate={controls}>
+          <CarIcon color={carProps.color} />
+        </motion.div>
         <CarTooltip
           onSelect={() => handleSelect(carProps.id)}
           onRemove={() => handleRemove(carProps.id)}

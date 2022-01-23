@@ -1,13 +1,7 @@
 import React from 'react';
 
-const CarIcon = ({
-  carRef,
-  color,
-}: {
-  carRef: React.RefObject<SVGSVGElement>;
-  color: string;
-}) => (
-  <svg ref={carRef} viewBox="0 0 960 476" version="1.1">
+const CarIcon = ({ color }: { color: string }) => (
+  <svg viewBox="0 0 960 476" version="1.1">
     <title>Race Car</title>
     <defs>
       <linearGradient>
