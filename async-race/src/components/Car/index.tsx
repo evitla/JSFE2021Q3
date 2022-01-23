@@ -73,7 +73,7 @@ const Car = ({
   const stopDriving = async () => {
     await stopEngine(ENGINE_URL, carProps.id);
 
-    dispatch(onStopEngine({ id: carProps.id }));
+    dispatch(onStopEngine(carProps.id));
 
     if (carRef.current !== null) {
       carRef.current.style.transform = `translateX(${CAR_INITIAL_POSITION}px)`;

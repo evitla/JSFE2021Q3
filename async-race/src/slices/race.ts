@@ -50,8 +50,8 @@ const raceSlice = createSlice({
       state.cars[index] = { ...state.cars[index], ...payload };
     },
 
-    onStopEngine: (state, { payload }: PayloadAction<{ id: number }>) => {
-      const index = state.cars.findIndex((c) => c.id === payload.id);
+    onStopEngine: (state, { payload }: PayloadAction<number>) => {
+      const index = state.cars.findIndex((c) => c.id === payload);
       state.cars[index] = { ...state.cars[index], velocity: 0, distance: 0 };
     },
   },
