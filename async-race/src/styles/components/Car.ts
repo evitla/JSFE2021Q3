@@ -7,10 +7,16 @@ const Car = styled.div<{ carWidth: number }>`
 
   figure {
     position: relative;
-    width: ${({ carWidth }) => `${carWidth}px`};
+    display: flex;
+    align-items: center;
 
-    svg:hover + .tooltip {
-      display: flex;
+    svg {
+      z-index: 1;
+      width: ${({ carWidth }) => `${carWidth}px`};
+
+      &:hover + .tooltip {
+        display: flex;
+      }
     }
 
     .tooltip {
@@ -20,12 +26,20 @@ const Car = styled.div<{ carWidth: number }>`
       top: 50%;
       padding: 0.5rem;
       transform: translate(100%, -50%);
-      column-gap: 0.5rem;
+      gap: 0.5rem;
 
       &:hover {
         display: flex;
       }
     }
+  }
+
+  span {
+    user-select: none;
+    font-size: 60px;
+    opacity: 0.1;
+    text-transform: uppercase;
+    z-index: -1;
   }
 
   .car-controller {
