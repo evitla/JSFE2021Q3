@@ -1,9 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ICarProps } from '../../interfaces/CarProps';
-import { onCreateCar, onStartEngine, onUpdateCar } from '../../slices/race';
+import {
+  onCreateCar,
+  onStartEngine,
+  onStopEngine,
+  onUpdateCar,
+} from '../../slices/race';
 import { StyledButton, StyledRaceController } from '../../styles/components';
-import { createCar, generateCars, startEngine, updateCar } from '../../utils';
+import {
+  createCar,
+  generateCars,
+  startEngine,
+  stopEngine,
+  updateCar,
+} from '../../utils';
 import CarForm from './CarForm';
 import { GENERATE_CARS_COUNT, GARAGE_URL, ENGINE_URL } from '../../constants';
 
@@ -49,6 +60,15 @@ const RaceController = ({
     );
   };
 
+  const handleStopRace = async () => {
+    await Promise.all(
+      cars.map(async (car) => {
+        await stopEngine(ENGINE_URL, car.id);
+        dispatch(onStopEngine(car.id));
+      })
+    );
+  };
+
   return (
     <StyledRaceController>
       <CarForm content="Create" onCreateCar={handleCreate} />
@@ -60,6 +80,9 @@ const RaceController = ({
       <div style={{ display: 'flex' }}>
         <StyledButton className="button-primary" onClick={handleStartRace}>
           Start Race
+        </StyledButton>
+        <StyledButton className="button-primary" onClick={handleStopRace}>
+          Stop Race
         </StyledButton>
         <StyledButton className="button-primary" onClick={handleGenerateCars}>
           Generate Cars

@@ -73,6 +73,11 @@ const Car = ({
   React.useEffect(() => {
     if (carProps.velocity) {
       startDriving(carProps.velocity, carProps.distance);
+      return;
+    }
+
+    if (carProps.velocity === 0) {
+      stopDriving();
     }
   }, [carProps.velocity]);
 
