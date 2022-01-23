@@ -16,6 +16,7 @@ const RaceContainer = styled.div<{ carsOnPage: number; carsPerPage: number }>`
     line-height: 1;
     text-align: center;
     writing-mode: vertical-lr;
+    user-select: none;
 
     span {
       transform: ${({ carsOnPage, carsPerPage }) =>
