@@ -6,7 +6,7 @@ export const getCars = async (url: string): Promise<ICarProps[]> => {
   const cars: ICarProps[] = await response.json();
 
   return cars.map((car) => {
-    return { ...car, velocity: 0, distance: 0 };
+    return car;
   });
 };
 
@@ -22,7 +22,7 @@ export const createCar = async (
 
   const newCar = await response.json();
 
-  return newCar;
+  return { ...newCar, velocity: 0, distance: 0 };
 };
 
 export const updateCar = async (
