@@ -32,14 +32,7 @@ const Car = ({
   carProps: ICarProps;
   trackLength: number;
 }) => {
-  const [carContainer, setCarContainer] = React.useState<HTMLElement | null>(
-    null
-  );
-  const carRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (carRef.current) setCarContainer(carRef.current);
-  }, []);
+  const carRef = React.useRef<SVGSVGElement>(null);
 
   const dispatch = useDispatch();
 
@@ -53,8 +46,6 @@ const Car = ({
   };
 
   const handleStart = async () => {
-    if (carContainer === null) throw new Error('');
-
     const { velocity, distance } = await startEngine(ENGINE_URL, carProps.id);
 
     dispatch(onStartEngine({ id: carProps.id, velocity, distance }));
@@ -67,8 +58,8 @@ const Car = ({
     const htmlDistance = trackLength - CAR_WIDTH;
 
     animationState = animate(htmlDistance, duration, (progress) => {
-      if (carContainer !== null) {
-        carContainer.style.transform = `translateX(${progress}px)`;
+      if (carRef.current !== null) {
+        carRef.current.style.transform = `translateX(${progress}px)`;
       }
     });
 
@@ -84,8 +75,8 @@ const Car = ({
 
     dispatch(onStopEngine({ id: carProps.id }));
 
-    if (carContainer !== null) {
-      carContainer.style.transform = `translateX(${CAR_INITIAL_POSITION}px)`;
+    if (carRef.current !== null) {
+      carRef.current.style.transform = `translateX(${CAR_INITIAL_POSITION}px)`;
     }
 
     if (animationState.id !== null) {
@@ -102,14 +93,14 @@ const Car = ({
   return (
     <StyledCar carWidth={CAR_WIDTH}>
       <CarController onStart={handleStart} onStop={stopDriving} />
-      <figure ref={carRef}>
-        <CarIcon color={carProps.color} />
+      <figure>
+        <CarIcon carRef={carRef} color={carProps.color} />
         <CarTooltip
           onSelect={() => handleSelect(carProps.id)}
           onRemove={() => handleRemove(carProps.id)}
         />
-        <span>{carProps.name}</span>
       </figure>
+      <span>{carProps.name}</span>
     </StyledCar>
   );
 };
