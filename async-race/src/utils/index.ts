@@ -88,10 +88,26 @@ export const stopEngine = async (url: string, carId: number) => {
   });
 };
 
-export const drive = async (url: string, carId: number) => {
+const drive = async (url: string, carId: number) => {
   const response = await fetch(`${url}?id=${carId}&status=drive`, {
     method: 'PATCH',
   }).catch();
 
   return { success: response.ok };
+};
+
+const MS_PER_SEC = 1000;
+export const startDriving = async (
+  url: string,
+  carProps: ICarProps,
+  draw: (time: number) => void = () => {}
+) => {
+  const duration =
+    Math.round(carProps.distance / carProps.velocity) / MS_PER_SEC;
+
+  draw(duration);
+
+  const { success } = await drive(url, carProps.id);
+
+  return { duration, success };
 };

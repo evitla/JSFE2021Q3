@@ -14,7 +14,7 @@ import {
   onStartEngine,
   onStopEngine,
 } from '../../slices/race';
-import { deleteCar, drive, startEngine, stopEngine } from '../../utils';
+import { deleteCar, startDriving, startEngine, stopEngine } from '../../utils';
 import { ENGINE_URL, GARAGE_URL } from '../../constants';
 
 const CAR_INITIAL_POSITION = 0;
@@ -28,6 +28,8 @@ const Car = ({
   trackLength: number;
 }) => {
   const dispatch = useDispatch();
+
+  const htmlDistance = trackLength - CAR_WIDTH;
 
   const handleSelect = (id: number) => {
     dispatch(onGetCar(id));
@@ -46,16 +48,13 @@ const Car = ({
 
   const controls = useAnimation();
 
-  const startDriving = async (velocity: number, distance: number) => {
-    const duration = Math.round(distance / velocity) / 1000;
-    const htmlDistance = trackLength - CAR_WIDTH;
-
-    controls.start({
-      x: `${htmlDistance}px`,
-      transition: { ease: 'linear', duration },
+  const handleStartDriving = async () => {
+    const { success } = await startDriving(ENGINE_URL, carProps, (duration) => {
+      controls.start({
+        x: `${htmlDistance}px`,
+        transition: { ease: 'linear', duration },
+      });
     });
-
-    const { success } = await drive(ENGINE_URL, carProps.id);
 
     if (!success) {
       controls.stop();
@@ -72,7 +71,7 @@ const Car = ({
 
   React.useEffect(() => {
     if (carProps.velocity) {
-      startDriving(carProps.velocity, carProps.distance);
+      handleStartDriving();
       return;
     }
 
