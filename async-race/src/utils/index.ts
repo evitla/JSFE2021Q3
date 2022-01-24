@@ -1,13 +1,19 @@
 import { carModels, carSeries, MS_PER_SEC } from '../constants';
 import { ICarProps, ICarPropsToCreate } from '../interfaces/CarProps';
+import { IWinnerProps } from '../interfaces/WinnerProps';
 
 export const getCars = async (url: string): Promise<ICarProps[]> => {
   const response = await fetch(url);
   const cars: ICarProps[] = await response.json();
 
-  return cars.map((car) => {
-    return car;
-  });
+  return cars;
+};
+
+const getCar = async (url: string, id: number): Promise<ICarProps> => {
+  const response = await fetch(`${url}/${id}`);
+  const car: ICarProps = await response.json();
+
+  return car;
 };
 
 export const createCar = async (
@@ -134,5 +140,38 @@ export const startRace = async (
   return {
     carId: id,
     duration: duration.toFixed(2),
+  };
+};
+
+export const getWinners = async (
+  winnersUrl: string,
+  garageUrl: string,
+  page: number,
+  limit: number,
+  sort: 'id' | 'wins' | 'time',
+  order: 'ASC' | 'DESC'
+) => {
+  const sortOrder = sort && order ? `&_sort=${sort}&_order=${order}` : '';
+
+  const response = await fetch(
+    `${winnersUrl}?_page=${page}&_limit=${limit}${sortOrder}`
+  );
+
+  const count = response.headers.get('X-Total-Count');
+
+  if (count === null) {
+    throw new Error('');
+  }
+
+  const winners: IWinnerProps[] = await response.json();
+
+  return {
+    winners: await Promise.all(
+      winners.map(async (winner) => ({
+        ...winner,
+        car: await getCar(garageUrl, winner.id),
+      }))
+    ),
+    count: response.headers.get('X-Total-Count'),
   };
 };
