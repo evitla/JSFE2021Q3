@@ -13,6 +13,8 @@ export const CARS_PER_PAGE = 7;
 
 export const MS_PER_SEC = 1000;
 
+export const NOT_FOUND_STATUS = 404;
+
 export const carModels = [
   'Tesla',
   'Mercedes',
