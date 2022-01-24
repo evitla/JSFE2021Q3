@@ -1,6 +1,11 @@
-import { carModels, carSeries, MS_PER_SEC } from '../constants';
+import {
+  carModels,
+  carSeries,
+  MS_PER_SEC,
+  NOT_FOUND_STATUS,
+} from '../constants';
 import { ICarProps, ICarPropsToCreate } from '../interfaces/CarProps';
-import { IWinnerProps } from '../interfaces/WinnerProps';
+import { IWinnerProps, IWinnerPropsToCreate } from '../interfaces/WinnerProps';
 
 export const getCars = async (url: string): Promise<ICarProps[]> => {
   const response = await fetch(url);
@@ -174,4 +179,52 @@ export const getWinners = async (
     ),
     count: response.headers.get('X-Total-Count'),
   };
+};
+
+const getWinner = async (url: string, id: number): Promise<IWinnerProps> => {
+  return (await fetch(`${url}/${id}`)).json();
+};
+
+const getWinnerStatus = async (url: string, id: number): Promise<number> => {
+  return (await fetch(`${url}/${id}`)).status;
+};
+
+const createWinner = async (url: string, body: IWinnerPropsToCreate) => {
+  return (
+    await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    })
+  ).json();
+};
+
+const updateWinner = async (
+  url: string,
+  id: number,
+  body: IWinnerPropsToCreate
+) => {
+  return (
+    await fetch(`${url}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    })
+  ).json();
+};
+
+export const saveWinner = async (url: string, id: number, time: number) => {
+  const winnerSuccess = await getWinnerStatus(url, id);
+
+  if (winnerSuccess === NOT_FOUND_STATUS) {
+    await createWinner(url, { id, wins: 1, time });
+    return;
+  }
+
+  const winner = await getWinner(url, id);
+  await updateWinner(url, id, {
+    id,
+    wins: winner.wins + 1,
+    time: time < winner.time ? time : winner.time,
+  });
 };
