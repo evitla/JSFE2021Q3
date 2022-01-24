@@ -6,6 +6,7 @@ export const NavLinks: { [key: string]: string } = {
 const BASE_URL = 'http://localhost:3000';
 export const GARAGE_URL = `${BASE_URL}/garage`;
 export const ENGINE_URL = `${BASE_URL}/engine`;
+export const WINNERS_URL = `${BASE_URL}/winners`;
 
 export const GENERATE_CARS_COUNT = 100;
 export const CARS_PER_PAGE = 7;
