@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import { ICarProps } from '../../interfaces/CarProps';
 import {
   onCreateCar,
+  onRaceStart,
+  onRaceStop,
+  onStartDrive,
   onStartEngine,
   onStopEngine,
   onUpdateCar,
@@ -11,7 +14,9 @@ import { StyledButton, StyledRaceController } from '../../styles/components';
 import {
   createCar,
   generateCars,
+  startDriving,
   startEngine,
+  startRace,
   stopEngine,
   updateCar,
 } from '../../utils';
@@ -52,15 +57,37 @@ const RaceController = ({
   };
 
   const handleStartRace = async () => {
-    await Promise.all(
-      cars.map(async (car) => {
-        const { velocity, distance } = await startEngine(ENGINE_URL, car.id);
-        dispatch(onStartEngine({ id: car.id, velocity, distance }));
-      })
+    dispatch(onRaceStart());
+
+    const promises = cars.map(async (car) => {
+      const { velocity, distance } = await startEngine(ENGINE_URL, car.id);
+      dispatch(onStartEngine({ id: car.id, velocity, distance }));
+
+      const data = await startDriving(ENGINE_URL, {
+        id: car.id,
+        velocity,
+        distance,
+      });
+      dispatch(onStartDrive({ id: car.id, success: data.success }));
+
+      return data;
+    });
+
+    const { carId, duration } = await startRace(
+      promises,
+      cars.map((car) => car.id)
     );
+
+    console.log(
+      cars.find((car) => car.id === carId),
+      duration
+    );
+
+    dispatch(onRaceStop());
   };
 
   const handleStopRace = async () => {
+    dispatch(onRaceStop());
     await Promise.all(
       cars.map(async (car) => {
         await stopEngine(ENGINE_URL, car.id);
