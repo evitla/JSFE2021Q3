@@ -10,6 +10,8 @@ export const ENGINE_URL = `${BASE_URL}/engine`;
 export const GENERATE_CARS_COUNT = 100;
 export const CARS_PER_PAGE = 7;
 
+export const MS_PER_SEC = 1000;
+
 export const carModels = [
   'Tesla',
   'Mercedes',

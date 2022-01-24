@@ -1,4 +1,4 @@
-import { carModels, carSeries } from '../constants';
+import { carModels, carSeries, MS_PER_SEC } from '../constants';
 import { ICarProps, ICarPropsToCreate } from '../interfaces/CarProps';
 
 export const getCars = async (url: string): Promise<ICarProps[]> => {
@@ -96,7 +96,6 @@ export const drive = async (url: string, carId: number) => {
   return { success: response.ok };
 };
 
-const MS_PER_SEC = 1000;
 export const startDriving = async (
   url: string,
   carProps: { id: number; velocity: number; distance: number },
