@@ -14,6 +14,7 @@ import { StyledButton, StyledRaceController } from '../../styles/components';
 import {
   createCar,
   generateCars,
+  saveWinner,
   startDriving,
   startEngine,
   startRace,
@@ -21,7 +22,12 @@ import {
   updateCar,
 } from '../../utils';
 import CarForm from './CarForm';
-import { GENERATE_CARS_COUNT, GARAGE_URL, ENGINE_URL } from '../../constants';
+import {
+  GENERATE_CARS_COUNT,
+  GARAGE_URL,
+  ENGINE_URL,
+  WINNERS_URL,
+} from '../../constants';
 
 const RaceController = ({
   cars,
@@ -78,10 +84,7 @@ const RaceController = ({
       cars.map((car) => car.id)
     );
 
-    console.log(
-      cars.find((car) => car.id === carId),
-      duration
-    );
+    await saveWinner(WINNERS_URL, carId, Number(duration));
 
     dispatch(onRaceStop());
   };
