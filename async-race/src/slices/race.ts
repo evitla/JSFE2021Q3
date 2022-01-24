@@ -4,15 +4,25 @@ import { ICarProps } from '../interfaces/CarProps';
 const initialState: {
   cars: ICarProps[];
   selectedCar: ICarProps | null;
+  isRaceStarted: boolean;
 } = {
   cars: [],
   selectedCar: null,
+  isRaceStarted: false,
 };
 
 const raceSlice = createSlice({
   name: 'race',
   initialState: initialState,
   reducers: {
+    onRaceStart: (state) => {
+      state.isRaceStarted = true;
+    },
+
+    onRaceStop: (state) => {
+      state.isRaceStarted = false;
+    },
+
     onSaveCars: (state, { payload }: PayloadAction<ICarProps[]>) => {
       state.cars = payload;
     },
@@ -54,11 +64,24 @@ const raceSlice = createSlice({
       const index = state.cars.findIndex((c) => c.id === payload);
       state.cars[index] = { ...state.cars[index], velocity: 0, distance: 0 };
     },
+
+    onStartDrive: (
+      state,
+      { payload }: PayloadAction<{ id: number; success: boolean }>
+    ) => {
+      const index = state.cars.findIndex((c) => c.id === payload.id);
+      state.cars[index] = {
+        ...state.cars[index],
+        successDrive: payload.success,
+      };
+    },
   },
 });
 
 export const raceReducer = raceSlice.reducer;
 export const {
+  onRaceStart,
+  onRaceStop,
   onSaveCars,
   onGetCar,
   onCreateCar,
@@ -66,4 +89,5 @@ export const {
   onDeleteCar,
   onStartEngine,
   onStopEngine,
+  onStartDrive,
 } = raceSlice.actions;
