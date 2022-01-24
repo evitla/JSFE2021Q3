@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion, useAnimation } from 'framer-motion';
 
 import CarController from './CarController';
@@ -11,11 +11,13 @@ import { StyledCar } from '../../styles/components';
 import {
   onDeleteCar,
   onGetCar,
+  onStartDrive,
   onStartEngine,
   onStopEngine,
 } from '../../slices/race';
-import { deleteCar, startDriving, startEngine, stopEngine } from '../../utils';
-import { ENGINE_URL, GARAGE_URL } from '../../constants';
+import { deleteCar, drive, startEngine, stopEngine } from '../../utils';
+import { ENGINE_URL, GARAGE_URL, MS_PER_SEC } from '../../constants';
+import { TStore } from '../../store';
 
 const CAR_INITIAL_POSITION = 0;
 const CAR_WIDTH = 100;
@@ -27,6 +29,7 @@ const Car = ({
   carProps: ICarProps;
   trackLength: number;
 }) => {
+  const { isRaceStarted } = useSelector((state: TStore) => state.raceReducer);
   const dispatch = useDispatch();
 
   const htmlDistance = trackLength - CAR_WIDTH;
@@ -49,24 +52,28 @@ const Car = ({
   const controls = useAnimation();
 
   const handleStartDriving = async () => {
-    const { success } = await startDriving(ENGINE_URL, carProps, (duration) => {
-      controls.start({
-        x: `${htmlDistance}px`,
-        transition: { ease: 'linear', duration },
-      });
+    const duration =
+      Math.round(carProps.distance / carProps.velocity) / MS_PER_SEC;
+    controls.start({
+      x: `${htmlDistance}px`,
+      transition: { ease: 'linear', duration },
     });
 
-    if (!success) {
-      controls.stop();
+    if (!isRaceStarted) {
+      const { success } = await drive(ENGINE_URL, carProps.id);
+      dispatch(onStartDrive({ id: carProps.id, success }));
     }
   };
 
   const stopDriving = async () => {
-    await stopEngine(ENGINE_URL, carProps.id);
-    dispatch(onStopEngine(carProps.id));
+    if (!isRaceStarted) {
+      await stopEngine(ENGINE_URL, carProps.id);
+      dispatch(onStopEngine(carProps.id));
+
+      controls.set({ x: CAR_INITIAL_POSITION });
+    }
 
     controls.stop();
-    controls.set({ x: CAR_INITIAL_POSITION });
   };
 
   React.useEffect(() => {
@@ -79,6 +86,14 @@ const Car = ({
       stopDriving();
     }
   }, [carProps.velocity]);
+
+  React.useEffect(() => {
+    if (carProps.successDrive === undefined) return;
+
+    if (!carProps.successDrive) {
+      controls.stop();
+    }
+  }, [carProps.successDrive]);
 
   return (
     <StyledCar carWidth={CAR_WIDTH}>
