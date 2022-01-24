@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CARS_PER_PAGE } from '../constants';
 import { ICarProps } from '../interfaces/CarProps';
 
 const initialState: {
@@ -35,7 +36,9 @@ const raceSlice = createSlice({
     },
 
     onCreateCar: (state, { payload }: PayloadAction<ICarProps>) => {
-      state.cars.push(payload);
+      if (state.cars.length < CARS_PER_PAGE) {
+        state.cars.push(payload);
+      }
     },
 
     onUpdateCar: (state, { payload }: PayloadAction<ICarProps>) => {
