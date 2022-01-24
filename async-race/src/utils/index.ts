@@ -88,7 +88,7 @@ export const stopEngine = async (url: string, carId: number) => {
   });
 };
 
-const drive = async (url: string, carId: number) => {
+export const drive = async (url: string, carId: number) => {
   const response = await fetch(`${url}?id=${carId}&status=drive`, {
     method: 'PATCH',
   }).catch();
@@ -99,7 +99,7 @@ const drive = async (url: string, carId: number) => {
 const MS_PER_SEC = 1000;
 export const startDriving = async (
   url: string,
-  carProps: ICarProps,
+  carProps: { id: number; velocity: number; distance: number },
   draw: (time: number) => void = () => {}
 ) => {
   const duration =
@@ -109,5 +109,31 @@ export const startDriving = async (
 
   const { success } = await drive(url, carProps.id);
 
-  return { duration, success };
+  return { id: carProps.id, duration, success };
+};
+
+export const startRace = async (
+  promises: Promise<{ id: number; duration: number; success: boolean }>[],
+  ids: number[]
+): Promise<{ carId: number; duration: string }> => {
+  const { id, duration, success } = await Promise.race(promises);
+
+  if (!success) {
+    const failedIndex = ids.findIndex((i) => i === id);
+    const restPromises = [
+      ...promises.slice(0, failedIndex),
+      ...promises.slice(failedIndex + 1, promises.length),
+    ];
+    const restIds = [
+      ...ids.slice(0, failedIndex),
+      ...ids.slice(failedIndex + 1, ids.length),
+    ];
+
+    return startRace(restPromises, restIds);
+  }
+
+  return {
+    carId: id,
+    duration: duration.toFixed(2),
+  };
 };
