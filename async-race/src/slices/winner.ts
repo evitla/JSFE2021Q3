@@ -8,7 +8,7 @@ const initialState: {
 };
 
 const winnerSlice = createSlice({
-  name: 'race',
+  name: 'winner',
   initialState: initialState,
   reducers: {
     onGetWinners: (state, { payload }: PayloadAction<IWinnerProps[]>) => {
