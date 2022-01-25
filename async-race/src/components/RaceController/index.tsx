@@ -4,13 +4,12 @@ import { ICarProps } from '../../interfaces/CarProps';
 import {
   onCreateCar,
   onGenerateCars,
-  onRaceStart,
-  onRaceStop,
   onStartDrive,
   onStartEngine,
   onStopEngine,
   onUpdateCar,
-} from '../../slices/race';
+} from '../../slices/car';
+import { onRaceStart, onRaceStop } from '../../slices/race';
 import { StyledButton, StyledRaceController } from '../../styles/components';
 import {
   createCar,

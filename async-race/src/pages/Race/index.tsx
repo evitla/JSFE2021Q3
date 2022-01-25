@@ -13,9 +13,10 @@ import { RaceContainer } from '../../styles/components';
 const Race = () => {
   const dispatch = useDispatch();
 
-  const { cars, selectedCar, racePage, count } = useSelector(
-    (state: TStore) => state.raceReducer
+  const { cars, selectedCar, count } = useSelector(
+    (state: TStore) => state.carReducer
   );
+  const { racePage } = useSelector((state: TStore) => state.raceReducer);
 
   return (
     <>

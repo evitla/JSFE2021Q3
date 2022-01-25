@@ -14,7 +14,7 @@ import {
   onStartDrive,
   onStartEngine,
   onStopEngine,
-} from '../../slices/race';
+} from '../../slices/car';
 import { deleteCar, drive, startEngine, stopEngine } from '../../utils';
 import { ENGINE_URL, GARAGE_URL, MS_PER_SEC } from '../../constants';
 import { TStore } from '../../store';

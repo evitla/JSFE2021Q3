@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 
 import Header from './components/Header';
 import { Race, Winners } from './pages';
-import { onSaveCars } from './slices/race';
+import { onSaveCars } from './slices/car';
 import { getCars } from './utils';
 import { CARS_PER_PAGE, GARAGE_URL } from './constants';
 
