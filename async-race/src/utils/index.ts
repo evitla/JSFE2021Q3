@@ -7,53 +7,56 @@ import {
 import { ICarProps, ICarPropsToCreate } from '../interfaces/CarProps';
 import { IWinnerProps, IWinnerPropsToCreate } from '../interfaces/WinnerProps';
 
-export const getCars = async (url: string): Promise<ICarProps[]> => {
-  const response = await fetch(url);
+export const getCars = async (url: string, page: number, limit: number) => {
+  const response = await fetch(`${url}?_page=${page}&_limit=${limit}`);
   const cars: ICarProps[] = await response.json();
 
-  return cars;
+  const count = response.headers.get('X-Total-Count');
+
+  if (count === null) {
+    throw new Error("Couldn't get cars count");
+  }
+
+  return {
+    cars,
+    count: +count,
+  };
 };
 
-const getCar = async (url: string, id: number): Promise<ICarProps> => {
+const getCar = async (url: string, id: number) => {
   const response = await fetch(`${url}/${id}`);
   const car: ICarProps = await response.json();
 
   return car;
 };
 
-export const createCar = async (
-  url: string,
-  car: ICarPropsToCreate
-): Promise<ICarProps> => {
+export const createCar = async (url: string, car: ICarPropsToCreate) => {
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(car),
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const newCar = await response.json();
+  const newCar: ICarProps = await response.json();
 
   return { ...newCar, velocity: 0, distance: 0 };
 };
 
-export const updateCar = async (
-  url: string,
-  updatedCar: ICarProps
-): Promise<ICarProps> => {
+export const updateCar = async (url: string, updatedCar: ICarProps) => {
   const response = await fetch(`${url}/${updatedCar.id}`, {
     method: 'PUT',
     body: JSON.stringify(updatedCar),
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const car = await response.json();
+  const car: ICarProps = await response.json();
 
   return car;
 };
 
 export const deleteCar = async (url: string, id: number) => {
   const response = await fetch(`${url}/${id}`, { method: 'DELETE' });
-  const car = await response.json();
+  const car: ICarProps = await response.json();
   return car;
 };
 
@@ -165,7 +168,7 @@ export const getWinners = async (
   const count = response.headers.get('X-Total-Count');
 
   if (count === null) {
-    throw new Error('');
+    throw new Error("Couldn't get winners count");
   }
 
   const winners: IWinnerProps[] = await response.json();
@@ -177,7 +180,7 @@ export const getWinners = async (
         car: await getCar(garageUrl, winner.id),
       }))
     ),
-    count: response.headers.get('X-Total-Count'),
+    count: +count,
   };
 };
 
