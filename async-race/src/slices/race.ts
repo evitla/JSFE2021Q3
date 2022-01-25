@@ -6,10 +6,14 @@ const initialState: {
   cars: ICarProps[];
   selectedCar: ICarProps | null;
   isRaceStarted: boolean;
+  count: number;
+  racePage: number;
 } = {
   cars: [],
   selectedCar: null,
   isRaceStarted: false,
+  count: 0,
+  racePage: 1,
 };
 
 const raceSlice = createSlice({
@@ -24,8 +28,12 @@ const raceSlice = createSlice({
       state.isRaceStarted = false;
     },
 
-    onSaveCars: (state, { payload }: PayloadAction<ICarProps[]>) => {
-      state.cars = payload;
+    onSaveCars: (
+      state,
+      { payload }: PayloadAction<{ cars: ICarProps[]; count: number }>
+    ) => {
+      state.cars = payload.cars;
+      state.count = payload.count;
     },
 
     onGetCar: (state, { payload }: PayloadAction<number>) => {
@@ -39,6 +47,7 @@ const raceSlice = createSlice({
       if (state.cars.length < CARS_PER_PAGE) {
         state.cars.push(payload);
       }
+      state.count++;
     },
 
     onUpdateCar: (state, { payload }: PayloadAction<ICarProps>) => {
@@ -51,6 +60,12 @@ const raceSlice = createSlice({
 
     onDeleteCar: (state, { payload }: PayloadAction<number>) => {
       state.cars = state.cars.filter((car) => car.id !== payload);
+      state.count--;
+    },
+
+    onGenerateCars: (state, { payload }: PayloadAction<ICarProps[]>) => {
+      state.cars.push(...payload.slice(0, CARS_PER_PAGE - state.cars.length));
+      state.count += payload.length;
     },
 
     onStartEngine: (
@@ -78,6 +93,14 @@ const raceSlice = createSlice({
         successDrive: payload.success,
       };
     },
+
+    onNextPage: (state) => {
+      state.racePage++;
+    },
+
+    onPrevPage: (state) => {
+      state.racePage--;
+    },
   },
 });
 
@@ -90,7 +113,10 @@ export const {
   onCreateCar,
   onUpdateCar,
   onDeleteCar,
+  onGenerateCars,
   onStartEngine,
   onStopEngine,
   onStartDrive,
+  onNextPage,
+  onPrevPage,
 } = raceSlice.actions;
