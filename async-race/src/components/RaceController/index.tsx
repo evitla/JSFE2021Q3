@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ICarProps } from '../../interfaces/CarProps';
 import {
   onCreateCar,
+  onGenerateCars,
   onRaceStart,
   onRaceStop,
   onStartDrive,
@@ -59,7 +60,7 @@ const RaceController = ({
     const newCars = await Promise.all(
       generatedCars.map((car) => createCar(GARAGE_URL, car))
     );
-    newCars.forEach((car) => dispatch(onCreateCar(car)));
+    dispatch(onGenerateCars(newCars));
   };
 
   const handleStartRace = async () => {
