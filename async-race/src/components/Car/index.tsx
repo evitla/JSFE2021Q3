@@ -98,15 +98,13 @@ const Car = ({
   return (
     <StyledCar carWidth={CAR_WIDTH}>
       <CarController onStart={handleStart} onStop={stopDriving} />
-      <figure>
-        <motion.div className="car-image" animate={controls}>
-          <CarIcon color={carProps.color} />
-        </motion.div>
+      <motion.div className="car-image" animate={controls}>
+        <CarIcon color={carProps.color} />
         <CarTooltip
           onSelect={() => handleSelect(carProps.id)}
           onRemove={() => handleRemove(carProps.id)}
         />
-      </figure>
+      </motion.div>
       <span>{carProps.name}</span>
     </StyledCar>
   );

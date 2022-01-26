@@ -5,12 +5,12 @@ const Car = styled.div<{ carWidth: number }>`
   column-gap: 1rem;
   align-items: center;
 
-  figure {
+  .car-image {
     position: relative;
     display: flex;
     align-items: center;
 
-    .car-image {
+    svg {
       z-index: 1;
       width: ${({ carWidth }) => `${carWidth}px`};
 
