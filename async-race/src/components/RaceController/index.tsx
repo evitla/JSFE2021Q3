@@ -112,7 +112,7 @@ const RaceController = ({
           Start Race
         </StyledButton>
         <StyledButton className="button-primary" onClick={handleStopRace}>
-          Stop Race
+          Reset
         </StyledButton>
         <StyledButton className="button-primary" onClick={handleGenerateCars}>
           Generate Cars
