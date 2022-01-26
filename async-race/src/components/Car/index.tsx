@@ -99,7 +99,7 @@ const Car = ({
     <StyledCar carWidth={CAR_WIDTH}>
       <CarController onStart={handleStart} onStop={stopDriving} />
       <figure>
-        <motion.div animate={controls}>
+        <motion.div className="car-image" animate={controls}>
           <CarIcon color={carProps.color} />
         </motion.div>
         <CarTooltip

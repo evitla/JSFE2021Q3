@@ -10,7 +10,7 @@ const Car = styled.div<{ carWidth: number }>`
     display: flex;
     align-items: center;
 
-    svg {
+    .car-image {
       z-index: 1;
       width: ${({ carWidth }) => `${carWidth}px`};
 
