@@ -4,6 +4,7 @@ import Pagination from '../../components/Pagination';
 import RaceController from '../../components/RaceController';
 
 import Track from '../../components/Track';
+import FinishLine from '../../components/Track/FinishLine';
 import { CARS_PER_PAGE } from '../../constants';
 import { onNextPage, onPrevPage } from '../../slices/race';
 
@@ -23,20 +24,15 @@ const Race = () => {
       <RaceController cars={cars} selectedCar={selectedCar} />
       <h2>{`Race(${count})`}</h2>
       <h3>{`Page ${racePage}`}</h3>
-      <RaceContainer carsOnPage={cars.length} carsPerPage={CARS_PER_PAGE}>
+      <RaceContainer>
         <div className="tracks">
           {cars.map((car) => (
             <Track key={car.id} carProps={car} />
           ))}
         </div>
-        <div className="finish">
-          <span>F</span>
-          <span>I</span>
-          <span>N</span>
-          <span>I</span>
-          <span>S</span>
-          <span>H</span>
-        </div>
+        {cars.length !== 0 && (
+          <FinishLine carsOnPage={cars.length} carsPerPage={CARS_PER_PAGE} />
+        )}
       </RaceContainer>
       <Pagination
         onPrev={() => dispatch(onPrevPage())}

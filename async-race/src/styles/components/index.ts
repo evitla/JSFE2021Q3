@@ -9,3 +9,4 @@ export { default as StyledRaceController } from './RaceController';
 export { default as StyledTrack } from './Track';
 export { default as StyledWinnersTable } from './WinnersTable';
 export { default as StyledPagination } from './Pagination';
+export { default as StyledFinishLine } from './FinishLine';
