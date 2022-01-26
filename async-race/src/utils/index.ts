@@ -151,13 +151,16 @@ export const startRace = async (
   };
 };
 
+export type TSortBy = 'id' | 'wins' | 'time';
+export type TSortOrder = 'ASC' | 'DESC';
+
 export const getWinners = async (
   winnersUrl: string,
   garageUrl: string,
   page: number,
   limit: number,
-  sort: 'id' | 'wins' | 'time',
-  order: 'ASC' | 'DESC'
+  sort: TSortBy,
+  order: TSortOrder
 ) => {
   const sortOrder = sort && order ? `&_sort=${sort}&_order=${order}` : '';
 
