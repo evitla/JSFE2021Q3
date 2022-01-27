@@ -219,6 +219,12 @@ const updateWinner = async (
   ).json();
 };
 
+export const deleteWinner = async (url: string, id: number) => {
+  const response = await fetch(`${url}/${id}`, { method: 'DELETE' });
+  const winner: IWinnerProps = await response.json();
+  return winner;
+};
+
 export const saveWinner = async (url: string, id: number, time: number) => {
   const winnerSuccess = await getWinnerStatus(url, id);
 

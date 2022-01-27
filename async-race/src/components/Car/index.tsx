@@ -15,8 +15,19 @@ import {
   onStartEngine,
   onStopEngine,
 } from '../../slices/car';
-import { deleteCar, drive, startEngine, stopEngine } from '../../utils';
-import { ENGINE_URL, GARAGE_URL, MS_PER_SEC } from '../../constants';
+import {
+  deleteCar,
+  deleteWinner,
+  drive,
+  startEngine,
+  stopEngine,
+} from '../../utils';
+import {
+  ENGINE_URL,
+  GARAGE_URL,
+  MS_PER_SEC,
+  WINNERS_URL,
+} from '../../constants';
 import { TStore } from '../../store';
 
 const CAR_INITIAL_POSITION = 0;
@@ -40,6 +51,7 @@ const Car = ({
 
   const handleRemove = async (id: number) => {
     await deleteCar(GARAGE_URL, id);
+    await deleteWinner(WINNERS_URL, id);
     dispatch(onDeleteCar(id));
   };
 
