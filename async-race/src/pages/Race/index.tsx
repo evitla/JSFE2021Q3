@@ -57,6 +57,8 @@ const Race = () => {
         )}
       </RaceContainer>
       <Pagination
+        prevDisabled={racePage < 2}
+        nextDisabled={racePage > Math.floor(count / CARS_PER_PAGE)}
         onPrev={() => dispatch(onPrevPage())}
         onNext={() => dispatch(onNextPage())}
       />

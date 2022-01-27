@@ -39,6 +39,8 @@ const Winners = () => {
       <h3>{`Page ${winnersPage}`}</h3>
       <WinnersTable />
       <Pagination
+        prevDisabled={winnersPage < 2}
+        nextDisabled={winnersPage > Math.floor(winnersCount / WINNERS_PER_PAGE)}
         onPrev={() => dispatch(onPrevPage())}
         onNext={() => dispatch(onNextPage())}
       />
