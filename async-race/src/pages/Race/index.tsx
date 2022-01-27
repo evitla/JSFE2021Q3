@@ -5,23 +5,45 @@ import RaceController from '../../components/RaceController';
 
 import Track from '../../components/Track';
 import FinishLine from '../../components/Track/FinishLine';
+import WinnerMessage from '../../components/WinnerMessage';
 import { CARS_PER_PAGE } from '../../constants';
+import { ICarProps } from '../../interfaces/CarProps';
 import { onNextPage, onPrevPage } from '../../slices/race';
 
 import { TStore } from '../../store';
 import { RaceContainer } from '../../styles/components';
 
+const SHOW_MESSAGE_DURATION = 2500;
+
 const Race = () => {
   const dispatch = useDispatch();
+
+  const [messageVisible, setMessageVisible] = React.useState(true);
+  const [winnerCar, setWinnerCar] = React.useState<{
+    car: ICarProps;
+    time: number;
+  } | null>(null);
 
   const { cars, selectedCar, count } = useSelector(
     (state: TStore) => state.carReducer
   );
   const { racePage } = useSelector((state: TStore) => state.raceReducer);
+  const { winner } = useSelector((state: TStore) => state.winnerReducer);
+
+  React.useEffect(() => {
+    setMessageVisible(true);
+    setTimeout(() => setMessageVisible(false), SHOW_MESSAGE_DURATION);
+    setWinnerCar(winner);
+  }, [winner]);
 
   return (
     <>
-      <RaceController cars={cars} selectedCar={selectedCar} />
+      <div style={{ display: 'flex' }}>
+        <RaceController cars={cars} selectedCar={selectedCar} />
+        {winnerCar !== null && messageVisible && (
+          <WinnerMessage carModel={winnerCar.car.name} time={winnerCar.time} />
+        )}
+      </div>
       <h2>{`Race(${count})`}</h2>
       <h3>{`Page ${racePage}`}</h3>
       <RaceContainer>
