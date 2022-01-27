@@ -28,6 +28,7 @@ import {
   ENGINE_URL,
   WINNERS_URL,
 } from '../../constants';
+import { onSaveWinner } from '../../slices/winner';
 
 const RaceController = ({
   cars,
@@ -84,7 +85,11 @@ const RaceController = ({
       cars.map((car) => car.id)
     );
 
+    const winnerCar = cars.find((car) => car.id === carId);
+
     await saveWinner(WINNERS_URL, carId, Number(duration));
+
+    if (winnerCar) dispatch(onSaveWinner({ car: winnerCar, time: +duration }));
 
     dispatch(onRaceStop());
   };
