@@ -27,10 +27,13 @@ const Race = () => {
   const { cars, selectedCar, count } = useSelector(
     (state: TStore) => state.carReducer
   );
-  const { racePage } = useSelector((state: TStore) => state.raceReducer);
+  const { racePage, isRaceStarted } = useSelector(
+    (state: TStore) => state.raceReducer
+  );
   const { winner } = useSelector((state: TStore) => state.winnerReducer);
 
   React.useEffect(() => {
+    if (!isRaceStarted) return;
     setMessageVisible(true);
     setTimeout(() => setMessageVisible(false), SHOW_MESSAGE_DURATION);
     setWinnerCar(winner);
